@@ -7,7 +7,7 @@ import java.lang.annotation.RetentionPolicy;
  * 
  * 主键注解类
  * 
- * 2014-2-24 创建@杨大江
+ * 2014-2-24 创建@杨朔
  */
 @Retention(RetentionPolicy.RUNTIME) 
 public @interface PrimaryKey {

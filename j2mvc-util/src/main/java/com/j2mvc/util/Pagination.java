@@ -6,7 +6,7 @@ import com.j2mvc.util.json.JSONFactory;
 /**
  * 计算分页 根据总条数据，每页显示条数，当前页数计算上一条或下一条数数字
  * 
- * @author 杨大江
+ * @author 杨朔
  * 
  */
 public class Pagination {
@@ -22,7 +22,7 @@ public class Pagination {
 	 * 构造器
 	 * 
 	 * @param total 总数
-	 * @param perno 每页显示条数
+	 * @param pageSize 每页显示条数
 	 * @param page 当前页号
 	 */
 	public Pagination(Integer total, Integer pageSize, Integer page) {
@@ -36,9 +36,9 @@ public class Pagination {
 	 * 构造器
 	 * 
 	 * @param total 总数
-	 * @param perno 每页显示条数
+	 * @param pageSize 每页显示条数
 	 * @param page 当前页号
-	 * @param page 页号参数名，默认为“page”
+	 * @param pageName 页号参数名，默认为“page”
 	 */
 	public Pagination(Integer total, Integer pageSize, Integer page,String pageName) {
 		super();
@@ -83,7 +83,6 @@ public class Pagination {
 	 * 
 	 * @param maxNum
 	 *            每页显示的最大页数，如每页最大显示5页，最好为基数，如果为偶数，会自动加1。
-	 * @return
 	 */
 	public String getHtml(int maxNum) {
 		return getHtml("", maxNum,false);
@@ -94,7 +93,6 @@ public class Pagination {
 	 * @param maxNum
 	 *            每页显示的最大页数，如每页最大显示5页，最好为基数，如果为偶数，会自动加1。
 	 * @param showForce 强制显示分页
-	 * @return
 	 */
 	public String getHtml(int maxNum,boolean showForce) {
 		return getHtml("", maxNum,showForce);
@@ -103,7 +101,6 @@ public class Pagination {
 	/**
 	 * 返回HTML
 	 * @param url 访问页URL
-	 * @return
 	 */
 	public String getHtml(String url) {
 		return getHtml("", DEFAULT_MAXNUM,false);
@@ -113,7 +110,6 @@ public class Pagination {
 	 * 返回HTML
 	 * @param url 访问页URL
 	 * @param showForce 强制显示分页
-	 * @return
 	 */
 	public String getHtml(String url,boolean showForce) {
 		return getHtml("", DEFAULT_MAXNUM,showForce);
@@ -124,7 +120,6 @@ public class Pagination {
 	 * 
 	 * @param url 访问页URL
 	 * @param maxNum 该参数值表示每页显示的最大页号条数，
-	 * @return
 	 */
 	public String getHtml(String url, int maxNum) {
 		return getHtml(url,maxNum,false);
@@ -134,7 +129,6 @@ public class Pagination {
 	 * 
 	 * @param url 访问页URL
 	 * @param maxNum 该参数值表示每页显示的最大页号条数，
-	 * @return
 	 */
 	public String getHtml(String url, int maxNum,boolean showForce) {
 		if (pageTotal < 2 && !showForce)
@@ -217,7 +211,6 @@ public class Pagination {
 	 * 
 	 * @param url 访问页URL
 	 * @param maxNum 该参数值表示每页显示的最大页号条数，
-	 * @return
 	 */
 	public String getHtmlOnlyPage(String url, int maxNum) {
 
@@ -286,7 +279,6 @@ public class Pagination {
 	 * 
 	 * @param url 访问页URL
 	 * @param maxNum 该参数值表示每页显示的最大页号条数，
-	 * @return
 	 */
 	public String getBootstrapHtml(String url, int maxNum,boolean showForce) {
 		if (pageTotal < 2 && !showForce)

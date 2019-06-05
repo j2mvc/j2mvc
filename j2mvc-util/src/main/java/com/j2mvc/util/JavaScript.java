@@ -15,7 +15,6 @@ public class JavaScript {
     /**
      * 将字符串公式转换为Double
      * @param option
-     * @return
      */
     public static Double parse(String option){  
     	Double result;  

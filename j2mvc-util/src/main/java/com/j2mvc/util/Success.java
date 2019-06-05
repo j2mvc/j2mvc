@@ -8,7 +8,7 @@ import com.j2mvc.util.mapping.JSONObjectStr;
 /** 
  * 
  * 正确
- * 2014-3-29 创建@杨大江
+ * 2014-3-29 创建@杨朔
  *
  */
 @JSONObjectStr("success")

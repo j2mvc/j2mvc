@@ -8,14 +8,13 @@ import com.j2mvc.util.MD5;
 /**
  * MD5
  * 变更履历：
- * 2013/8/2 创建@杨大江
+ * 2013/8/2 创建@杨朔
  */
 public class MD5 {
 	
 	/**
 	 * 转换为MD5
 	 * @param s
-	 * @return
 	 */
 	public static String md5(String s) {
 		try {

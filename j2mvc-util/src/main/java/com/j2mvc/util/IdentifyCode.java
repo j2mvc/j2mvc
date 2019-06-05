@@ -11,11 +11,11 @@ import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * @Description 验证码类
- * @Company 贵州沃尔达科技有限公司
- * @Author 杨大江
- * @Version 1.0.1 
- * @Date 2015-1-6
+ * Description 验证码类
+ * Company 贵州沃尔达科技有限公司
+ * Author 杨朔
+ * Version 1.0.1 
+ * Date 2015-1-6
  */
 public class IdentifyCode{
 	int length = 4;
@@ -164,7 +164,6 @@ public class IdentifyCode{
 	/**
 	 * 生成指定验证码缓存图片
 	 * @param code
-	 * @return
 	 */
 	private BufferedImage CreateImageCode(String code) {
 		int fWidth = this.fontSize + this.padding;
@@ -244,7 +243,6 @@ public class IdentifyCode{
 	/**
 	 * 生成验证码
 	 * @param codeLen 验证码长度
-	 * @return
 	 */
 	private String CreateIdentifyCode(int codeLen) {
 		if (codeLen == 0) {

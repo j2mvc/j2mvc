@@ -7,7 +7,7 @@ import java.lang.annotation.RetentionPolicy;
  * 
  * Actions类声明
  * 
- * @author 杨大江
+ * @author 杨朔
  * @version 1.0@date2014-5-26
  */
 @Retention(RetentionPolicy.RUNTIME)

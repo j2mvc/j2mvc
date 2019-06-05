@@ -18,7 +18,6 @@ public class AESCoder {
 	 * 加密
 	 * @param src 需要加密的内容 
 	 * @param key 加密密码
-	 * @return
 	 */
     public static String encrypt(String src,String key){
 		try {
@@ -37,7 +36,6 @@ public class AESCoder {
 	 * 解密
 	 * @param src 需要解密的内容 
 	 * @param key 加密密码
-	 * @return
 	 */
     public static String decrypt(String src,String key) {
 		try {
@@ -59,7 +57,6 @@ public class AESCoder {
     /**
      * 获取16进制密钥
      * @param key
-     * @return
      * @throws Exception
      */
     private static SecretKeySpec getKey(String key) throws Exception {

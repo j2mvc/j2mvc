@@ -18,8 +18,7 @@ import java.util.Set;
 
 /**
  * 工具类
- * @author 杨大江
- * 2014年6月10日
+ * @author 杨朔 * 2014年6月10日
  */
 public class JSONUtils {
 	public static final String JSON_TYPE_STRING = "string";
@@ -31,7 +30,6 @@ public class JSONUtils {
 	/**
 	 * 获取JSON字符串的类型
 	 * @param json
-	 * @return
 	 */
 	public static String getJSONType(String json){
 		if(json != null && !json.equals("")){
@@ -55,7 +53,6 @@ public class JSONUtils {
 	 * 获取所有包括父类字段
 	 * @param fields
 	 * @param clazz
-	 * @return
 	 */
 	public static List<Field> getFields(List<Field> fields,Class<?> clazz){
 		fields = fields == null?new ArrayList<Field>():fields;
@@ -75,12 +72,10 @@ public class JSONUtils {
 	}
 	/**
 	 * 写入字段值
-	 * @param <E>
 	 * @param field
 	 * @param obj
 	 * @param value
 	 */
-	@SuppressWarnings("unchecked")
 	public static <T> void setValue(Field field,Object obj,Object value) {
 		try {
 			Class<?> fieldType = field.getType();
@@ -131,7 +126,6 @@ public class JSONUtils {
 	/**
 	 * 获取泛型类型
 	 * @param field
-	 * @return
 	 */
 	public static List<Class<?>> getGenericTypes(Field field){
 		List<Class<?>> types = new ArrayList<Class<?>>();

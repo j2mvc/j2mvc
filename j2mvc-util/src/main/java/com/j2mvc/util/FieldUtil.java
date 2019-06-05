@@ -15,7 +15,6 @@ public class FieldUtil {
 	 * 获取所有包含父类的属性字段
 	 * @param fields
 	 * @param clazz
-	 * @return
 	 */
 	public static List<Field> getFields(List<Field> fields,Class<?> clazz){
 		if(fields == null){
@@ -34,7 +33,6 @@ public class FieldUtil {
 	/**
 	 * 获取指定属性名的属性字段
 	 * @param name
-	 * @return
 	 */
 	public static Field getField(String name,Class<?> clazz){
 		Field field = null;
@@ -54,7 +52,6 @@ public class FieldUtil {
 	 * 根据属性名查找column注释
 	 * @param name
 	 * @param clazz
-	 * @return
 	 */
 	public static Column getColumn(String name,Class<?> clazz){
 		Field field = getField(name, clazz);
@@ -67,7 +64,6 @@ public class FieldUtil {
 	/**
 	 * 获取外键对象之主键数据类型
 	 * @param foreignClass
-	 * @return
 	 */
 	public static Field getForeignKey(Class<?> foreignClass){
 		// 外键对象之主键注解

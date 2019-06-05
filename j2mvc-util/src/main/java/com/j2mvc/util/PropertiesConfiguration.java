@@ -17,7 +17,7 @@ import java.util.logging.Logger;
 
 /**
  * 系统配置
- * 2013/12/31@author 杨大江
+ * 2013/12/31@author 杨朔
  *
  */
 public class PropertiesConfiguration {
@@ -88,7 +88,6 @@ public class PropertiesConfiguration {
    /**
     * 获取
     * @param key
-    * @return
     */
     public String get(String key){
         if(props.containsKey(key)){
@@ -101,8 +100,6 @@ public class PropertiesConfiguration {
 
     /**
      * 获取所有内容，并存入Map
-     * @param key
-     * @return
      */
      public Map<String, String> map(){
     	 Set<Entry<Object,Object>> set = props.entrySet();

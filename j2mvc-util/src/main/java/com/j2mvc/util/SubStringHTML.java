@@ -15,9 +15,7 @@ import java.util.regex.Matcher;
  *            截取的字节长度
  * @param end
  *            字符串末尾补上的字符串
- * @return 返回截取后的字符串
  */
-@Deprecated
 public class SubStringHTML {
 
     public static void main(String[] args) {  
@@ -35,7 +33,7 @@ public class SubStringHTML {
      * @param length 
      *            截取的字节长度 
      * @return 返回截取后的字符串 
-     * @date 2010-7-15 
+     * date 2010-7-15 
      */  
     public static String subStringHTML(String param, int length) {  
         StringBuffer result = new StringBuffer();  

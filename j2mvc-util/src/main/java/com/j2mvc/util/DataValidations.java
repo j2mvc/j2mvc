@@ -13,7 +13,7 @@ import com.j2mvc.util.mapping.Column;
 import com.j2mvc.util.mapping.Foreign;
 
 /**
- * 验证类 @author 杨大江
+ * 验证类 @author 杨朔
  * 2014/1/21
  *
  */
@@ -22,7 +22,6 @@ public class DataValidations {
 	/**
 	 * 验证对象内容长度，返回错误Map或true;
 	 * @param object
-	 * @return
 	 */
 	public static List<Error> dataTooLong(Object object){
 		Class<?> clazz = object.getClass();

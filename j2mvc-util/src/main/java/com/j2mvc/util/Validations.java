@@ -4,7 +4,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 /**
  * 验证类
- * 2014-4-4@杨大江
+ * 2014-4-4@杨朔
  */
 public class Validations {
 
@@ -12,7 +12,6 @@ public class Validations {
 	 * 是否不为空
 	 * 
 	 * @param s
-	 * @return
 	 */
 	public static boolean empty(String s) {
 		s = s != null ? s.trim() : "";
@@ -27,7 +26,6 @@ public class Validations {
 	 * 是否不含有特殊符号
 	 * 
 	 * @param s
-	 * @return
 	 */
 	public static boolean notHasSpecial(String s) {
 		s = s != null ? s.trim() : "";
@@ -46,7 +44,6 @@ public class Validations {
 	 * 是否是数值
 	 * 
 	 * @param s
-	 * @return
 	 */
 	public static boolean isNumeric(String s) {
 		s = s != null ? s.trim() : "";
@@ -61,7 +58,6 @@ public class Validations {
 	 * 是否是DOUBLE或INT类型
 	 * 
 	 * @param s
-	 * @return
 	 */
 	public static boolean isDoubleOrInt(String s) {
 		s = s != null ? s.trim() : "";
@@ -77,7 +73,6 @@ public class Validations {
 	 * 是否是DOUBLE类型
 	 * 
 	 * @param s
-	 * @return
 	 */
 	public static boolean isDouble(String s) {
 		s = s != null ? s.trim() : "";
@@ -93,7 +88,6 @@ public class Validations {
 	 * 是否是正负DOUBLE类型
 	 * 
 	 * @param s
-	 * @return
 	 */
 	public static boolean isNegativeDouble(String s) {
 		s = s != null ? s.trim() : "";
@@ -109,7 +103,6 @@ public class Validations {
 	 * 是否是正负DOUBLE类型 或INT
 	 * 
 	 * @param s
-	 * @return
 	 */
 	public static boolean isNegativeDoubleOrInt(String s) {
 		s = s != null ? s.trim() : "";
@@ -125,7 +118,6 @@ public class Validations {
 	 * 是否是网址
 	 * 
 	 * @param s
-	 * @return
 	 */
 	public static boolean isUrl(String s) {
 		s = s != null ? s.trim() : "";
@@ -147,7 +139,6 @@ public class Validations {
 	 * 是否是域名
 	 * 
 	 * @param s
-	 * @return
 	 */
 	public static boolean isDomain(String s) {
 		s = s != null ? s.trim() : "";
@@ -162,7 +153,6 @@ public class Validations {
 	 * 是否是邮箱地址
 	 * 
 	 * @param s
-	 * @return
 	 */
 	public static boolean isEmail(String s) {
 		s = s != null ? s.trim() : "";
@@ -178,7 +168,6 @@ public class Validations {
 	 * 验证电话号码
 	 * 
 	 * @param mobilephone
-	 * @return
 	 */
 	public static boolean isMobilephoneOrPhone(String mobilephone) {
 		boolean flag = true;
@@ -207,7 +196,6 @@ public class Validations {
 	 * 验证电话号码
 	 * 
 	 * @param mobilephone
-	 * @return
 	 */
 	public static boolean isMobilephone(String mobilephone) {
 		boolean flag = false;
@@ -229,7 +217,6 @@ public class Validations {
 	 * 是否为身份证号
 	 * 
 	 * @param idCard
-	 * @return
 	 */
 	public static boolean isIDCard(String idCard) {
 		boolean flag = false;

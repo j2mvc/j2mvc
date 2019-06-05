@@ -19,7 +19,7 @@ import com.j2mvc.util.mapping.JSONField;
 
 /**
  * 解析JSON字符为对象，需要在对象添加注解JSONField,JSONObjectStr 
- * @author 杨大江
+ * @author 杨朔
  * 2014年6月10日
  */
 public class JSONParse{
@@ -30,7 +30,6 @@ public class JSONParse{
 	 * 解析未知的对象,可以是任意对象
 	 * @param json
 	 * @param clazz
-	 * @return
 	 */
 	public static Object parse(String json, Class<?> clazz){
 		String jsonType = JSONUtils.getJSONType(json);
@@ -52,7 +51,6 @@ public class JSONParse{
 	 * 解析为实体对象
 	 * @param json
 	 * @param clazz
-	 * @return
 	 */
 	public static Object parseObject(String json,Class<?> clazz){
 		List<Field> fields = JSONUtils.getFields(null,clazz);
@@ -88,7 +86,6 @@ public class JSONParse{
 	 * 解析字段
 	 * @param field
 	 * @param value
-	 * @return
 	 */
 	private static Object parseField(Field field,String json){
 		if(json == null){
@@ -108,7 +105,6 @@ public class JSONParse{
 	 * 解析为MAP对象
 	 * @param json
 	 * @param clazz
-	 * @return
 	 */
 	private static Map<Object, Object> parseMap(String json,Field field){
 		Map<Object, Object> map = null;
@@ -139,7 +135,6 @@ public class JSONParse{
 	 * @param json
 	 * @param keyType
 	 * @param valueType
-	 * @return
 	 */
 	@SuppressWarnings("unchecked")
 	public static <K, V> Map<K, V> parseMap(String json,Class<?> keyType,Class<?> valueType,Map<K, V> map){
@@ -162,7 +157,6 @@ public class JSONParse{
 	 * 解析为数组
 	 * @param json
 	 * @param field  字段
-	 * @return
 	 */
 	private static Object parseArray(String json,Field field){
 		Class<?> clazz = field.getType();
@@ -199,7 +193,6 @@ public class JSONParse{
 	 * 解析为数组
 	 * @param json
 	 * @param clazz 字段元类型
-	 * @return
 	 */
 	@SuppressWarnings("unchecked")
 	public static <T> Object[] parseArray(String json,Class<T> clazz){
@@ -238,7 +231,6 @@ public class JSONParse{
 	 * 解析为集合
 	 * @param json
 	 * @param clazz 字段元类型
-	 * @return
 	 */
 	public static <T> List<T> parseList(String json,Class<T> clazz){
 		try {
@@ -260,7 +252,6 @@ public class JSONParse{
 	/**
 	 * 解析为字符
 	 * @param json
-	 * @return
 	 */
 	public static String parseString(String json){
 		return json;
@@ -268,7 +259,6 @@ public class JSONParse{
 	/**
 	 * 解析为数值
 	 * @param json
-	 * @return
 	 */
 	public static Number parseNumber(String json,Class<?> type){
 		if (Long.class.isAssignableFrom(type) || long.class.isAssignableFrom(type)) {

@@ -7,7 +7,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 /**
  * 字符串工具类
- * 2014-4-4@杨大江
+ * 2014-4-4@杨朔
  */
 public class StringUtils {
 
@@ -15,7 +15,6 @@ public class StringUtils {
 	 * 转换日期
 	 * 
 	 * @param s
-	 * @return
 	 */
 	public static String dateToString(String s,SimpleDateFormat format) {
 		s = s != null ? s.trim() : "";
@@ -29,7 +28,6 @@ public class StringUtils {
 	/**
 	 * 获取UTF8格式值
 	 * @param value  
-	 * @return 
 	 */
 	public static String getUtf8(String value){
 		if(value == null)
@@ -56,7 +54,6 @@ public class StringUtils {
 	 * 截取HTML
 	 * @param html
 	 * @param length
-	 * @return
 	 */
 	public static String subHtml(String html,int length){
         Document document = Jsoup.parse(html);
@@ -71,7 +68,6 @@ public class StringUtils {
 	/**
 	 * 移出HTML标签
 	 * @param html
-	 * @return
 	 */
 	public static String removeHtmlTag(String html){
         Document document = Jsoup.parse(html);

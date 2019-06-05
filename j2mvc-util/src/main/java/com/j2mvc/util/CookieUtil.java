@@ -8,18 +8,17 @@ import javax.servlet.http.HttpServletResponse;
  * 
  * Cookie类
  * 
- * 2014-3-29 创建@杨大江
- */
+ * 2014-3-29 创建@杨朔 */
 public class CookieUtil {
 
 	/**
 	 * 设置Cookie
-	 * @param response
-	 * @param cookieName
-	 * @param value
-	 * @param maxAge
-	 * @param path
-	 * @param pattern
+	 * @param response 响应
+	 * @param cookieName cookie名称
+	 * @param value cookie值
+	 * @param maxAge 最大时间
+	 * @param path  路径
+	 * @param pattern 路径匹配
 	 */
 	public static void setCookie(HttpServletResponse response,
 								String cookieName, 
@@ -39,7 +38,6 @@ public class CookieUtil {
 	 * @param maxAge
 	 * @param path
 	 * @param pattern
-	 * @return
 	 */
 	public static Cookie addCookie(
 			String name, 
@@ -97,7 +95,6 @@ public class CookieUtil {
 	 * 获取指定名称的cookie
 	 * @param request
 	 * @param cookieName
-	 * @return
 	 */
 	public static Cookie getCookie(HttpServletRequest request,String cookieName){		
 		Cookie[] cookies = request.getCookies();
@@ -114,7 +111,6 @@ public class CookieUtil {
 	 * 查找指定名称的cookie值
 	 * @param request
 	 * @param cookieName
-	 * @return
 	 */
 	public static String getCookieValue(HttpServletRequest request,String cookieName){
 		Cookie cookie = getCookie(request, cookieName);

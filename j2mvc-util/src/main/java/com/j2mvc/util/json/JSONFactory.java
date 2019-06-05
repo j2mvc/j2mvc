@@ -26,7 +26,7 @@ import com.j2mvc.util.mapping.NotJSONField;
 
 /**
  * JSON工厂，需要在对象添加注解JSONField,JSONObjectStr 
- * @author 杨大江
+ * @author 杨朔
  * 2014年1月14日
  */
 public class JSONFactory{
@@ -37,7 +37,6 @@ public class JSONFactory{
 	 * @param jsonName 
 	 * @param object
 	 *  
-	 * @return 
 	 * @throws JSONException 
 	 */
 	public JSONObject toSimpleJsonObject(String jsonName, Object object) {		
@@ -52,7 +51,6 @@ public class JSONFactory{
 	/**
 	 * objects集合生成JSON对象
 	 * @param objects 需要生成JSON的对象集合
-	 * @return 
 	 */
 	public JSONObject toJsonObject(Object... objects) {
 		
@@ -81,7 +79,6 @@ public class JSONFactory{
 	/**
 	 * 生成JSONArray对象，对象可以任意
 	 * @param object
-	 * @return
 	 */
 	public JSONArray toSimpleJsonArray(Object...object){
 		return toJsonArray(object);
@@ -91,7 +88,6 @@ public class JSONFactory{
 	 * 生成JSON对象
 	 * @param object 
 	 * @param hasOuter 如果hasOuter为真，则在JSON对象外层嵌套顶层JSON
-	 * @return 
 	 */
 	public Object toJsonObject(Object object,boolean hasOuter) {
 		if(object == null)
@@ -200,7 +196,6 @@ public class JSONFactory{
 	/**
 	 * 根据对象生成JSON对象
 	 * @param object
-	 * @return
 	 */
 	@SuppressWarnings("unchecked")
 	public Object toJsonObject(Object object){
@@ -219,8 +214,7 @@ public class JSONFactory{
 
 	/**
 	 * 根据对对象数组生成JSON数组
-	 * @param value
-	 * @return
+	 * @param object
 	 */
 	public JSONArray toJsonArray(Object object){
 		List<Object> jsons = new ArrayList<Object>();
@@ -266,7 +260,6 @@ public class JSONFactory{
 
 	/**
 	 * 根据对象解析字段生成JSON对象
-	 * @return
 	 */
 	private void build(JSONObject json,Object object){
 		List<Field> fields = JSONUtils.getFields(null,object.getClass());
@@ -283,7 +276,6 @@ public class JSONFactory{
 	}
 	/**
 	 * 根据MAP对象解析字段生成JSON对象
-	 * @return
 	 */
 	private void buildMap(JSONObject json,Map<Object, Object> map){
 		Set<Entry<Object,Object>> set =  map.entrySet();
@@ -318,7 +310,6 @@ public class JSONFactory{
 	}
 	/**
 	 * 根据MAP对象解析字段生成JSON对象
-	 * @return
 	 */
 	public JSONObject toJsonMap(Map<Object, Object> map){
 		Set<Entry<Object,Object>> set =  map.entrySet();

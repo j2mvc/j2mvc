@@ -29,7 +29,6 @@ public class DateTimeUtil {
     /**
      * 将日期信息转换成今天、明天、后天、星期
      * @param date
-     * @return
      */
     public static String getDateDetail(String date){
         Calendar today = Calendar.getInstance();
@@ -58,7 +57,6 @@ public class DateTimeUtil {
     /**
      * 将日期信息转换成星期
      * @param date
-     * @return
      */
     public static String getWeekDay(Date date){
         Calendar target = Calendar.getInstance();
@@ -72,7 +70,6 @@ public class DateTimeUtil {
     /**
      * 将日期信息转换成星期
      * @param source
-     * @return
      */
     public static int getDayOfWeek(String source){
         Date date = null;
@@ -94,7 +91,6 @@ public class DateTimeUtil {
      * 将日期差显示为日期或者星期
      * @param xcts
      * @param target
-     * @return
      */
     private static String showDateDetail(int xcts, Calendar target){
         switch(xcts){
@@ -116,7 +112,6 @@ public class DateTimeUtil {
     /**
      * 将日期差显示为星期
      * @param target
-     * @return
      */
     private static String getWeekDay(Calendar target){
         int dayForWeek = 0;
@@ -134,16 +129,14 @@ public class DateTimeUtil {
     }
     /**
      * 获取两个日期之间的间隔时间文本
-     * @return
      */
     public static String getDateTimeCountStr(Date startDate, Date endDate) {
         long l = getDateTimeCount(startDate,endDate);
         int day = (int)(l / (1000 * 60 * 60 * 24));
         return day+"天";
     }
-    /**
+    /** 
      * 获取两个日期之间的间隔时间
-     * @return
      */
     public static long getDateTimeCount(Date startDate, Date endDate) {
         Calendar fromCalendar = Calendar.getInstance();
@@ -166,7 +159,6 @@ public class DateTimeUtil {
      * A大于B
      * @param a
      * @param b
-     * @return
      */
     public static boolean compareDate(String a,String b){
         if(StringUtils.isEmpty(a) ||StringUtils.isEmpty(b))
@@ -185,7 +177,6 @@ public class DateTimeUtil {
      * 相同
      * @param a
      * @param b
-     * @return
      */
     public static boolean isSame(String a,String b){
         if(StringUtils.isEmpty(a) ||StringUtils.isEmpty(b))
@@ -204,7 +195,6 @@ public class DateTimeUtil {
      * @param year
      * @param month
      * @param day
-     * @return
      */
     public static int calMonthDays(int year,int month,int day){
         Calendar calendar = Calendar.getInstance();
@@ -216,7 +206,6 @@ public class DateTimeUtil {
     /**
      * 输出自定义日期
      * @param str
-     * @return
      */
     public static  String parseDateStr(String str){
         if(StringUtils.isEmpty(str))

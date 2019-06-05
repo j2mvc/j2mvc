@@ -67,7 +67,6 @@ public class HtmlPagination {
 	}
 	/** 
 	 * 返回html
-	 * @return
 	 */
 	public String html(){
 		int startIndex = pagination.getStartIndex() > total ?total:pagination.getStartIndex();

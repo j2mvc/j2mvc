@@ -20,7 +20,7 @@ import org.apache.log4j.Logger;
  * 
  * 通用工具类
  * 
- * 2014-3-29 创建@杨大江
+ * 2014-3-29 创建@杨朔
  */
 public class Utils {
 	final static Logger log = Logger.getLogger(Utils.class);
@@ -28,7 +28,6 @@ public class Utils {
 	public static final SimpleDateFormat  DATE_FORMAT = new SimpleDateFormat("yyyyMMddHHmmss");
 	/**
 	 * 创建ID
-	 * @return
 	 */
 	public static String createId(){	
 		return DATE_FORMAT.format(new java.util.Date()) + Math.round(Math.random()*8999+1000);
@@ -92,7 +91,6 @@ public class Utils {
 	 * @param username
 	 * @param domain
 	 * @param password
-	 * @return
 	 */
 	public static String createSessionid(String username,String domain,String password){
 		String sessionid = MD5.md5(username+domain+System.currentTimeMillis()+new Random().nextInt(10000));	
@@ -105,7 +103,6 @@ public class Utils {
 	/**
 	 * 解密
 	 * @param sessionid
-	 * @return
 	 */
 	public static String getPassword(String sessionid){
 		return decode(sessionid);
@@ -114,7 +111,6 @@ public class Utils {
 	 * 编码
 	 * @param large 大的数
 	 * @param small 小的数，小的数每个字符将被分隔
-	 * @return
 	 */
 	private static String encode(String large,String small ){	
 		long lLength = large.length();
@@ -137,7 +133,6 @@ public class Utils {
 	/**
 	 * 解码
 	 * @param source
-	 * @return
 	 */
 	private static String decode(String source){
 		// md5长度为32
@@ -168,7 +163,6 @@ public class Utils {
 	 /**
 	  * 获取文件大小单位
 	  * @param size
-	  * @return
 	  */
 	public static String format(float size){
 		String unit = "B";
@@ -193,8 +187,7 @@ public class Utils {
 
 	 /**
 	  * 获取时间大小单位
-	  * @param size
-	  * @return
+	  * @param time
 	  */
 	public static String formatTime(float time){
 		int sStep = 1000; // 秒步长
@@ -227,7 +220,6 @@ public class Utils {
 	/**
 	 * 转换HTML标签
 	 * @param str
-	 * @return
 	 */
 	public static String htmlspecialchars(String str) {
 		str = str.replaceAll("&", "&amp;");
@@ -242,7 +234,6 @@ public class Utils {
 	 * 转换日期时间输出
 	 * @param source
 	 * @param format
-	 * @return
 	 */
 	public static String formatDate(String source,String format){
 		try {
@@ -278,7 +269,7 @@ public class Utils {
 	 * 转换日期时间输出
 	 * @param source
 	 * @param format
-	 * @return
+	 * @param force
 	 */
 	public static String formatDate(String source,String format,boolean force){
 		try {
@@ -343,7 +334,6 @@ public class Utils {
 	/**
 	 * 对象转换为字节
 	 * @param obj
-	 * @return
 	 */
 	public static byte[] objectToBytes(java.lang.Object obj) {
 		if(obj == null)
@@ -368,11 +358,8 @@ public class Utils {
 	/**
 	 * 将byte数组转换为字符串
 	 * 
-	 * @param byte[]
-	 * @return string
-	 * @author gzsjt
-	 * @version 1.0
-	 * @date 2015-3-3
+	 * @param bytes
+	 * date 2015-3-3
 	 */
 	public static String byteToString(byte[] bytes) {
 		String result = null;
@@ -397,10 +384,7 @@ public class Utils {
 	 * 将字符串转换为byte数组
 	 * 
 	 * @param string
-	 * @return byte[]
-	 * @author zer0
-	 * @version 1.0
-	 * @date 2015-3-3
+	 * date 2015-3-3
 	 */
 	public static byte[] stringToBytes(String string) {
 		if (string == null) {
@@ -420,7 +404,6 @@ public class Utils {
 	/**
 	 * 字节转换为对象
 	 * @param bytes
-	 * @return
 	 */
 	public static Object bytesToObject(byte[] bytes){
 		if(bytes == null)
@@ -442,9 +425,9 @@ public class Utils {
     }
 	
 	/** 
-     * @功能 读取流 
+     * 功能 读取流 
      * @param is 输入流
-     * @return 字节数组 
+     * return 字节数组 
 	 * @throws IOException 
      */  
     public static String readInputStream(InputStream is) throws IOException {  
@@ -459,67 +442,12 @@ public class Utils {
 		String result = new String(baos.toByteArray());
         return result;  
     }  
-
-//	/** 
-//     * @功能 读取流 
-//     * @param is 输入流
-//     * @return 字节数组 
-//	 * @throws IOException 
-//     */  
-//    public static String convertStreamToString(InputStream is) {
-//		BufferedReader reader = new BufferedReader(new InputStreamReader(is));
-//		StringBuilder sb = new StringBuilder();
-//		String line = null;
-//		try {
-//			while ((line = reader.readLine()) != null) {
-//				sb.append(line);
-//			}
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		} finally {
-//			try {
-//				is.close();
-//			} catch (IOException e) {
-//				e.printStackTrace();
-//			}
-//		}
-//		return sb.toString();
-//	}
-
-	/** 
-     * @功能 读取流 
-     * @param is 输入流
-     * @return 字节数组 
-	 * @throws IOException 
-     */  
-//    public static String convertStreamToString(InputStream is,String end) {
-//		BufferedReader reader = new BufferedReader(new InputStreamReader(is));
-//		StringBuilder sb = new StringBuilder();
-//		String line = null;
-//		boolean isEnd = false;
-//		try {
-//			while (!isEnd && (line = reader.readLine()) != null) {
-//				isEnd = line.lastIndexOf(end)!=-1;
-//				sb.append(line);
-//			}
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		} finally {
-//			try {
-//				is.close();
-//			} catch (IOException e) {
-//				e.printStackTrace();
-//			}
-//		}
-//		return sb.toString();
-//	}
-//	/** 
-//     * @功能 读取流 
-//     * @param is 输入流
-//     * @param end 结束符
-//     * @return 字节数组 
-//	 * @throws IOException 
-//     */  
+    /**
+     * 
+     * @param is
+     * @param end
+     * @throws IOException
+     */
     public static String readInputStream(InputStream is,String end) throws IOException {  
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		byte[] b = new byte[1024];

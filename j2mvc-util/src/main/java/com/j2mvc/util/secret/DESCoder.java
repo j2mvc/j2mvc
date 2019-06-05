@@ -18,7 +18,6 @@ public class DESCoder {
 	 * 执行加密解密
 	 * @param src
 	 * @param key
-	 * @return
 	 * @throws Exception
 	 */
 	public static byte[] doFinal(int mode,byte[] src, byte[] key) throws Exception {
@@ -40,9 +39,8 @@ public class DESCoder {
 
 	/**
 	 * 加密
-	 * @param pass 密码
+	 * @param password 密码
 	 * @param key 加密字符串
-	 * @return
 	 */
 	public final static String encrypt(String password, String key) {
 		try {
@@ -55,7 +53,6 @@ public class DESCoder {
 	 * 解密
 	 * @param data 解密数据
 	 * @param key 加密字符串
-	 * @return
 	 */
 	public final static String decrypt(String data, String key) {
 		try {

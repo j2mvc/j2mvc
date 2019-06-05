@@ -19,8 +19,7 @@ public class InjectUtils {
 
     /** 
      * 从包package中获取所有的Class 
-     * @param pack 
-     * @return 
+     * @param packageName 
      */  
 	public List<Class<?>> getClasses(String packageName){  
           
