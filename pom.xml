@@ -3,7 +3,7 @@
 	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.github.yswork</groupId>
+	<groupId>com.j2mvc</groupId>
 	<artifactId>j2mvc</artifactId>
 	<packaging>pom</packaging>
 	<version>1.0.0</version>
@@ -11,27 +11,56 @@
 
 	<name>j2mvc</name>
 	<url>http://repo.maven.org</url>
-	
+	<description>A Lightweight Java MVC Framework</description>
+	<licenses>
+		<license>
+			<name>The Apache Software License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+		</license>
+	</licenses>
+	<properties>
+		<maven.version>2.2.1</maven.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.source>1.7</maven.compiler.source>
+		<maven.compiler.target>1.7</maven.compiler.target>
+	</properties>
+
+	<scm>
+		<connection>scm:git:git@github.com:j2mvc/j2mvc.git</connection>
+		<developerConnection>scm:git:git@github.com:j2mvc/j2mvc.git</developerConnection>
+		<url>https://github.com/j2mvc/j2mvc</url>
+	</scm>
+	<issueManagement>
+		<system>GitHub</system>
+		<url>https://github.com/j2mvc/j2mvc/issues</url>
+	</issueManagement>
+
+	<developers>
+		<developer>
+			<name>work</name>
+			<email>wwwdev@qq.com</email>
+		</developer>
+	</developers>
+
 	<distributionManagement>
 		<snapshotRepository>
-			<id>ossrh</id>
+			<id>oss-snapshots</id>
+			<name>OSS Snapshots Repository</name>
 			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
 		</snapshotRepository>
 		<repository>
-			<id>ossrh</id>
+			<id>oss-release</id>
+			<name>OSS Staging Repository</name>
 			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
 		</repository>
 	</distributionManagement>
 
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	</properties>
-
 	<modules>
 		<module>j2mvc-util</module>
-		<module>j2mvc-webframework</module>
-		<module>j2mvc-appframework</module>
+		<module>j2mvc-web</module>
+		<module>j2mvc-app</module>
 		<module>j2mvc-authorization</module>
 		<module>j2mvc-searcher</module>
 	</modules>
+
 </project>

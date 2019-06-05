@@ -8,10 +8,10 @@
     </parent>
 
   <groupId>com.j2mvc</groupId>
-  <artifactId>j2mvc-searcher</artifactId>
+  <artifactId>j2mvc-web</artifactId>
   <version>1.0.0</version>
 
-  <name>j2mvc-searcher</name>
+  <name>j2mvc-webframework</name>
   <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>
 
