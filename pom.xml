@@ -1,0 +1,37 @@
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.github.yswork</groupId>
+	<artifactId>jmvc</artifactId>
+	<packaging>pom</packaging>
+	<version>1.0.0</version>
+
+
+	<name>jmvc</name>
+	<url>http://repo.maven.org</url>
+	
+	<distributionManagement>
+		<snapshotRepository>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+		</snapshotRepository>
+		<repository>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
+		</repository>
+	</distributionManagement>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<modules>
+		<module>j2mvc-util</module>
+		<module>j2mvc-webframework</module>
+		<module>j2mvc-appframework</module>
+		<module>j2mvc-authorization</module>
+		<module>j2mvc-searcher</module>
+	</modules>
+</project>
