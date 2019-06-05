@@ -1,4 +1,4 @@
-package org.jmvc.webframework;
+package com.j2mvc.webframework;
 
 /**
  * Hello world!

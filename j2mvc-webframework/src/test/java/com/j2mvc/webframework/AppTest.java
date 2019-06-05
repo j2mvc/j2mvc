@@ -1,4 +1,4 @@
-package org.jmvc.util;
+package com.j2mvc.webframework;
 
 import static org.junit.Assert.assertTrue;
 
