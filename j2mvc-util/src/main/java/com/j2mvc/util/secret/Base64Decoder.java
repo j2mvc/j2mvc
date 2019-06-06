@@ -37,7 +37,7 @@ public class Base64Decoder extends FilterInputStream {
 	 * Returns the next decoded character from the stream, or -1 if end of
 	 * stream was reached.
 	 * 
-	 * @return the decoded character, or -1 if the end of the input stream is
+	 * coded character, or -1 if the end of the input stream is
 	 *         reached
 	 * @exception IOException
 	 *                if an I/O error occurs
@@ -101,7 +101,7 @@ public class Base64Decoder extends FilterInputStream {
 	 *            the start offset of the data
 	 * @param len
 	 *            the maximum number of bytes to read
-	 * @return the actual number of bytes read, or -1 if the end of the input
+	 *  the acmber of bytes read, or -1 if the end of the input
 	 *         stream is reached
 	 * @exception IOException
 	 *                if an I/O error occurs
@@ -136,7 +136,7 @@ public class Base64Decoder extends FilterInputStream {
 	 * 
 	 * @param encoded
 	 *            the string to decode
-	 * @return the decoded form of the encoded string
+	 *  the decoded fthe encoded string
 	 */
 	public static String decode(String encoded) {
 		return new String(decodeToBytes(encoded));
@@ -147,7 +147,7 @@ public class Base64Decoder extends FilterInputStream {
 	 * 
 	 * @param encoded
 	 *            the string to decode
-	 * @return the decoded form of the encoded string
+	 *  the decoded form of oded string
 	 */
 	public static byte[] decodeToBytes(String encoded) {
 		byte[] bytes = null;

@@ -26,13 +26,13 @@ public class SubStringHTML {
 
     /** 
      * 按子节长度截取字符串(支持截取带HTML代码样式的字符串)<br> 
-     * 如：<span>中国人发在线</span> 当截取2个字节得到的结果是：<span>中国 
+     * 如：<span>中国人发在线</span> <span>当截取2个字节得到的结果是：</span>中国 
      *  
      * @param param 
      *            将要截取的含html代码的字符串参数 
      * @param length 
      *            截取的字节长度 
-     * @return 返回截取后的字符串 
+     * 字符串 
      * date 2010-7-15 
      */  
     public static String subStringHTML(String param, int length) {  

@@ -36,7 +36,7 @@ public class Utils {
      * 获取当前日期是星期几<br>
      * 
      * @param date
-     * @return 当前日期是星期几
+     * 期几
      */
     public static int getWeekOfDate(Date date) {
         Calendar cal = Calendar.getInstance();
@@ -50,8 +50,7 @@ public class Utils {
      * 获取当前日期是星期几<br>
      * 
      * @param date
-     * @return 当前日期是星期几
-     */
+     *  当前日期是星  */
     public static String getWeekName(Date date) {
         Calendar cal = Calendar.getInstance();
         cal.setTime(date);

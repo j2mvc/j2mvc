@@ -1,0 +1,4 @@
+i18n实现国际化设置，不同语种全局变量键值方式设置，设置采用properties文件保存。
+全局变量名为Map类型：i18n
+properties文件路径：
+/conf/i18n

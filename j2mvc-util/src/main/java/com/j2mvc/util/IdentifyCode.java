@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
  * Description 验证码类
  * Company 贵州沃尔达科技有限公司
  * Author 杨朔
- * Version 1.0.1 
+ * Version 1.10.1 
  * Date 2015-1-6
  */
 public class IdentifyCode{

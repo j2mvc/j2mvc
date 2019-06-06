@@ -1,0 +1,16 @@
+com/j2mvc/j2mvc/1.10.1/j2mvc-1.10.1.pom=com.j2mvc:j2mvc:1.10.1:n/a:pom:pom:n/a:n/a:n/a:n/a
+com/j2mvc/j2mvc-util/1.10.1/j2mvc-util-1.10.1.jar=com.j2mvc:j2mvc-util:1.10.1:n/a:jar:jar:j2mvc-util-1.10.1.pom:n/a:n/a:n/a
+com/j2mvc/j2mvc-util/1.10.1/j2mvc-util-1.10.1-sources.jar=com.j2mvc:j2mvc-util:1.10.1:sources:java-source:jar:n/a:n/a:n/a:n/a
+com/j2mvc/j2mvc-util/1.10.1/j2mvc-util-1.10.1-javadoc.jar=com.j2mvc:j2mvc-util:1.10.1:javadoc:javadoc:jar:n/a:n/a:n/a:n/a
+com/j2mvc/j2mvc-framework-web/1.10.1/j2mvc-framework-web-1.10.1.jar=com.j2mvc:j2mvc-framework-web:1.10.1:n/a:jar:jar:j2mvc-framework-web-1.10.1.pom:n/a:n/a:n/a
+com/j2mvc/j2mvc-framework-web/1.10.1/j2mvc-framework-web-1.10.1-sources.jar=com.j2mvc:j2mvc-framework-web:1.10.1:sources:java-source:jar:n/a:n/a:n/a:n/a
+com/j2mvc/j2mvc-framework-web/1.10.1/j2mvc-framework-web-1.10.1-javadoc.jar=com.j2mvc:j2mvc-framework-web:1.10.1:javadoc:javadoc:jar:n/a:n/a:n/a:n/a
+com/j2mvc/j2mvc-framework-app/1.10.1/j2mvc-framework-app-1.10.1.jar=com.j2mvc:j2mvc-framework-app:1.10.1:n/a:jar:jar:j2mvc-framework-app-1.10.1.pom:n/a:n/a:n/a
+com/j2mvc/j2mvc-framework-app/1.10.1/j2mvc-framework-app-1.10.1-sources.jar=com.j2mvc:j2mvc-framework-app:1.10.1:sources:java-source:jar:n/a:n/a:n/a:n/a
+com/j2mvc/j2mvc-framework-app/1.10.1/j2mvc-framework-app-1.10.1-javadoc.jar=com.j2mvc:j2mvc-framework-app:1.10.1:javadoc:javadoc:jar:n/a:n/a:n/a:n/a
+com/j2mvc/j2mvc-authorization/1.10.1/j2mvc-authorization-1.10.1.jar=com.j2mvc:j2mvc-authorization:1.10.1:n/a:jar:jar:j2mvc-authorization-1.10.1.pom:n/a:n/a:n/a
+com/j2mvc/j2mvc-authorization/1.10.1/j2mvc-authorization-1.10.1-sources.jar=com.j2mvc:j2mvc-authorization:1.10.1:sources:java-source:jar:n/a:n/a:n/a:n/a
+com/j2mvc/j2mvc-authorization/1.10.1/j2mvc-authorization-1.10.1-javadoc.jar=com.j2mvc:j2mvc-authorization:1.10.1:javadoc:javadoc:jar:n/a:n/a:n/a:n/a
+com/j2mvc/j2mvc-searcher/1.10.1/j2mvc-searcher-1.10.1.jar=com.j2mvc:j2mvc-searcher:1.10.1:n/a:jar:jar:j2mvc-searcher-1.10.1.pom:n/a:n/a:n/a
+com/j2mvc/j2mvc-searcher/1.10.1/j2mvc-searcher-1.10.1-sources.jar=com.j2mvc:j2mvc-searcher:1.10.1:sources:java-source:jar:n/a:n/a:n/a:n/a
+com/j2mvc/j2mvc-searcher/1.10.1/j2mvc-searcher-1.10.1-javadoc.jar=com.j2mvc:j2mvc-searcher:1.10.1:javadoc:javadoc:jar:n/a:n/a:n/a:n/a

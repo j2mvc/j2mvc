@@ -122,7 +122,7 @@ public class Base64Encoder extends FilterOutputStream {
 	 * 
 	 * @param unencoded
 	 *            the string to encode
-	 * @return the encoded form of the unencoded string
+	 * coded form of the unencoded string
 	 */
 	public static String encode(String unencoded) {
 		byte[] bytes = null;
@@ -138,7 +138,7 @@ public class Base64Encoder extends FilterOutputStream {
 	 * 
 	 * @param bytes
 	 *            the bytes to encode
-	 * @return the encoded form of the unencoded string
+	 *  the enorm of the unencoded string
 	 */
 	public static String encode(byte[] bytes) {
 		ByteArrayOutputStream out = new ByteArrayOutputStream(
