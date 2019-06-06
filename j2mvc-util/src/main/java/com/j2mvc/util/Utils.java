@@ -268,7 +268,7 @@ public class Utils {
 				}
 			}else{
 				SimpleDateFormat dateformat = DATE_TIME_FORMAT;
-				if(!StringUtils.isEmpty(format))
+				if(format!=null && !format.trim().equals("")) 
 					dateformat = new SimpleDateFormat(format);
 				return dateformat.format(DATE_TIME_FORMAT.parse(source));
 			}
@@ -304,7 +304,7 @@ public class Utils {
 				}
 			}else{
 				SimpleDateFormat dateformat = DATE_TIME_FORMAT;
-				if(!StringUtils.isEmpty(format))
+				if(format!=null && !format.trim().equals(""))
 					dateformat = new SimpleDateFormat(format);
 				return dateformat.format(DATE_TIME_FORMAT.parse(source));
 			}

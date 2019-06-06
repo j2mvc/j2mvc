@@ -34,7 +34,7 @@ import com.j2mvc.framework.Constants;
 import com.j2mvc.framework.action.ActionBean;
 import com.j2mvc.framework.action.RequestUri;
 import com.j2mvc.framework.dao.DaoSupport;
-import com.j2mvc.framework.dao.DataSourceJndiMulti;
+import com.j2mvc.framework.dao.DataSourceJndi;
 import com.j2mvc.util.mapping.Column;
 import com.j2mvc.util.mapping.Foreign;
 import com.j2mvc.util.mapping.PrimaryKey;
@@ -162,7 +162,7 @@ public class DispatcherForward {
 	 * 过滤器销毁
 	 */
 	public void destroy() {
-		DataSourceJndiMulti.destroy();
+		DataSourceJndi.destroy();
 	}
 
 	/**

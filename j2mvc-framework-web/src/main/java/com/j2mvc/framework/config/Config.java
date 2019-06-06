@@ -16,7 +16,7 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import com.j2mvc.framework.Session;
 import com.j2mvc.framework.dao.DataSourceBean;
-import com.j2mvc.framework.dao.DataSourceJndiMulti;
+import com.j2mvc.framework.dao.DataSourceJndi;
 import com.j2mvc.framework.i18n.I18n;
 import com.j2mvc.framework.interceptor.DispatcherInterceptor;
 import com.j2mvc.util.StringUtils;
@@ -47,7 +47,7 @@ public class Config {
     	this.fileName = fileName;
     	loadDom();
     	// 绑定数据源
-    	DataSourceJndiMulti.init();
+    	DataSourceJndi.init();
     }
 
     /**
@@ -113,7 +113,7 @@ public class Config {
             }
         }
     }
-    /**
+    /**  
      * 初始化拦截器
      * @param element
      */

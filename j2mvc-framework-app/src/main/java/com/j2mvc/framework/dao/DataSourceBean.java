@@ -15,6 +15,13 @@ public class DataSourceBean {
 	private String url; 
 	private Integer maxActive;
 	private Integer initialSize;
+	private String validationQuery = "SELECT 1";
+	public String getValidationQuery() {
+		return validationQuery;
+	}
+	public void setValidationQuery(String validationQuery) {
+		this.validationQuery = validationQuery;
+	}
 	public String getName() {
 		return name;
 	}

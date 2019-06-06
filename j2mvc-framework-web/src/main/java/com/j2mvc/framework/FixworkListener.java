@@ -8,7 +8,7 @@ import javax.servlet.ServletContextListener;
 
 import com.j2mvc.framework.config.Config;
 import com.j2mvc.framework.config.InjectUri;
-import com.j2mvc.framework.dao.DataSourceJndiMulti;
+import com.j2mvc.framework.dao.DataSourceJndi;
 
 /**
  * fixwork监听器
@@ -65,7 +65,7 @@ public class FixworkListener implements ServletContextListener {
     }
 
     public void contextDestroyed(ServletContextEvent servletContextEvent) {
-    		DataSourceJndiMulti.destroy();
+    		DataSourceJndi.destroy();
     		if(Session.beans!=null)
     			Session.beans.clear();
     		if(Session.interceptors!=null)

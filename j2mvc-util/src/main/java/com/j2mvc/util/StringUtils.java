@@ -12,7 +12,7 @@ import org.jsoup.nodes.Document;
 public class StringUtils {
 
 	/**
-	 * 转换日期
+	 * 转换日期 
 	 * 
 	 * @param s
 	 */
@@ -30,7 +30,7 @@ public class StringUtils {
 	 * @param value  
 	 */
 	public static String getUtf8(String value){
-		if(value == null)
+		if(value == null)  
 			return "";
 		try {
 			if(java.nio.charset.Charset.forName("ISO-8859-1").newEncoder().canEncode(value))

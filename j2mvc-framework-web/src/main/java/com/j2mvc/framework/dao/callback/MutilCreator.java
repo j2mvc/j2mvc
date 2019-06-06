@@ -8,7 +8,7 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import com.j2mvc.framework.Session;
 import com.j2mvc.framework.dao.DataSourceJndi;
-import com.j2mvc.framework.dao.DataSourceJndiMulti;
+import com.j2mvc.framework.dao.DataSourceJndi;
 
 /**
  * 创建预编译语句
@@ -29,7 +29,7 @@ public class MutilCreator{
 		int[] num = null;
 		Connection con = null;
 		if(dataSourceName!=null && !dataSourceName.equals("")){
-			con = DataSourceJndiMulti.getConnection(dataSourceName);
+			con = DataSourceJndi.getConnection(dataSourceName);
 		}
 		if(con == null)
 			con = DataSourceJndi.getConnection();

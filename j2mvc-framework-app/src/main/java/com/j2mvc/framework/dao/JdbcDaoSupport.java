@@ -29,7 +29,7 @@ public class JdbcDaoSupport {
 		T t = null;
 		Connection con = null;
 		if(dataSourceName!=null && !dataSourceName.equals("")){
-			con = DataSourceJndiMulti.getConnection(dataSourceName);
+			con = DataSourceJndi.getConnection(dataSourceName);
 		}
 		if(con == null){
 			con = DataSourceJndi.getConnection();

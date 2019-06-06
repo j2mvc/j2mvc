@@ -12,7 +12,7 @@ import com.j2mvc.util.MD5;
  */
 public class MD5 {
 	
-	/**
+	/** 
 	 * 转换为MD5
 	 * @param s
 	 */
