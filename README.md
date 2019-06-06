@@ -60,7 +60,7 @@ JAVA应用程序MVC框架，封装了数据库，及控制调用。
 
 8.1、请参考示例j2mvc-example-app
 <pre>
-仓库地址:
+网址:
 https://github.com/j2mvc/j2mvc-example/
 https://github.com/j2mvc/j2mvc-example/tree/master/j2mvc-example-app
 </pre>
@@ -80,7 +80,7 @@ https://github.com/j2mvc/j2mvc-example/tree/master/j2mvc-example-app
 
 9.1、请参考示例j2mvc-example-web
 <pre>
-仓库地址:
+网址:
 https://github.com/j2mvc/j2mvc-example/
 https://github.com/j2mvc/j2mvc-example/tree/master/j2mvc-example-web
 </pre>
