@@ -86,6 +86,20 @@ public class Utils {
         return name;
     }
 	/**
+	 * 创建token
+	 * @param username
+	 * @param domain
+	 * @param password
+	 */
+	public static String createToken(String username,String domain,String password){
+		String sessionid = MD5.md5(username+domain+System.currentTimeMillis()+new Random().nextInt(10000));	
+		if(password.length()>32){
+			log.error("密码不能超过32位");
+			return "";
+		}
+		return encode(sessionid,password);
+	}
+	/**
 	 * 创建Sessionid
 	 * @param username
 	 * @param domain
@@ -94,7 +108,7 @@ public class Utils {
 	public static String createSessionid(String username,String domain,String password){
 		String sessionid = MD5.md5(username+domain+System.currentTimeMillis()+new Random().nextInt(10000));	
 		if(password.length()>32){
-			System.out.println("密码不能超过32位");
+			log.error("密码不能超过32位");
 			return "";
 		}
 		return encode(sessionid,password);
@@ -137,7 +151,7 @@ public class Utils {
 		// md5长度为32
 		int length = source.length();
 		if(length>64){
-			System.out.println("字符不能超过64位");
+			log.error("字符不能超过64位");
 			return "";
 		}
 		int sLength = length - 32;

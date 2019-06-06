@@ -5,16 +5,16 @@
 	<parent>
 		<artifactId>j2mvc</artifactId>
 		<groupId>com.j2mvc</groupId>
-		<version>1.10.1</version>
+		<version>2.0.1</version>
 	</parent>
 
 	<groupId>com.j2mvc</groupId>
 	<artifactId>j2mvc-authorization</artifactId>
-	<version>1.10.1</version>
+	<version>2.0.1</version>
 
 	<name>j2mvc-authorization</name>
 	<!-- FIXME change it to the project's website -->
-	<url>http://www.example.com</url>
+	<url>http://www.j2mvc.com</url>
 
 	<dependencies>
 		<dependency>
@@ -30,11 +30,12 @@
 			<version>20180813</version>
 			<scope>provided</scope>
 		</dependency>
+		
 		<!-- https://mvnrepository.com/artifact/log4j/log4j -->
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
-			<version>1.2.16</version>
+			<version>1.2.17</version>
 			<scope>provided</scope>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
@@ -47,13 +48,13 @@
 		<dependency>
 			<groupId>com.j2mvc</groupId>
 			<artifactId>j2mvc-util</artifactId>
-			<version>1.10.1</version>
+			<version>2.0.1</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.j2mvc</groupId>
 			<artifactId>j2mvc-framework-web</artifactId>
-			<version>1.10.1</version>
+			<version>2.0.1</version>
 			<scope>provided</scope>
 		</dependency>
 	</dependencies>

@@ -6,11 +6,11 @@
 	<groupId>com.j2mvc</groupId>
 	<artifactId>j2mvc</artifactId>
 	<packaging>pom</packaging>
-	<version>1.10.1</version>
+	<version>2.0.1</version>
 
 
 	<name>j2mvc</name>
-	<url>http://repo.maven.org</url>
+	<url>http://www.j2mvc.com</url>
 	<description>A Lightweight Java MVC Framework</description>
 	<licenses>
 		<license>
@@ -57,10 +57,10 @@
 
 	<modules>
 		<module>j2mvc-util</module>
-		<module>j2mvc-searcher</module>
 		<module>j2mvc-framework-web</module>
 		<module>j2mvc-framework-app</module>
 		<module>j2mvc-authorization</module>
+		<module>j2mvc-searcher</module>
 	</modules>
 
 	<build>
@@ -98,8 +98,8 @@
 				<artifactId>maven-javadoc-plugin</artifactId>
 				<version>3.1.0</version>
 				<configuration>
-                    <failOnError>false</failOnError>
-                    <doclint>none</doclint>
+					<failOnError>false</failOnError>
+					<doclint>none</doclint>
 					<stylesheetfile>${basedir}/src/main/javadoc/stylesheet.css</stylesheetfile>
 					<show>public</show>
 				</configuration>
@@ -117,7 +117,7 @@
 			</plugin>
 
 			<!-- GPG -->
-			 <plugin>
+			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-gpg-plugin</artifactId>
 				<version>1.0</version>
@@ -130,7 +130,7 @@
 						</goals>
 					</execution>
 				</executions>
-			</plugin> 
+			</plugin>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.5.1</version>
@@ -139,7 +139,15 @@
 					<target>1.7</target>
 				</configuration>
 			</plugin>
-
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+				<version>2.5.3</version>
+				<configuration>
+					<tagNameFormat>v@2.5.3</tagNameFormat>
+					<autoVersionSubmodules>true</autoVersionSubmodules>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 </project>
