@@ -105,7 +105,6 @@
 			<version>3.5.1</version>
 			<scope>provided</scope>
 		</dependency>
-
 <!-- 
 		<dependency>
 			<groupId>xssprotect</groupId>
