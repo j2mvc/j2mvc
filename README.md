@@ -59,7 +59,9 @@ JAVA应用程序MVC框架，封装了数据库，及控制调用。
 8、 创建java application项目
 
 8.1、请参考示例j2mvc-example-app
-仓库地址:https://github.com/j2mvc/j2mvc-example-app.git
+仓库地址:
+https://github.com/j2mvc/j2mvc-example/
+https://github.com/j2mvc/j2mvc-example/tree/master/j2mvc-example-app
 
 8.2、 流程
 <pre>
@@ -75,7 +77,9 @@ JAVA应用程序MVC框架，封装了数据库，及控制调用。
 9、创建java web项目
 
 9.1、请参考示例j2mvc-example-web
-仓库地址:https://github.com/j2mvc/j2mvc-example-web.git
+仓库地址:
+https://github.com/j2mvc/j2mvc-example/
+https://github.com/j2mvc/j2mvc-example/tree/master/j2mvc-example-web
 
 9.2、流程
 <pre>
