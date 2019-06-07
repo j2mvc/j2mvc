@@ -9,11 +9,14 @@ import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 import java.util.logging.Logger;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONException;
+import com.alibaba.fastjson.JSONObject;
+
 
 /**
  * 解析JSON字符为对象，需要在对象添加注解JSONField,JSONObjectStr 
@@ -55,7 +58,7 @@ public class JSONParse{
 		JSONObject jsonObject = null;
 		Object object = null;
 		try {
-			jsonObject = new JSONObject(json);
+			jsonObject = JSONObject.parseObject(json);
 			object = clazz.newInstance();
 		} catch (JSONException e) {
 			e.printStackTrace();
@@ -138,10 +141,12 @@ public class JSONParse{
 	public static <K, V> Map<K, V> parseMap(String json,Class<?> keyType,Class<?> valueType,Map<K, V> map){
 		map = map!=null?map:new HashMap<K, V>();
 		try {	
-			JSONObject jsonObject = new JSONObject(json);
-			Iterator<String> iterator =  jsonObject.keys();
+			JSONObject jsonObject = JSONObject.parseObject(json);
+			Set<Entry<String,Object>> set = jsonObject.entrySet();
+			Iterator<Entry<String,Object>> iterator =  set.iterator();
 			while (iterator.hasNext()) {
-				String keyString = (String) iterator.next();
+				Entry<String,Object> entry = iterator.next();
+				String keyString = entry.getKey();
 				K key = (K) parse(keyString, keyType);
 				V value = (V) parse(jsonObject.getString(keyString), valueType);
 				map.put(key, value);
@@ -196,8 +201,8 @@ public class JSONParse{
 	public static <T> Object[] parseArray(String json,Class<T> clazz){
 		Object[] array = null;
 		try {
-			JSONArray jsonArray = new JSONArray(json);
-			int length = jsonArray.length();
+			JSONArray jsonArray = JSONArray.parseArray(json);
+			int length = jsonArray.size();
 			if(String.class.isAssignableFrom(clazz)){
 				array = new String[length];
 			}else if(Integer.class.isAssignableFrom(clazz) || int.class.isAssignableFrom(clazz)){
@@ -216,7 +221,7 @@ public class JSONParse{
 				array = (T[]) Array.newInstance( clazz , length ) ;
 			}
 			if(array!=null)
-			for (int i = 0; i < jsonArray.length(); i++) {
+			for (int i = 0; i < jsonArray.size(); i++) {
 				 String jsonString = jsonArray.getString(i);
 				 array[i] = parse(jsonString,clazz);
 			}
@@ -232,9 +237,9 @@ public class JSONParse{
 	 */
 	public static <T> List<T> parseList(String json,Class<T> clazz){
 		try {
-			JSONArray jsonArray = new JSONArray(json);
+			JSONArray jsonArray = JSONArray.parseArray(json);
 			List<T> list = new ArrayList<T>();
-			for (int i = 0; i < jsonArray.length(); i++) {
+			for (int i = 0; i < jsonArray.size(); i++) {
 				 String jsonString = jsonArray.getString(i);
 				 @SuppressWarnings("unchecked")
 				 T object = (T) parse(jsonString, clazz);

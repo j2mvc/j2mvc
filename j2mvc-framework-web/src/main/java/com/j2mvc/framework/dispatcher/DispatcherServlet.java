@@ -1,7 +1,6 @@
 package com.j2mvc.framework.dispatcher;
 
 import java.io.IOException;
-import java.text.MessageFormat;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -10,10 +9,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 
+import com.j2mvc.framework.RequestMethod;
 import com.j2mvc.framework.Session;
-import com.j2mvc.framework.action.Action;
 import com.j2mvc.framework.action.ActionBean;
 import com.j2mvc.framework.action.ActionMatch;
+import com.j2mvc.framework.dao.DataSourceJndi;
 import com.j2mvc.framework.interceptor.Interceptor;
 
 /**
@@ -31,9 +31,9 @@ public class DispatcherServlet extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		req.setCharacterEncoding(Session.defaultEncoding);
-		resp.setContentType("text/html;charset=" + Session.defaultEncoding);
-		resp.setCharacterEncoding(Session.defaultEncoding);
+		req.setCharacterEncoding(Session.encoding);
+		resp.setContentType("text/html;charset=" + Session.encoding);
+		resp.setCharacterEncoding(Session.encoding);
 		
 		String method = req.getMethod();
 
@@ -60,15 +60,15 @@ public class DispatcherServlet extends HttpServlet {
 			String requestMethod = bean.getRequestMethod();
 			requestMethod = requestMethod!=null?requestMethod:"";
 			if (method.equals(METHOD_GET) && 
-					(requestMethod.equalsIgnoreCase(Action.RequestMethod.GET)||
+					(requestMethod.equalsIgnoreCase(RequestMethod.GET)||
 							requestMethod.equals(""))) {
 				doAction(req, resp,bean);
 			} else if (method.equals(METHOD_POST) && 
-					(requestMethod.equalsIgnoreCase(Action.RequestMethod.POST)||
+					(requestMethod.equalsIgnoreCase(RequestMethod.POST)||
 							requestMethod.equals(""))) {
 				doAction(req, resp,bean);
 			}  else {
-				log.warn("服务器限制了请求模式，若您的请求方式是GET或POST,请与服务器RequestMothod一致.");
+				log.warn("服务器限制了请求模式，客户端请求方式是GET或POST,与服务器requestMothod不一致.");
 				super.service(req, resp);
 			}
 		}else{
@@ -91,5 +91,32 @@ public class DispatcherServlet extends HttpServlet {
 			throws IOException, ServletException {
 		/** 执行Action */
 		new DispatcherForward(request, response, bean);
+	}
+	/**
+	 * 销毁
+	 */
+	@Override
+	public void destroy() {
+		DataSourceJndi.destroy();
+		if (Session.beans != null)
+			Session.beans.clear();
+		if (Session.interceptors != null)
+			Session.interceptors.clear();
+		if (Session.paths != null)
+			Session.paths.clear();
+		if (Session.uris != null)
+			Session.uris.clear();
+		if (Session.auths != null)
+			Session.auths.clear();
+		if (Session.queryUris != null)
+			Session.queryUris.clear();
+		if (Session.queryUriBeans != null)
+			Session.queryUriBeans.clear();
+		if (Session.paths != null)
+			Session.paths.clear();
+		if (Session.pathMap != null)
+			Session.pathMap.clear();
+		Session.sqlLog = false;
+		super.destroy();
 	}
 }

@@ -27,11 +27,11 @@ public class JdbcDaoSupport {
 	public <T> T execute(PreparedStatementCreator creator,PreparedStatementCallBack<T> callBack){
 		T t = null;
 		Connection con = null;
-//		log.debug("dataSourceName is "+dataSourceName);
+//		log.info("dataSourceName is "+dataSourceName);
 		if(dataSourceName!=null && !dataSourceName.equals("")){
 			con = DataSourceJndi.getConnection(dataSourceName);
 		}
-//		log.debug("con is "+con);
+//		log.info("con is "+con);
 		if(con == null)
 			con = DataSourceJndi.getConnection();
 		try {

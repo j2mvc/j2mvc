@@ -119,11 +119,11 @@ public class InjectUri {
 
 
 				// 请求方式
-				String requestMethod = actionUri.method();
+				String requestMethod = actionUri.requestMethod();
 				bean.setRequestMethod(requestMethod);
 				// 请求数据类型
-				String enctype = actionUri.enctype();
-				bean.setEnctype(enctype);
+				String contentType = actionUri.contentType();
+				bean.setContentType(contentType);
 				
 				// 封装到MAP
 				String key = (uri.startsWith("/")?"":actionPath) + uri;

@@ -7,6 +7,11 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Map.Entry;
 import java.util.logging.Logger;
+
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONException;
+import com.alibaba.fastjson.JSONObject;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -16,10 +21,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
- 
 /**
  * JSON工厂，需要在对象添加注解JSONField,JSONObjectStr 
  * @author 杨朔

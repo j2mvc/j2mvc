@@ -45,7 +45,7 @@ public class ActionBean {
 	/** 请求方式 */
 	private String requestMethod;
 	/** 数据方式 */
-	private String enctype;
+	private String contentType;
 	
 	public String getPackageName() {
 		return packageName;
@@ -149,11 +149,11 @@ public class ActionBean {
 	public void setRequestMethod(String requestMethod) {
 		this.requestMethod = requestMethod;
 	}
-	public String getEnctype() {
-		return enctype;
+	public String getContentType() {
+		return contentType;
 	}
-	public void setEnctype(String enctype) {
-		this.enctype = enctype;
+	public void setContentType(String contentType) {
+		this.contentType = contentType;
 	}
 
 	

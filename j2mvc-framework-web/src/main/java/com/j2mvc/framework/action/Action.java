@@ -10,10 +10,11 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import com.j2mvc.util.json.JSONFactory;
+import com.alibaba.fastjson.JSONException;
+import com.alibaba.fastjson.JSONObject;
+import com.j2mvc.framework.ContentType;
 import com.j2mvc.framework.Session;
-import com.j2mvc.util.StringUtils;
-import org.json.JSONException;
-import org.json.JSONObject;
+import org.w3c.dom.Document;
  
 /** 
  * Action
@@ -24,16 +25,6 @@ import org.json.JSONObject;
  */
 public abstract class Action {
 	
-	public interface RequestMethod{
-		String GET = "get";
-		String POST = "post";
-	}
-
-	public interface Enctype{
-		String FormData = "multipart/form-data";
-		String xWwwFormUrlencoded = "x-www-form-urlencoded";
-		String JSON = "form-json";
-	}
 	
 	protected HttpServletResponse response;
 	protected HttpServletRequest request;
@@ -42,6 +33,8 @@ public abstract class Action {
 	protected String path;
 	protected HttpSession session;
 	protected JSONObject jsonData;
+	protected Document xmlData;
+	protected String requestBody;
 	
 	public HttpServletResponse getResponse() {
 		return response;
@@ -75,6 +68,22 @@ public abstract class Action {
 
 	public void setJsonData(JSONObject jsonData) {
 		this.jsonData = jsonData;
+	}
+
+	public Document getXmlData() {
+		return xmlData;
+	}
+
+	public void setXmlData(Document xmlData) {
+		this.xmlData = xmlData;
+	}
+
+	public String getRequestBody() {
+		return requestBody;
+	}
+
+	public void setRequestBody(String requestBody) {
+		this.requestBody = requestBody;
 	}
 
 	public abstract String onStart();
@@ -114,9 +123,9 @@ public abstract class Action {
 	 * 
 	 */
 	protected String getParam(String name) {
-		String enctype = bean.getEnctype();
+		String contentType = bean.getContentType();
 		String value = null;
-		if(enctype!=null && Action.Enctype.JSON.equalsIgnoreCase(enctype)) {
+		if(contentType!=null && ContentType.JSON.equalsIgnoreCase(contentType)) {
 			try {
 				value = jsonData.getString(name);
 			} catch (JSONException e) {
@@ -146,13 +155,13 @@ public abstract class Action {
 			return "";
 		try {
 			if (java.nio.charset.Charset.forName("ISO-8859-1").newEncoder().canEncode(value)) {
-				value = new String(value.getBytes("ISO-8859-1"), Session.defaultEncoding);
+				value = new String(value.getBytes("ISO-8859-1"), Session.encoding);
 			} else if (java.nio.charset.Charset.forName("UTF-8").newEncoder().canEncode(value)) {
-				value = new String(value.getBytes("UTF-8"), Session.defaultEncoding);
+				value = new String(value.getBytes("UTF-8"), Session.encoding);
 			} else if (java.nio.charset.Charset.forName("GBK").newEncoder().canEncode(value)) {
-				value = new String(value.getBytes("GBK"), Session.defaultEncoding);
+				value = new String(value.getBytes("GBK"), Session.encoding);
 			} else if (java.nio.charset.Charset.forName("GB2312").newEncoder().canEncode(value)) {
-				value = new String(value.getBytes("GB2312"), Session.defaultEncoding);
+				value = new String(value.getBytes("GB2312"), Session.encoding);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
@@ -12,17 +13,18 @@
 	<version>2.0.10</version>
 
 	<name>j2mvc-util</name>
-	<!-- FIXME change it to the project's website --> 
+	<!-- FIXME change it to the project's website -->
 	<url>http://www.j2mvc.com</url>
 
 	<dependencies>
-		<!-- https://mvnrepository.com/artifact/org.json/json -->
+		<!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
 		<dependency>
-			<groupId>org.json</groupId>
-			<artifactId>json</artifactId>
-			<version>20180813</version>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>1.2.58</version>
 			<scope>provided</scope>
 		</dependency>
+
 		<!-- https://mvnrepository.com/artifact/org.jsoup/jsoup -->
 		<dependency>
 			<groupId>org.jsoup</groupId>

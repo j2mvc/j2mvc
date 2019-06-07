@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.j2mvc.framework.Session;
 import com.j2mvc.framework.action.ActionBean;
 import com.j2mvc.framework.action.ActionMatch;
+import com.j2mvc.framework.dao.DataSourceJndi;
 import com.j2mvc.framework.interceptor.Interceptor;
 
 
@@ -53,9 +54,9 @@ public class DispatcherFilter implements Filter {
 //	        xssRequest = new XssHttpServletRequestWrapper(request); 
 //		} 
 		try {
-			request.setCharacterEncoding(Session.defaultEncoding);
-			response.setContentType("text/html;charset="+Session.defaultEncoding); 
-			response.setCharacterEncoding(Session.defaultEncoding);
+			request.setCharacterEncoding(Session.encoding);
+			response.setContentType("text/html;charset="+Session.encoding); 
+			response.setCharacterEncoding(Session.encoding);
 //			if(xssRequest !=null)
 //				doAction(xssRequest, response,chain);
 //			else{
@@ -99,12 +100,6 @@ public class DispatcherFilter implements Filter {
 			}
 		}
 	}
-	/**
-	 * 过滤器销毁
-	 */
-	public void destroy() {
-		Session.uris.clear();
-	}
 	
 	/**
 	 * 判断当前URI是否需要拦截
@@ -118,5 +113,31 @@ public class DispatcherFilter implements Filter {
 		}else {
 			return true;
 		}
+	}
+	/**
+	 * 销毁
+	 */
+	@Override
+	public void destroy() {
+		DataSourceJndi.destroy();
+		if (Session.beans != null)
+			Session.beans.clear();
+		if (Session.interceptors != null)
+			Session.interceptors.clear();
+		if (Session.paths != null)
+			Session.paths.clear();
+		if (Session.uris != null)
+			Session.uris.clear();
+		if (Session.auths != null)
+			Session.auths.clear();
+		if (Session.queryUris != null)
+			Session.queryUris.clear();
+		if (Session.queryUriBeans != null)
+			Session.queryUriBeans.clear();
+		if (Session.paths != null)
+			Session.paths.clear();
+		if (Session.pathMap != null)
+			Session.pathMap.clear();
+		Session.sqlLog = false;
 	}
 }

@@ -38,8 +38,8 @@ public @interface  ActionUri {
 	public String query() default "";
 
 	/** 请求方法 */
-	public String method() default "";
+	public String requestMethod() default "";
 	
 	/** 请求数据类型 */
-	public String enctype() default "";
+	public String contentType() default "";
 }

@@ -21,7 +21,7 @@ public class Session {
 	/** 默认后缀 */
 	public static String subfix = ".do";
 
-	public static String defaultEncoding = "UTF-8";
+	public static String encoding = "UTF-8";
 
 	/** pathMap集合 */
 	public static Map<String,ActionBean> pathMap = new HashMap<String,ActionBean>();

@@ -141,7 +141,7 @@ public class AuthService{
 			sqls.add(sql);
 		}
 		int[] nums = dao.execute(sqls);
-		log.debug("执行权限更新语句"+(nums!=null?nums.length:0)+"组。");
+		log.info("执行权限更新语句"+(nums!=null?nums.length:0)+"组。");
 		return nums!=null?nums.length:0;
 		
 	}

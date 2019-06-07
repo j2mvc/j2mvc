@@ -3,14 +3,14 @@ package com.j2mvc.authorization.entity;
 import java.util.List;
 
 import com.j2mvc.framework.entity.BaseEntity;
+import com.alibaba.fastjson.JSONException;
+import com.alibaba.fastjson.JSONObject;
 import com.j2mvc.authorization.global.EntityConstants;
 import com.j2mvc.framework.mapping.Column;
 import com.j2mvc.framework.mapping.JSONField;
 import com.j2mvc.framework.mapping.JSONObjectStr;
 import com.j2mvc.framework.mapping.PrimaryKey;
 import com.j2mvc.framework.mapping.Table;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 /**
  * 菜单组
@@ -120,7 +120,7 @@ public class MenuGroup extends BaseEntity{
 		this.custom = custom;
 		if(custom!=null && !custom.equals(""))
 		try {
-			JSONObject json = new JSONObject(custom);
+			JSONObject json = JSONObject.parseObject(custom);
 			String str = json.getString("showTitle");	
 			if(str.equalsIgnoreCase("true") )
 				showTitle = true;

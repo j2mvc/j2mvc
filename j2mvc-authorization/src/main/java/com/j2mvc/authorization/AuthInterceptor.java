@@ -48,7 +48,7 @@ public abstract class AuthInterceptor extends MeasureInterceptor{
 			return true;
 
 		uri = getUri(request);
-		log.debug("已开启权限控制，执行权限拦载过程...当前URI:"+uri);
+		log.info("已开启权限控制，执行权限拦载过程...当前URI:"+uri);
 		if(uri.indexOf(AuthConfig.pathAdmin)!=-1){
 			// 系统管理员不在权限控制范围内，但管理员必须登陆，且拦载系统管理员路径
 			return authAdmin();
@@ -179,7 +179,7 @@ public abstract class AuthInterceptor extends MeasureInterceptor{
 	 */
 	protected boolean auth(Auth auth){
 		String userId = getUserId();
-		log.debug("开启中的路径权限:"+auth.getValue()+"，需要判断用户是否拥有此权限，用户"+(!StringUtils.isEmpty(getUserId())?"已":"未")+"登录。");
+		log.info("开启中的路径权限:"+auth.getValue()+"，需要判断用户是否拥有此权限，用户"+(!StringUtils.isEmpty(getUserId())?"已":"未")+"登录。");
 		// 开启中的权限，需要判断用户是否拥有此权限
 		if(!StringUtils.isEmpty(getUserId())){
 			return authService.exists(auth.getId(), userId);
@@ -200,7 +200,7 @@ public abstract class AuthInterceptor extends MeasureInterceptor{
 			return auth!=null;
 		}else{
 			String userId = getUserId();
-			log.debug("开启中的权限:"+value+"，需要判断用户是否拥有此权限，用户"+(!StringUtils.isEmpty(getUserId())?"已":"未")+"登录。");
+			log.info("开启中的权限:"+value+"，需要判断用户是否拥有此权限，用户"+(!StringUtils.isEmpty(getUserId())?"已":"未")+"登录。");
 			// 开启中的权限，需要判断用户是否拥有此权限
 			if(!StringUtils.isEmpty(getUserId())){
 				return authService.exists(value, authType,status,userId);

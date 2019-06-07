@@ -5,7 +5,7 @@ import java.lang.reflect.Method;
 import java.util.logging.Logger;
 
 public class InvokeUtils {
-	private static Logger log = Logger.getLogger("fixwork InvokeUtils");
+	private static Logger log = Logger.getLogger(InvokeUtils.class.getCanonicalName());
 
 	/**
 	 * 执行方法
