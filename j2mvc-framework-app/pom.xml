@@ -6,13 +6,12 @@
 	<parent>
 		<artifactId>j2mvc</artifactId>
 		<groupId>com.j2mvc</groupId>
-		<version>2.0.3</version>
+		<version>2.1</version>
 	</parent>
 
 	<artifactId>j2mvc-framework-app</artifactId>
-	<version>2.0.10</version>
 
-	<name>j2mvc-framework-app</name>
+	<name>J2mvc Appframework</name>
 	<!-- FIXME change it to the project's website -->
 	<url>http://www.j2mvc.com</url>
 
@@ -68,4 +67,5 @@
 			<scope>provided</scope>
 		</dependency>
 	</dependencies>
+	<version>2.1.01</version>
 </project>
