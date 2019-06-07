@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.apache.log4j.Logger;
 
-import com.j2mvc.util.FieldUtil;
+import com.j2mvc.framework.util.FieldUtil;
 
 /**
  * 预编译语句返回列表

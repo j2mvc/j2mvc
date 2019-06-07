@@ -10,10 +10,10 @@ import java.util.Set;
 import org.apache.log4j.Logger;
 import com.j2mvc.framework.Session;
 import com.j2mvc.framework.action.ActionBean;
-import com.j2mvc.util.mapping.ActionPath;
-import com.j2mvc.util.mapping.ActionUri;
-import com.j2mvc.util.mapping.IncludePage;
-import com.j2mvc.util.InjectUtils;
+import com.j2mvc.framework.mapping.ActionPath;
+import com.j2mvc.framework.mapping.ActionUri;
+import com.j2mvc.framework.mapping.IncludePage;
+import com.j2mvc.framework.util.InjectUtils;
 
 
 /**
@@ -117,6 +117,14 @@ public class InjectUri {
 				bean.setTag(tag); 
 				bean.setAuthNone(authNone);
 
+
+				// 请求方式
+				String requestMethod = actionUri.method();
+				bean.setRequestMethod(requestMethod);
+				// 请求数据类型
+				String enctype = actionUri.enctype();
+				bean.setEnctype(enctype);
+				
 				// 封装到MAP
 				String key = (uri.startsWith("/")?"":actionPath) + uri;
 				key = key.replace("/([", "([");

@@ -42,6 +42,10 @@ public class ActionBean {
 	private boolean auth;
 	/** 无权限代码 */
 	private String authNone;
+	/** 请求方式 */
+	private String requestMethod;
+	/** 数据方式 */
+	private String enctype;
 	
 	public String getPackageName() {
 		return packageName;
@@ -138,6 +142,18 @@ public class ActionBean {
 	}
 	public void setIncude(boolean incude) {
 		this.incude = incude;
+	}
+	public String getRequestMethod() {
+		return requestMethod;
+	}
+	public void setRequestMethod(String requestMethod) {
+		this.requestMethod = requestMethod;
+	}
+	public String getEnctype() {
+		return enctype;
+	}
+	public void setEnctype(String enctype) {
+		this.enctype = enctype;
 	}
 
 	

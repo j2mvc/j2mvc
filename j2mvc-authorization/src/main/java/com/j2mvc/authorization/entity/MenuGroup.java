@@ -4,11 +4,11 @@ import java.util.List;
 
 import com.j2mvc.framework.entity.BaseEntity;
 import com.j2mvc.authorization.global.EntityConstants;
-import com.j2mvc.util.mapping.Column;
-import com.j2mvc.util.mapping.JSONField;
-import com.j2mvc.util.mapping.JSONObjectStr;
-import com.j2mvc.util.mapping.PrimaryKey;
-import com.j2mvc.util.mapping.Table;
+import com.j2mvc.framework.mapping.Column;
+import com.j2mvc.framework.mapping.JSONField;
+import com.j2mvc.framework.mapping.JSONObjectStr;
+import com.j2mvc.framework.mapping.PrimaryKey;
+import com.j2mvc.framework.mapping.Table;
 import org.json.JSONException;
 import org.json.JSONObject;
 

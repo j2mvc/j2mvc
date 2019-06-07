@@ -1,4 +1,4 @@
-package com.j2mvc.util;
+package com.j2mvc.framework.util;
 
 import java.beans.IntrospectionException;
 import java.beans.PropertyDescriptor;
@@ -9,8 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.j2mvc.util.Error;
-import com.j2mvc.util.mapping.Column;
-import com.j2mvc.util.mapping.Foreign;
+import com.j2mvc.framework.mapping.Column;
+import com.j2mvc.framework.mapping.Foreign;
 
 /**
  * 验证类 @author 杨朔

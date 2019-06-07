@@ -7,12 +7,13 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
+
 import org.apache.log4j.Logger;
 
-import com.j2mvc.util.mapping.Column;
-import com.j2mvc.util.mapping.Foreign;
-import com.j2mvc.util.mapping.PrimaryKey;
-import com.j2mvc.util.FieldUtil;
+import com.j2mvc.framework.mapping.Column;
+import com.j2mvc.framework.mapping.Foreign;
+import com.j2mvc.framework.mapping.PrimaryKey;
+import com.j2mvc.framework.util.FieldUtil;
 /**
  * 读取对象的值
  * @author 杨朔

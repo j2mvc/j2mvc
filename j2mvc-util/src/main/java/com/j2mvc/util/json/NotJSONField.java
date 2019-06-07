@@ -1,4 +1,4 @@
-package com.j2mvc.util.mapping;
+package com.j2mvc.util.json;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

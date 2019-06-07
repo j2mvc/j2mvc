@@ -2,9 +2,11 @@ package com.j2mvc.framework.dispatcher;
 
 import java.beans.IntrospectionException;
 import java.beans.PropertyDescriptor;
+import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -31,16 +33,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.j2mvc.framework.Constants;
+import com.j2mvc.framework.Session;
+import com.j2mvc.framework.action.Action;
 import com.j2mvc.framework.action.ActionBean;
 import com.j2mvc.framework.action.RequestUri;
 import com.j2mvc.framework.dao.DaoSupport;
 import com.j2mvc.framework.dao.DataSourceJndi;
-import com.j2mvc.util.mapping.Column;
-import com.j2mvc.util.mapping.Foreign;
-import com.j2mvc.util.mapping.PrimaryKey;
-import com.j2mvc.util.mapping.Sql;
-import com.j2mvc.util.FieldUtil;
-import com.j2mvc.util.InvokeUtils;
+import com.j2mvc.framework.mapping.Column;
+import com.j2mvc.framework.mapping.Foreign;
+import com.j2mvc.framework.mapping.PrimaryKey;
+import com.j2mvc.framework.mapping.Sql;
+import com.j2mvc.framework.util.FieldUtil;
+import com.j2mvc.framework.util.InvokeUtils;
 import com.j2mvc.util.StringUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -89,6 +93,18 @@ public class DispatcherForward {
 	 * @throws ServletException 
 	 */
 	private void execute() throws ServletException, IOException{
+
+		String enctype = bean.getEnctype();
+		
+		if(enctype!=null && Action.Enctype.JSON.equalsIgnoreCase(enctype)) {
+			// JSON格式提交读取JSON数据
+			readJsonData();
+		}
+		// 注入Action内容
+		invoke();
+	}
+	
+	private void invoke() throws ServletException, IOException {
 		
 		String className = bean.getClassName().indexOf(".")!=-1?bean.getClassName():
 								bean.getPackageName() + "."+bean.getClassName();
@@ -111,8 +127,6 @@ public class DispatcherForward {
 				if(result == null)
 					result = invoke(bean.getMethod(), obj);
 				file = result instanceof String?(String) result:null;
-				// 获取JSON方式提交的数据，必须放到最后获取，否则影响获取其它方式提交的数据
-				getJsonData();
 				InvokeUtils.invoke(clazz, "setJsonData", obj,  new Object[]{jsonData},JSONObject.class);
 				forward(file);
 			} catch (InstantiationException e) {
@@ -126,16 +140,49 @@ public class DispatcherForward {
 			}
 		}
 	}
-	private void getJsonData(){
+	/**
+	 * 读取JSON数据
+	 */
+	private void readJsonData(){
 		try {
-			if(request.getInputStream()!=null)
-				try {
-					jsonData = new JSONObject(readInputStream(request.getInputStream()));
-				} catch (JSONException e) {
-					log.warn("解析JSON格式错误:"+e.getMessage());
-				}
-		} catch (IOException e) {
-			log.warn("获取输入流错误:"+e.getMessage());
+			request.setCharacterEncoding(Session.defaultEncoding);
+		} catch (UnsupportedEncodingException e1) {
+			log.error("字符编码错误！");
+			return;
+		}
+		response.setContentType("text/html;charset="+Session.defaultEncoding);
+		// 读取请求内容
+		BufferedReader br;
+		try {
+			br = new BufferedReader(new InputStreamReader(request.getInputStream(),Session.defaultEncoding));
+		} catch (UnsupportedEncodingException e1) {
+			log.error("读取字符编码错误！");
+			return;
+		} catch (IOException e1) {
+			log.error("读取数据失败！");
+			return;
+		}
+		String line = null;
+		StringBuilder sb = new StringBuilder();
+		try {
+			while ((line = br.readLine()) != null) {
+				sb.append(line);
+			}
+		} catch (IOException e1) {
+			log.error("解析数据失败！");
+			return;
+		}
+		//将json字符串转换为json对象
+		try {
+			jsonData = new JSONObject(sb.toString());
+			if(jsonData == null){
+				log.error("未获取到JSON数据！");
+				return;
+			}
+		} catch (JSONException e) {
+			log.error("JSON格式解析错误！");
+			e.printStackTrace();
+			return;
 		}
 	}
 	/**

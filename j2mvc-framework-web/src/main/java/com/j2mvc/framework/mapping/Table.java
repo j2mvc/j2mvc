@@ -1,12 +1,10 @@
-package com.j2mvc.util.mapping;
+package com.j2mvc.framework.mapping;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
-/**
- * 包含页面
- * @author root
- */
-@Retention(RetentionPolicy.RUNTIME)
-public @interface IncludePage {
-}
 
+@Retention(RetentionPolicy.RUNTIME)
+public @interface Table {
+	// 表名
+	public String value();
+}

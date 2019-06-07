@@ -15,11 +15,11 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import com.j2mvc.framework.dao.DaoSupport;
-import com.j2mvc.util.mapping.Column;
-import com.j2mvc.util.mapping.DataSourceName;
-import com.j2mvc.util.mapping.Foreign;
-import com.j2mvc.util.mapping.Sql;
-import com.j2mvc.util.FieldUtil;
+import com.j2mvc.framework.mapping.Column;
+import com.j2mvc.framework.mapping.DataSourceName;
+import com.j2mvc.framework.mapping.Foreign;
+import com.j2mvc.framework.mapping.Sql;
+import com.j2mvc.framework.util.FieldUtil;
 
 
 public class InvokeObject {

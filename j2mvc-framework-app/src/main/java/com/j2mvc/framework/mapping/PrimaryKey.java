@@ -1,4 +1,4 @@
-package com.j2mvc.util.mapping;
+package com.j2mvc.framework.mapping;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

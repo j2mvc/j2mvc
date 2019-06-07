@@ -1,4 +1,4 @@
-package com.j2mvc.util;
+package com.j2mvc.framework.util;
 
 import java.io.File;
 import java.io.IOException;
@@ -11,8 +11,6 @@ import java.util.List;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 import java.util.logging.Logger;
-
-import com.j2mvc.util.InjectUtils;
 
 public class InjectUtils {
 	Logger log = Logger.getLogger(InjectUtils.class.getName());

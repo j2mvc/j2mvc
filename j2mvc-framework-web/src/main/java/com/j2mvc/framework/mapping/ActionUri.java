@@ -1,4 +1,4 @@
-package com.j2mvc.util.mapping;
+package com.j2mvc.framework.mapping;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -36,4 +36,10 @@ public @interface  ActionUri {
 	
 	/** URL请求参数串 */
 	public String query() default "";
+
+	/** 请求方法 */
+	public String method() default "";
+	
+	/** 请求数据类型 */
+	public String enctype() default "";
 }

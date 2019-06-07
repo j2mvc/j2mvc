@@ -2,8 +2,8 @@ package com.j2mvc.util;
 
 import java.util.List;
 
-import com.j2mvc.util.mapping.JSONField;
-import com.j2mvc.util.mapping.JSONObjectStr;
+import com.j2mvc.util.json.JSONField;
+import com.j2mvc.util.json.JSONObjectStr;
 
 /** 
  * 

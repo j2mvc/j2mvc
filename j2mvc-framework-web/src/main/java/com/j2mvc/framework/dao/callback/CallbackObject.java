@@ -11,8 +11,8 @@ import java.sql.SQLException;
 import java.util.List;
 import org.apache.log4j.Logger;
 
-import com.j2mvc.util.mapping.PrimaryKey;
-import com.j2mvc.util.FieldUtil;
+import com.j2mvc.framework.mapping.PrimaryKey;
+import com.j2mvc.framework.util.FieldUtil;
 
 /**
  * 预编译语句返回对象

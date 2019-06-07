@@ -20,10 +20,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
  
-import com.j2mvc.util.mapping.JSONField;
-import com.j2mvc.util.mapping.JSONObjectStr;
-import com.j2mvc.util.mapping.NotJSONField;
-
 /**
  * JSON工厂，需要在对象添加注解JSONField,JSONObjectStr 
  * @author 杨朔

@@ -1,4 +1,4 @@
-package com.j2mvc.util;
+package com.j2mvc.framework.util;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;

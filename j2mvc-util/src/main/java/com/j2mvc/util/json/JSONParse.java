@@ -15,8 +15,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.j2mvc.util.mapping.JSONField;
-
 /**
  * 解析JSON字符为对象，需要在对象添加注解JSONField,JSONObjectStr 
  * @author 杨朔

@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.j2mvc.framework.Session;
-import com.j2mvc.util.InvokeUtils;
+import com.j2mvc.framework.util.InvokeUtils;
 
 /**
  * 

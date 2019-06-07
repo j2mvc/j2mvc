@@ -9,7 +9,8 @@ import javax.servlet.http.HttpServletResponseWrapper;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
-import com.j2mvc.util.json.JSONFactory; 
+import com.j2mvc.util.json.JSONFactory;
+import com.j2mvc.framework.Session;
 import com.j2mvc.util.StringUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -22,6 +23,18 @@ import org.json.JSONObject;
  * @version 1.1.6 2014-8-17
  */
 public abstract class Action {
+	
+	public interface RequestMethod{
+		String GET = "get";
+		String POST = "post";
+	}
+
+	public interface Enctype{
+		String FormData = "multipart/form-data";
+		String xWwwFormUrlencoded = "x-www-form-urlencoded";
+		String JSON = "form-json";
+	}
+	
 	protected HttpServletResponse response;
 	protected HttpServletRequest request;
 	protected ActionBean bean;
@@ -101,15 +114,22 @@ public abstract class Action {
 	 * 
 	 */
 	protected String getParam(String name) {
-		String value = request.getParameter(name) != null ? request.getParameter(name).trim() : "";
-		if(StringUtils.isEmpty(value) && jsonData!=null){
+		String enctype = bean.getEnctype();
+		String value = null;
+		if(enctype!=null && Action.Enctype.JSON.equalsIgnoreCase(enctype)) {
 			try {
 				value = jsonData.getString(name);
 			} catch (JSONException e) {
 				Logger.getLogger(Action.class).warn("读取JSON值错误:"+e.getMessage());
 			}
+		}else {
+			value = request.getParameter(name) != null ? request.getParameter(name).trim() : "";
 		}
-		return getUtf8(value);
+		if(value != null) {
+			// 编码转换
+			value = getCharset(value);
+		}
+		return value;
 	}
 
 	protected JSONObject getJsonBody(){
@@ -121,17 +141,18 @@ public abstract class Action {
 	 * @param value
 	 * 
 	 */
-	protected String getUtf8(String value) {
+	protected String getCharset(String value) {
 		if (value == null)
 			return "";
 		try {
 			if (java.nio.charset.Charset.forName("ISO-8859-1").newEncoder().canEncode(value)) {
-				value = new String(value.getBytes("ISO-8859-1"), "UTF-8");
+				value = new String(value.getBytes("ISO-8859-1"), Session.defaultEncoding);
 			} else if (java.nio.charset.Charset.forName("UTF-8").newEncoder().canEncode(value)) {
+				value = new String(value.getBytes("UTF-8"), Session.defaultEncoding);
 			} else if (java.nio.charset.Charset.forName("GBK").newEncoder().canEncode(value)) {
-				value = new String(value.getBytes("GBK"), "UTF-8");
+				value = new String(value.getBytes("GBK"), Session.defaultEncoding);
 			} else if (java.nio.charset.Charset.forName("GB2312").newEncoder().canEncode(value)) {
-				value = new String(value.getBytes("GB2312"), "UTF-8");
+				value = new String(value.getBytes("GB2312"), Session.defaultEncoding);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

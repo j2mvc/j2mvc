@@ -1,12 +1,12 @@
-package com.j2mvc.util;
+package com.j2mvc.framework.util;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
-import com.j2mvc.util.mapping.Column;
-import com.j2mvc.util.mapping.PrimaryKey;
+import com.j2mvc.framework.mapping.Column;
+import com.j2mvc.framework.mapping.PrimaryKey;
 
 public class FieldUtil {
 	static Logger log = Logger.getLogger(Field.class.getName());

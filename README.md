@@ -33,27 +33,27 @@ JAVA应用程序MVC框架，封装了数据库，及控制调用。
 		<dependency>
 			<groupId>com.j2mvc</groupId>
 			<artifactId>j2mvc-util</artifactId>
-			<version>2.0.1</version>
+			<version>2.10.1</version>
 		</dependency>
 		<dependency>
 			<groupId>com.j2mvc</groupId>
 			<artifactId>j2mvc-framework-web</artifactId>
-			<version>2.0.1</version>
+			<version>2.10.1</version>
 		</dependency>
 		<dependency>
 			<groupId>com.j2mvc</groupId>
 			<artifactId>j2mvc-framework-app</artifactId>
-			<version>2.0.1</version>
+			<version>2.10.1</version>
 		</dependency>
 		<dependency>
 			<groupId>com.j2mvc</groupId>
 			<artifactId>j2mvc-authorization</artifactId>
-			<version>2.0.1</version>
+			<version>2.10.1</version>
 		</dependency>
 		<dependency>
 			<groupId>com.j2mvc</groupId>
 			<artifactId>j2mvc-searcher</artifactId>
-			<version>2.0.1</version>
+			<version>2.10.1</version>
 		</dependency>
 
 8、 创建java application项目

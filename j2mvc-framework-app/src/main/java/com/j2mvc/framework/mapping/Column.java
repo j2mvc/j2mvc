@@ -1,4 +1,4 @@
-package com.j2mvc.util.mapping;
+package com.j2mvc.framework.mapping;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -7,15 +7,17 @@ import java.lang.annotation.Target;
 
 /**
  * 
- * SQL语句注解类,仅返回基础数据类型
+ * 字段注解类
  * 
  * 2014-2-24 创建@杨朔
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(value = { ElementType.FIELD})
-public @interface Sql {
+public @interface Column {
 
-	/* SQL语句 */
-	public String value();
+	public String name();
+	
+	public int length() default 0;
 
+	public boolean notnull() default false;
 }

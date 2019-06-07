@@ -14,12 +14,12 @@ import com.j2mvc.framework.dao.callback.Creator;
 import com.j2mvc.framework.dao.callback.MutilCreator;
 import com.j2mvc.framework.dao.callback.ObjectFieldsValue;
 import com.j2mvc.framework.dao.callback.PreparedStatementCallBack;
-import com.j2mvc.util.mapping.Column;
-import com.j2mvc.util.mapping.DataSourceName;
-import com.j2mvc.util.mapping.PrimaryKey;
-import com.j2mvc.util.mapping.Table;
-import com.j2mvc.util.mapping.Transient;
-import com.j2mvc.util.FieldUtil;
+import com.j2mvc.framework.mapping.Column;
+import com.j2mvc.framework.mapping.DataSourceName;
+import com.j2mvc.framework.mapping.PrimaryKey;
+import com.j2mvc.framework.mapping.Table;
+import com.j2mvc.framework.mapping.Transient;
+import com.j2mvc.framework.util.FieldUtil;
 /**
  * 数据层访问
  * 
