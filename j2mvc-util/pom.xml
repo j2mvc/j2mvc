@@ -11,7 +11,7 @@
 	<artifactId>j2mvc-util</artifactId>
 
 	<name>j2mvc-util</name>
-	<!-- FIXME change it to the project's website -->
+	<!-- FIXME change it to the project's website --> 
 	<url>http://www.j2mvc.com</url>
 
 	<dependencies>
