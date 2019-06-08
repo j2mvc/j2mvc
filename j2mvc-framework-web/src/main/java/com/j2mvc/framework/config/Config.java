@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -19,7 +20,6 @@ import com.j2mvc.framework.dao.DataSourceBean;
 import com.j2mvc.framework.dao.DataSourceJndi;
 import com.j2mvc.framework.i18n.I18n;
 import com.j2mvc.framework.interceptor.DispatcherInterceptor;
-import com.j2mvc.util.StringUtils;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -107,7 +107,7 @@ public class Config {
                 log.info("读取默认语种i18n-default节点:"+node.getNodeName()+"."); 
             	String value = node.getTextContent()!=null?node.getTextContent().trim():"";
             	value = value.replaceAll(" ","").replaceAll("\r","").replaceAll("\n","").replaceAll("\t","");
-            	value = StringUtils.getUtf8(value);
+            	value = getCharset(value);
             	if(!value.equals(""))
             		new I18n(context,"/conf/i18n/"+value+".properties");
             }
@@ -188,4 +188,25 @@ public class Config {
     	return text!=null?text.trim():"";
     }
 
+
+	/**
+	 * 获取默认编码格式值
+	 * @param value  
+	 */
+	public static String getCharset(String value){
+		if(value == null)  
+			return "";
+		try {
+			if(java.nio.charset.Charset.forName("ISO-8859-1").newEncoder().canEncode(value))
+				value = new String(value.getBytes("ISO-8859-1"),Session.encoding);
+			if(java.nio.charset.Charset.forName("UTF-8").newEncoder().canEncode(value))
+				value = new String(value.getBytes("UTF-8"),Session.encoding);
+			if(java.nio.charset.Charset.forName("GBK").newEncoder().canEncode(value))
+				value = new String(value.getBytes("GBK"),Session.encoding);
+			if(java.nio.charset.Charset.forName("GB2312").newEncoder().canEncode(value))
+				value = new String(value.getBytes("GB2312"),Session.encoding);
+		} catch (UnsupportedEncodingException e) {
+		}
+		return value;
+	}
 }

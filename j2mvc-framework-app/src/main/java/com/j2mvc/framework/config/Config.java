@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
@@ -269,7 +270,7 @@ public class Config {
 		String value = node.getTextContent();
 		value = value!=null?value.replaceAll(" ","")
 				.replaceAll("\r","").replaceAll("\n","").replaceAll("\t",""):"";
-		value = StringUtils.getUtf8(value);
+		value = getUtf8(value);
 		return value!=null?value.trim():"";
 	}
 	
@@ -295,5 +296,24 @@ public class Config {
 		public void setValue(String value) {
 			this.value = value;
 		}
+	}
+
+	/**
+	 * 获取默认编码格式值
+	 * @param value  
+	 */
+	public static String getUtf8(String value){
+		if(value == null)  
+			return "";
+		try {
+			if(java.nio.charset.Charset.forName("ISO-8859-1").newEncoder().canEncode(value))
+				value = new String(value.getBytes("ISO-8859-1"),"UTF-8");
+			if(java.nio.charset.Charset.forName("GBK").newEncoder().canEncode(value))
+				value = new String(value.getBytes("GBK"),"UTF-8");
+			if(java.nio.charset.Charset.forName("GB2312").newEncoder().canEncode(value))
+				value = new String(value.getBytes("GB2312"),"UTF-8");
+		} catch (UnsupportedEncodingException e) {
+		}
+		return value;
 	}
 }
