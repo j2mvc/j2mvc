@@ -10,6 +10,7 @@
 	</parent>
 
 	<artifactId>j2mvc-util</artifactId>
+	<version>2.1.01</version>
 
 	<name>J2mvc Utilities</name>
 	<!-- FIXME change it to the project's website -->
@@ -62,5 +63,4 @@
 		</dependency>
 
 	</dependencies>
-	<version>2.1.01</version>
 </project>

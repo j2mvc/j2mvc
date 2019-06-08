@@ -126,25 +126,6 @@ public class DispatcherFilter implements Filter {
 	 */
 	@Override
 	public void destroy() {
-		DataSourceJndi.destroy();
-		if (Session.beans != null)
-			Session.beans.clear();
-		if (Session.interceptors != null)
-			Session.interceptors.clear();
-		if (Session.paths != null)
-			Session.paths.clear();
-		if (Session.uris != null)
-			Session.uris.clear();
-		if (Session.auths != null)
-			Session.auths.clear();
-		if (Session.queryUris != null)
-			Session.queryUris.clear();
-		if (Session.queryUriBeans != null)
-			Session.queryUriBeans.clear();
-		if (Session.paths != null)
-			Session.paths.clear();
-		if (Session.pathMap != null)
-			Session.pathMap.clear();
-		Session.sqlLog = false;
+		log.info("销毁Filter...");
 	}
 }

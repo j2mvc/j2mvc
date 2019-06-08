@@ -61,7 +61,6 @@ public class J2mvcListener implements ServletContextListener {
 		new InjectUri().execute();
 
 		// 全局变量设置
-
 	}
 
 	public void contextDestroyed(ServletContextEvent servletContextEvent) {
