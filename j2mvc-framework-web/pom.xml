@@ -10,6 +10,7 @@
 	</parent>
 
 	<artifactId>j2mvc-framework-web</artifactId>
+	<version>2.1.02</version>
 
 	<name>J2mvc Webframework</name>
 	<!-- FIXME change it to the project's website -->
@@ -97,5 +98,38 @@
 		</dependency>
 
 	</dependencies>
-	<version>2.1.01</version>
+	<description>
+------------------------------------------------------
+强烈建议使用J2mvc 2.1以后的版本。
+------------------------------------------------------
+version 2.1.01
+------------------------------------------------------
+1.优化路径跳转，Servlet和Filter方式的路径设置
+2.优化内存销毁
+3.更换JSON依赖包
+4.优化接收方法RequestMethod,封装不同ContentType格式提交
+封装JSON，XML数据提交模块
+JSON请求示例 
+{
+	&quot;id&quot;:&quot;JSON134851&quot;,
+	&quot;title&quot;:&quot;JSON提交的标题&quot;,
+	&quot;price&quot;:65.1,
+	&quot;stock&quot;:100
+}
+
+XML请求示例
+&lt;!DOCTYPE root [
+&lt;!ELEMENT root ANY&gt;
+&lt;!ATTLIST Product SSN ID #REQUIRED&gt;]&gt;
+&lt;root&gt;
+&lt;Product SSN='id'&gt;XMLID12354&lt;/Product&gt;
+&lt;Product SSN='title'&gt;XML提交的标题 &lt;/Product&gt;
+&lt;Product SSN='price'&gt;55 &lt;/Product&gt; 
+&lt;Product SSN='stock'&gt;32 &lt;/Product&gt;
+&lt;/root&gt;
+------------------------------------------------------
+
+version 2.1.02
+------------------------------------------------------
+1.解决URL无后缀情况无法加载静态资源，解决无法渲染CSS文件。</description>
 </project>

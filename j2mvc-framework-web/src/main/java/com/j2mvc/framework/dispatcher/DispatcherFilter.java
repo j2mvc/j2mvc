@@ -1,6 +1,7 @@
 package com.j2mvc.framework.dispatcher;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
 import org.apache.log4j.Logger;
@@ -48,20 +49,30 @@ public class DispatcherFilter implements Filter {
 	public void doFilter(ServletRequest servletRequest,ServletResponse servletResponse, FilterChain chain){
 		HttpServletRequest request = (HttpServletRequest)servletRequest;
 		HttpServletResponse response = (HttpServletResponse)servletResponse;
-//		XssHttpServletRequestWrapper xssRequest = null;
-//		if(request.getMethod().equalsIgnoreCase("post")){
-	        // 防Xss跨站攻击
-//	        xssRequest = new XssHttpServletRequestWrapper(request); 
-//		} 
+		String uri = request.getServletPath();
+		// 不需要拦截，通常后缀为.css,.js,图片后缀等。				
+		if(!filter(uri)){
+			try {
+				chain.doFilter(request, response);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (ServletException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return;
+		}		
+
 		try {
 			request.setCharacterEncoding(Session.encoding);
-			response.setContentType("text/html;charset="+Session.encoding); 
-			response.setCharacterEncoding(Session.encoding);
-//			if(xssRequest !=null)
-//				doAction(xssRequest, response,chain);
-//			else{
-				doAction(request, response,chain);
-//			}
+		} catch (UnsupportedEncodingException e1) {
+			e1.printStackTrace();
+		}
+		response.setContentType("text/html;charset=" + Session.encoding);
+		response.setCharacterEncoding(Session.encoding);
+		try {
+			doAction(request, response,chain);
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (ServletException e) {
@@ -76,12 +87,8 @@ public class DispatcherFilter implements Filter {
 	 * @param chain
 	 */
 	public void doAction(HttpServletRequest request,HttpServletResponse response, FilterChain chain) throws IOException, ServletException  {
+
 		String uri = request.getServletPath();
-		// 不需要拦截，通常后缀为.css,.js,图片后缀等。				
-		if(!filter(uri)){
-			chain.doFilter(request, response);
-			return;
-		}			
 		/** 执行拦截器 */
 		Interceptor dispatcherInterceptor = new Interceptor(request, response);
 		boolean success = dispatcherInterceptor.isSuccess();
