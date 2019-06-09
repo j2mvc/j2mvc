@@ -9,6 +9,7 @@
 	</parent>
 
 	<artifactId>j2mvc-searcher</artifactId>
+	<version>2.1.02</version>
 
 	<name>J2mvc Searcher</name>
 	<!-- FIXME change it to the project's website -->
@@ -50,7 +51,6 @@
 		</dependency>
 	</dependencies>
 
-	<version>2.1.02</version>
 	
 	<build>
 		<plugins>
