@@ -2,8 +2,8 @@ package com.j2mvc.framework.dao;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.Hashtable;
 import java.util.Iterator;
-import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
@@ -25,13 +25,24 @@ import com.j2mvc.framework.Session;
  */
 public class DataSourceJndi {
 	static final Logger log = Logger.getLogger(DataSourceJndi.class);
-	static Map<String, DataSourceBean> beanMap = Session.dataSourceBeanMap;
 	static InitialContext ctx; 
 	/**
 	 * 绑定数据源
 	 */
 	public static void init() {
-		Set<Entry<String, DataSourceBean>> set = beanMap.entrySet();
+		log.info("开始绑定数据源");
+		
+		Hashtable<String, String> params = new Hashtable<String,String>();
+		if(Session.initialContextFactory!=null)
+			params.put(InitialContext.INITIAL_CONTEXT_FACTORY,Session.initialContextFactory);
+		if(Session.providerUrl!=null)
+			params.put(InitialContext.PROVIDER_URL,Session.providerUrl);
+		if(Session.securityProtocol!=null)
+			params.put(InitialContext.SECURITY_PROTOCOL,Session.securityProtocol);
+		if(Session.urlPkgPrefixes!=null)
+			params.put(InitialContext.URL_PKG_PREFIXES,Session.urlPkgPrefixes);
+		
+		Set<Entry<String, DataSourceBean>> set = Session.dataSourceBeanMap.entrySet();
 		Iterator<Entry<String, DataSourceBean>> iterator = set.iterator();
 		while (iterator.hasNext()) {
 			Entry<String, DataSourceBean> entry = iterator.next();
@@ -56,7 +67,7 @@ public class DataSourceJndi {
 				if(bean.getInitialSize()>0)
 					dataSource.setInitialSize(bean.getInitialSize());
 				// JNDI配置  
-				ctx = new InitialContext(); 
+				ctx = new InitialContext(params); 
 				
 				// 数据源绑定到JNDI
 				ctx.bind(name, dataSource);
@@ -72,7 +83,7 @@ public class DataSourceJndi {
 	 */
 	public static void destroy(){
 		try {			
-			Set<Entry<String, DataSourceBean>> set = beanMap.entrySet();
+			Set<Entry<String, DataSourceBean>> set = Session.dataSourceBeanMap.entrySet();
 			Iterator<Entry<String, DataSourceBean>> iterator = set.iterator();
 			while (iterator.hasNext()) {
 				Entry<String, DataSourceBean> entry = iterator.next();
@@ -91,11 +102,9 @@ public class DataSourceJndi {
 	 */
 	public static Connection getConnection() {
 		try {
-			// 实例上下文目录
-			Context context = new InitialContext();
 			// 在命名空间和目录空间中查找 数据源名称 返回数据库连接池对象 JNDI
 			String name = Session.dataSourceBean.getName().replaceAll("/", ":");
-			DataSource dataSource =(DataSource)context.lookup(name);	
+			DataSource dataSource =(DataSource)ctx.lookup(name);	
 			return dataSource.getConnection();
 		} catch (SQLException e) { 
 			e.printStackTrace();
@@ -109,11 +118,10 @@ public class DataSourceJndi {
 	 */
 	public static Connection getConnection(String name) {
 		try {
-			// 实例上下文目录
-			Context context = new InitialContext();
 			// 在命名空间和目录空间中查找 数据源名称 返回数据库连接池对象 JNDI
 			name = name.replaceAll("/", ":");
-			DataSource dataSource =(DataSource)context.lookup(name);	
+			// 实例上下文目录
+			DataSource dataSource =(DataSource)ctx.lookup(name);	
 			return dataSource.getConnection();
 		} catch (SQLException e) { 
 			e.printStackTrace();

@@ -16,4 +16,12 @@ public class Session {
 	public static boolean sqlLog = false;
 	
 
+	/**
+	 * 命名空间
+	 * tomcat naming:org.apache.naming.java.javaURLContextFactory
+	 */
+	public static String initialContextFactory;
+	public static String providerUrl;
+	public static String securityProtocol;
+	public static String urlPkgPrefixes;
 }

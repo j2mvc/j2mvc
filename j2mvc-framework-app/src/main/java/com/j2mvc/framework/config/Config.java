@@ -17,6 +17,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.apache.log4j.Logger;
 import com.j2mvc.framework.Session;
 import com.j2mvc.framework.dao.DataSourceBean;
+import com.j2mvc.framework.dao.DataSourceJndi;
 import com.j2mvc.framework.i18n.I18n;
 import com.j2mvc.util.OSType;
 import com.j2mvc.util.StringUtils;
@@ -30,8 +31,18 @@ import org.xml.sax.SAXException;
  * 配置XML解析器 @author 杨朔
  * 2013/1/2@创建
  * 2013/1/3@修改
+ * 2019/6/9@修改
  * 页面元素配置
  * <works> 	 
+ * 	
+ * 	
+	<naming>
+		<factory>org.eclipse.jetty.jndi.InitialContextFactory</factory>
+		<url></url>
+		<protocol></protocol>
+	</naming>
+	
+ * 	
  *	<DataSources>
  *		<DataSource 
  *			name="test1" 
@@ -58,6 +69,7 @@ import org.xml.sax.SAXException;
  */
 public class Config {
 	static final Logger log = Logger.getLogger(Config.class.getName());
+	
 	
 	static final String NODENAME_DATASOURCES = "DataSources";
 	static final String NODENAME_DATASOURCE = "DataSource";
@@ -138,13 +150,13 @@ public class Config {
 			builder = factory.newDocumentBuilder();
 			doc = builder.parse(is);
 			root = doc.getDocumentElement();
+			loadNaming();
 			loadDataSource();
 			loadDataSources();
 			loadInitParams();
 			loadI18n();
 			PropsConfig.init();
-//			DataSourceJndi.init();
-//			DataSourceJndiMulti.init();
+			DataSourceJndi.init();
 		} catch (ParserConfigurationException e1) {
 			e1.printStackTrace();
 		}catch (SAXException e) {
@@ -200,6 +212,34 @@ public class Config {
 		}
 	}
 
+
+	/**
+	 * 加载命名空间
+	 * 
+	 */
+	static void loadNaming(){
+		NodeList nodes = root.getElementsByTagName("naming");
+		Element node = nodes.getLength()>0?(Element)nodes.item(0):null;
+		if(node!=null){
+			NodeList children = node.getChildNodes();
+			for(int i=0;i<children.getLength();i++){
+				Node n = children.item(i);
+				String nodeName = n.getNodeName();
+				String value = getNodeValue(n);
+				if(value!=null && !value.equals("")) {
+					if(nodeName.equalsIgnoreCase("factory")) {
+						Session.initialContextFactory = value;
+					}else if(nodeName.equalsIgnoreCase("url")) {
+						Session.providerUrl = value;
+					}else if(nodeName.equalsIgnoreCase("protocol")) {
+						Session.securityProtocol = value;
+					}else if(nodeName.equalsIgnoreCase("url-pkg-prefixes")) {
+						Session.urlPkgPrefixes = value;
+					}
+				}
+			}
+		}
+	}
 	/**
 	 * 加载第一个数据源
 	 * 
