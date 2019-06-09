@@ -3,13 +3,11 @@ package com.j2mvc.framework.dao;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Iterator;
-import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
 import org.apache.log4j.Logger;
 
-import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
@@ -25,13 +23,13 @@ import com.j2mvc.framework.Session;
  */
 public class DataSourceJndi {
 	static final Logger log = Logger.getLogger(DataSourceJndi.class);
-	static Map<String, DataSourceBean> beanMap = Session.dataSourceBeanMap;
+
 	static InitialContext ctx; 
 	/**
 	 * 绑定数据源
 	 */
 	public static void init() {
-		Set<Entry<String, DataSourceBean>> set = beanMap.entrySet();
+		Set<Entry<String, DataSourceBean>> set = Session.dataSourceBeanMap.entrySet();
 		Iterator<Entry<String, DataSourceBean>> iterator = set.iterator();
 		while (iterator.hasNext()) {
 			Entry<String, DataSourceBean> entry = iterator.next();
@@ -63,7 +61,7 @@ public class DataSourceJndi {
 				
 				log.info("绑定JNDI，数据源名称："+bean.getName().replaceAll(":", "/"));
 			} catch (Exception e) {
-				log.error(e.getMessage());
+				e.printStackTrace();
 			}
 		}
 	}
@@ -72,7 +70,7 @@ public class DataSourceJndi {
 	 */
 	public static void destroy(){
 		try {			
-			Set<Entry<String, DataSourceBean>> set = beanMap.entrySet();
+			Set<Entry<String, DataSourceBean>> set = Session.dataSourceBeanMap.entrySet();
 			Iterator<Entry<String, DataSourceBean>> iterator = set.iterator();
 			while (iterator.hasNext()) {
 				Entry<String, DataSourceBean> entry = iterator.next();
@@ -90,11 +88,9 @@ public class DataSourceJndi {
 	 */
 	public static Connection getConnection() {
 		try {
-			// 实例上下文目录
-			Context context = new InitialContext();
 			// 在命名空间和目录空间中查找 数据源名称 返回数据库连接池对象 JNDI
 			String name = Session.dataSourceBean.getName().replaceAll("/", ":");
-			DataSource dataSource =(DataSource)context.lookup(name);	
+			DataSource dataSource =(DataSource)ctx.lookup(name);	
 			return dataSource.getConnection();
 		} catch (SQLException e) { 
 			e.printStackTrace();
@@ -108,10 +104,8 @@ public class DataSourceJndi {
 	 */
 	public static Connection getConnection(String name) {
 		try {
-			// 实例上下文目录
-			Context context = new InitialContext();
 			// 在命名空间和目录空间中查找 数据源名称 返回数据库连接池对象 JNDI
-			DataSource dataSource =(DataSource)context.lookup(name.replaceAll("/", ":"));	
+			DataSource dataSource =(DataSource)ctx.lookup(name.replaceAll("/", ":"));	
 			return dataSource.getConnection();
 		} catch (SQLException e) { 
 			e.printStackTrace();
