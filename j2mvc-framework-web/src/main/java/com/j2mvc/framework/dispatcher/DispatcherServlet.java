@@ -9,11 +9,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 
-import com.j2mvc.framework.RequestMethod;
 import com.j2mvc.framework.Session;
 import com.j2mvc.framework.action.ActionBean;
 import com.j2mvc.framework.action.ActionMatch;
 import com.j2mvc.framework.interceptor.Interceptor;
+import com.j2mvc.framework.mapping.RequestMethod;
 
 /**
  * 调配Servlet

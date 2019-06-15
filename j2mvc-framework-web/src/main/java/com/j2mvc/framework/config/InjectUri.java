@@ -10,9 +10,13 @@ import java.util.Set;
 import org.apache.log4j.Logger;
 import com.j2mvc.framework.Session;
 import com.j2mvc.framework.action.ActionBean;
+import com.j2mvc.framework.action.ActionUpload;
 import com.j2mvc.framework.mapping.ActionPath;
+import com.j2mvc.framework.mapping.UploadMeta;
 import com.j2mvc.framework.mapping.ActionUri;
+import com.j2mvc.framework.mapping.ContentType;
 import com.j2mvc.framework.mapping.IncludePage;
+import com.j2mvc.framework.mapping.RequestMethod;
 import com.j2mvc.framework.util.InjectUtils;
 
 
@@ -73,6 +77,9 @@ public class InjectUri {
 		for(Method method:methods){
 			IncludePage includePage = method.getAnnotation(IncludePage.class);
 			ActionUri actionUri = method.getAnnotation(ActionUri.class);		
+			UploadMeta uploadMeta = method.getAnnotation(UploadMeta.class);	
+			RequestMethod requestMethod = method.getAnnotation(RequestMethod.class);	
+			ContentType contentType = method.getAnnotation(ContentType.class);
 			if(actionUri!=null){
 				// URI
 				String uri = actionUri.uri();
@@ -119,12 +126,21 @@ public class InjectUri {
 
 
 				// 请求方式
-				String requestMethod = actionUri.requestMethod();
-				bean.setRequestMethod(requestMethod);
+				bean.setRequestMethod(requestMethod!=null?requestMethod.value():null);
 				// 请求数据类型
-				String contentType = actionUri.contentType();
-				bean.setContentType(contentType);
-				
+				bean.setContentType(contentType!=null?contentType.value():null);
+				// 上传
+				if(uploadMeta != null) {
+					ActionUpload actionUpload = new ActionUpload();
+					actionUpload.setSavePath(uploadMeta.savePath());
+					actionUpload.setSaveUrl(uploadMeta.saveUrl());
+					actionUpload.setExt(uploadMeta.ext());
+					actionUpload.setDirname(uploadMeta.dirname());
+					actionUpload.setMaxSize(uploadMeta.maxSize());
+					actionUpload.setFilename(uploadMeta.filename());
+					actionUpload.setKeepOriginName(uploadMeta.keepOriginName());
+					bean.setActionUpload(actionUpload);
+				}
 				// 封装到MAP
 				String key = (uri.startsWith("/")?"":actionPath) + uri;
 				key = key.replace("/([", "([");

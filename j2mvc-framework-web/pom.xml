@@ -10,13 +10,13 @@
 	</parent>
 
 	<artifactId>j2mvc-framework-web</artifactId>
-	<version>2.1.08</version>
- 
+	<version>2.1.09</version>
+
 	<name>J2mvc Webframework</name>
 	<!-- FIXME change it to the project's website -->
 	<url>http://www.j2mvc.com</url>
 
-	<dependencies>  
+	<dependencies>
 		<!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
 		<dependency>
 			<groupId>com.alibaba</groupId>
@@ -30,6 +30,21 @@
 			<groupId>org.jsoup</groupId>
 			<artifactId>jsoup</artifactId>
 			<version>1.12.1</version>
+			<scope>provided</scope>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.6</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload -->
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<version>1.4</version>
 			<scope>provided</scope>
 		</dependency>
 
@@ -86,10 +101,10 @@
 		<dependency>
 			<groupId>com.j2mvc</groupId>
 			<artifactId>j2mvc-util</artifactId>
-			<version>2.1.01</version>
+			<version>2.1.02</version>
 			<scope>provided</scope>
 		</dependency>
-		
+
 		<!-- https://mvnrepository.com/artifact/org.antlr/antlr-runtime -->
 		<dependency>
 			<groupId>org.antlr</groupId>
@@ -142,5 +157,8 @@ version 2.1.05,2.1.06,2.1.07
 不支持接收参数为集合类型或Map类型，但可以定义为接收对象类型的元素。
 
 version 2.1.05,2.1.06,2.1.07
-1.修改连接池变量</description>
+1.修改连接池变量
+
+version 2.1.09
+增加上传功能，修改RequestMethod,ContentType设置方式</description>
 </project>

@@ -46,6 +46,8 @@ public class ActionBean {
 	private String requestMethod;
 	/** 数据方式 */
 	private String contentType;
+	/** 上传实例 */
+	private ActionUpload actionUpload;
 	
 	public String getPackageName() {
 		return packageName;
@@ -155,6 +157,11 @@ public class ActionBean {
 	public void setContentType(String contentType) {
 		this.contentType = contentType;
 	}
-
+	public ActionUpload getActionUpload() {
+		return actionUpload;
+	}
+	public void setActionUpload(ActionUpload actionUpload) {
+		this.actionUpload = actionUpload;
+	}
 	
 }

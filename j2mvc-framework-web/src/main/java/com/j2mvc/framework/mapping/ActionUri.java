@@ -36,10 +36,4 @@ public @interface  ActionUri {
 	
 	/** URL请求参数串 */
 	public String query() default "";
-
-	/** 请求方法 */
-	public String requestMethod() default "";
-	
-	/** 请求数据类型 */
-	public String contentType() default "";
 }

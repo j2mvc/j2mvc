@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
-import org.w3c.dom.Document;
 
-import com.alibaba.fastjson.JSONObject;
-import com.j2mvc.framework.ContentType;
-import com.j2mvc.framework.RequestMethod;
 import com.j2mvc.framework.action.ActionBean;
+import com.j2mvc.framework.action.UploadBean;
 import com.j2mvc.framework.dispatcher.reader.DefaultReader;
+import com.j2mvc.framework.dispatcher.reader.FileReader;
 import com.j2mvc.framework.dispatcher.reader.FormDataReader;
 import com.j2mvc.framework.dispatcher.reader.JSONReader;
 import com.j2mvc.framework.dispatcher.reader.XMLReader;
+import com.j2mvc.framework.mapping.ContentType;
+import com.j2mvc.framework.mapping.RequestMethod;
 import com.j2mvc.framework.util.InvokeUtils;
 
 /**  
@@ -97,6 +97,13 @@ public class DispatcherForward {
 							// multipart/form-data
 							log.info(" read FormData.");
 							result = new FormDataReader(request,method, obj).result();
+						}else if(contentType!=null && ContentType.FILE.equalsIgnoreCase(contentType)) {
+							// multipart/file
+							log.info(" read File data.");
+							FileReader reader  = new FileReader(request,method,obj,response,bean.getActionUpload());
+							log.info("接收上传完毕："+reader.getUploadBean().getFileInfo().getFilename());
+							InvokeUtils.invoke(clazz, "setUploadBean", obj,  new Object[]{reader.getUploadBean()},UploadBean.class);
+							result = reader.result();
 						}else if(contentType!=null && ContentType.XWwwFormUrlencoded.equalsIgnoreCase(contentType)) {
 							// application/x-www-form-urlencoded
 							log.info(" read XWwwFormUrlencoded, use DefaultReader.");

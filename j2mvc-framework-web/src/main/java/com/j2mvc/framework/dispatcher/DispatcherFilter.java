@@ -18,7 +18,6 @@ import javax.servlet.http.HttpServletResponse;
 import com.j2mvc.framework.Session;
 import com.j2mvc.framework.action.ActionBean;
 import com.j2mvc.framework.action.ActionMatch;
-import com.j2mvc.framework.dao.DataSourceJndi;
 import com.j2mvc.framework.interceptor.Interceptor;
 
 
@@ -94,7 +93,8 @@ public class DispatcherFilter implements Filter {
 		boolean success = dispatcherInterceptor.isSuccess();
 		if(success){
 			String queryString = request.getQueryString();
-			ActionBean bean = new ActionMatch(uri,queryString).getBean();
+			ActionMatch match = new ActionMatch(uri,queryString);
+			ActionBean bean = match.getBean();
 			if(bean!=null){
 				/** 执行Action */
 				new DispatcherForward(request, response, bean);

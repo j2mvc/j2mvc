@@ -12,8 +12,9 @@ import org.apache.log4j.Logger;
 import com.j2mvc.util.json.JSONFactory;
 import com.alibaba.fastjson.JSONException;
 import com.alibaba.fastjson.JSONObject;
-import com.j2mvc.framework.ContentType;
 import com.j2mvc.framework.Session;
+import com.j2mvc.framework.mapping.ContentType;
+
 import org.w3c.dom.Document;
  
 /** 
@@ -35,7 +36,16 @@ public abstract class Action {
 	protected JSONObject jsonData;
 	protected Document xmlData;
 	protected String requestBody;
+	protected UploadBean uploadBean;
 	
+	public UploadBean getUploadBean() {
+		return uploadBean;
+	}
+
+	public void setUploadBean(UploadBean uploadBean) {
+		this.uploadBean = uploadBean;
+	}
+
 	public HttpServletResponse getResponse() {
 		return response;
 	}
