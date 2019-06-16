@@ -7,18 +7,19 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.apache.lucene.analysis.Analyzer;
+import org.apache.lucene.analysis.id.IndonesianAnalyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.index.CorruptIndexException;
+import org.apache.lucene.index.DirectoryReader;
 import org.apache.lucene.index.IndexReader;
-import org.apache.lucene.index.IndexWriterConfig;
-import org.apache.lucene.index.IndexWriterConfig.OpenMode;
-import org.apache.lucene.queryParser.MultiFieldQueryParser;
-import org.apache.lucene.queryParser.ParseException;
-import org.apache.lucene.queryParser.QueryParser;
+import org.apache.lucene.queryparser.classic.MultiFieldQueryParser;
+import org.apache.lucene.queryparser.classic.ParseException;
+import org.apache.lucene.queryparser.classic.QueryParser;
 import org.apache.lucene.search.IndexSearcher;
 import org.apache.lucene.search.Query;
 import org.apache.lucene.search.ScoreDoc;
 import org.apache.lucene.search.TopDocs;
+import org.apache.lucene.search.TotalHits;
 import org.apache.lucene.search.highlight.Highlighter;
 import org.apache.lucene.search.highlight.InvalidTokenOffsetsException;
 import org.apache.lucene.search.highlight.QueryScorer;
@@ -26,12 +27,12 @@ import org.apache.lucene.search.highlight.SimpleHTMLFormatter;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.store.LockObtainFailedException;
-import org.apache.lucene.util.Version;
+import org.apache.lucene.util.BytesRef;
+
 import com.j2mvc.util.Error;
 import com.j2mvc.util.Pagination;
 import com.j2mvc.util.StringUtils;
 import com.j2mvc.util.Utils;
-import org.wltea.analyzer.lucene.IKAnalyzer;
 
 /**
  * 搜索<BR>
@@ -60,7 +61,7 @@ public class Searcher {
 	
 	// 关键词
 	// 实例化IKAnalyzer分词器 当为true时，分词器进行智能切分
-	Analyzer analyzer = new IKAnalyzer();
+	Analyzer analyzer = new IndonesianAnalyzer();
 	Directory directory;
 	IndexReader reader;
 	IndexSearcher isearcher;
@@ -196,24 +197,24 @@ public class Searcher {
 					item.setId(id);
 					item.setCatId(catid);
 					item.setContent(content);
-					item.setCreateTime(createTime);
+					item.setCreateTime(createTime!=null&&createTime.matches("\\d+")?Long.parseLong(createTime):0L);
 					item.setIndexedTime(indexedTime);
 					item.setKeywords(keywords);
 					item.setSource(source);
 					item.setSubtitle(subtitle);
 					item.setTitle(title);
-					item.setUpdateTime(updateTime);
+					item.setUpdateTime(updateTime!=null&&updateTime.matches("\\d+")?Long.parseLong(updateTime):0L);
 					item.setHref(href);
 
-					byte[] iBytes = doc.getBinaryValue("images");
-					byte[] fBytes = doc.getBinaryValue("files");
+					BytesRef iBytes = doc.getBinaryValue("images");
+					BytesRef fBytes = doc.getBinaryValue("files");
 					if(iBytes!=null ){
-						Object iObject = Utils.bytesToObject(iBytes);
+						Object iObject = Utils.bytesToObject(iBytes.bytes);
 						if(iObject!=null && iObject instanceof String[])
 							item.setImages((String[])iObject);
 					}
 					if(fBytes!=null){
-						Object fObject = Utils.bytesToObject(fBytes);
+						Object fObject = Utils.bytesToObject(fBytes.bytes);
 						if(fObject!=null && fObject instanceof String[])
 							item.setFiles((String[])fObject);
 					}
@@ -265,19 +266,14 @@ public class Searcher {
 			if(!file.exists()){
 				return new SearchResult(new Error("索引目录不存在。"));
 			}
-			directory = FSDirectory.open(file);
-
-			// 配置IndexWriterConfig
-			IndexWriterConfig iwConfig = new IndexWriterConfig(Version.LUCENE_34, analyzer);
-			iwConfig.setOpenMode(OpenMode.CREATE_OR_APPEND);
-
+			directory = FSDirectory.open(file.toPath());
 			// 搜索过程**********************************
 			// 实例化搜索器
-			reader = IndexReader.open(directory,true);
+			reader = DirectoryReader.open(directory);
 			//在索引器中使用IKSimilarity相似度评估器
 			isearcher = new IndexSearcher(reader);
 				
-			QueryParser parser = new MultiFieldQueryParser(Version.LUCENE_35,queryFields, analyzer);
+			QueryParser parser = new MultiFieldQueryParser(queryFields, analyzer);
 					
 			Query query = parser.parse(keyword);
 			parser.setDefaultOperator(QueryParser.AND_OPERATOR);
@@ -286,8 +282,9 @@ public class Searcher {
 			TopDocs topDocs = isearcher.search(query, n);
 			
 			// 分页
-			Integer total = topDocs.totalHits;
-			pagination = new Pagination(total, pageSize, page, pageName);
+			TotalHits totalHits = topDocs.totalHits;
+			int total = Integer.parseInt(String.valueOf(totalHits.value)); 
+			pagination = new Pagination(total,pageSize, page, pageName);
 			// 输出结果
 			scoreDocs = topDocs.scoreDocs;
 			if(scoreDocs.length == 0){

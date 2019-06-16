@@ -8,8 +8,10 @@ import java.util.Date;
 import java.util.List;
 
 import org.apache.lucene.analysis.Analyzer;
+import org.apache.lucene.analysis.id.IndonesianAnalyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
+import org.apache.lucene.document.StringField;
 import org.apache.lucene.index.CorruptIndexException;
 import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.IndexWriterConfig;
@@ -17,10 +19,9 @@ import org.apache.lucene.index.Term;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.store.LockObtainFailedException;
-import org.apache.lucene.util.Version;
+
 import com.j2mvc.util.StringUtils;
 import com.j2mvc.util.Utils;
-import org.wltea.analyzer.lucene.IKAnalyzer;
 
 /**
  * 创建索引<BR>
@@ -54,7 +55,7 @@ public class Indexer {
 		
 		Directory directory = null;
 		try {
-			directory = FSDirectory.open(file);
+			directory = FSDirectory.open(file.toPath());
 		} catch (IOException e) {
 			e.printStackTrace();
 			return 0;
@@ -62,8 +63,8 @@ public class Indexer {
 		if(directory == null)
 			System.err.println("创建索引,directory为空.");
 
-		Analyzer analyzer = new IKAnalyzer();
-		IndexWriterConfig iwConfig = new IndexWriterConfig(Version.LUCENE_35,analyzer);
+		Analyzer analyzer = new IndonesianAnalyzer();
+		IndexWriterConfig iwConfig = new IndexWriterConfig(analyzer);
 		iwConfig.setOpenMode(IndexWriterConfig.OpenMode.CREATE_OR_APPEND);
 		
 		IndexWriter writer = null;
@@ -101,28 +102,29 @@ public class Indexer {
 				
 	
 				Document doc = new Document();
-				doc.add(new Field("id", id, Field.Store.YES, Field.Index.NOT_ANALYZED));
-				doc.add(new Field("catId", item.getCatId(), Field.Store.YES, Field.Index.NOT_ANALYZED));
-				doc.add(new Field("href", item.getHref(), Field.Store.YES, Field.Index.ANALYZED));
-				doc.add(new Field("title", item.getTitle(), Field.Store.YES, Field.Index.ANALYZED));
-				doc.add(new Field("content", StringUtils.removeHtmlTag(content), Field.Store.YES, Field.Index.ANALYZED));
+
+				doc.add(new StringField("id", id, Field.Store.YES));
+				doc.add(new StringField("catId", item.getCatId(), Field.Store.YES));
+				doc.add(new StringField("href", item.getHref(), Field.Store.YES));
+				doc.add(new Field("title", item.getTitle(), SearchFieldType.tokenizedFieldType()));
+				doc.add(new Field("content", StringUtils.removeHtmlTag(content), SearchFieldType.tokenizedFieldType()));
 	
-				doc.add(new Field("keywords", item.getKeywords(), Field.Store.YES, Field.Index.ANALYZED));
+				doc.add(new Field("keywords", item.getKeywords(), SearchFieldType.normalFieldType()));
 	
 				byte[] iBytes = Utils.objectToBytes(item.getImages());
 				if (iBytes != null)
-					doc.add(new Field("images", iBytes));
+					doc.add(new Field("images", iBytes,SearchFieldType.normalFieldType()));
 				byte[] fBytes = Utils.objectToBytes(item.getFiles());
 				if (fBytes != null)
-					doc.add(new Field("files", fBytes));
-				doc.add(new Field("source", item.getSource(), Field.Store.YES, Field.Index.NOT_ANALYZED));
+					doc.add(new  Field("files", fBytes,SearchFieldType.normalFieldType()));
+				doc.add(new StringField("source", item.getSource(), Field.Store.YES));
 	
-				doc.add(new Field("create_time", item.getCreateTime(), Field.Store.YES, Field.Index.NOT_ANALYZED));
-				doc.add(new Field("update_time", item.getCreateTime(), Field.Store.YES, Field.Index.NOT_ANALYZED));
-				doc.add(new Field("indexed_time", formatter.format(new Date()), Field.Store.YES, Field.Index.NOT_ANALYZED));
+				doc.add(new StringField("create_time", item.getCreateTime()!=null ?item.getCreateTime().toString():"", Field.Store.YES));
+				doc.add(new StringField("update_time", item.getCreateTime()!=null  ?item.getCreateTime().toString():"", Field.Store.YES));
+				doc.add(new StringField("indexed_time", formatter.format(new Date()), Field.Store.YES));
 				writer.addDocument(doc);
 			}
-			indexedTotal = writer.numDocs();
+			indexedTotal = writer.numRamDocs();
 			writer.close();
 		} catch (CorruptIndexException e) {
 			e.printStackTrace();
@@ -154,9 +156,9 @@ public class Indexer {
 	 * 
 	 */
 	public static Integer indexCats(List<SearchCat> list, String indexDir) {
-		Integer indexedTotal = Integer.valueOf(0);
+		Integer indexedTotal = 0;
 
-		Analyzer analyzer = new IKAnalyzer();
+		Analyzer analyzer = new IndonesianAnalyzer();
 
 		Directory directory = null;
 		IndexWriter writer = null;
@@ -165,13 +167,13 @@ public class Indexer {
 			if(!file.exists()){
 				file.mkdirs();
 			}
-			directory = FSDirectory.open(file);
+			directory = FSDirectory.open(file.toPath());
 
 			if (list == null) {
 				return indexedTotal;
 			}
 
-			IndexWriterConfig iwConfig = new IndexWriterConfig(Version.LUCENE_35, analyzer);
+			IndexWriterConfig iwConfig = new IndexWriterConfig( analyzer);
 
 			iwConfig.setOpenMode(IndexWriterConfig.OpenMode.CREATE_OR_APPEND);
 
@@ -184,13 +186,13 @@ public class Indexer {
 				writer.deleteDocuments(term);
 
 				Document doc = new Document();
-				doc.add(new Field("id",cat.getId(), Field.Store.YES,Field.Index.NOT_ANALYZED));
-				doc.add(new Field("names", cat.getNames(), Field.Store.YES,Field.Index.ANALYZED));
+				doc.add(new StringField("id",cat.getId(), Field.Store.YES));
+				doc.add(new Field("names", cat.getNames(), SearchFieldType.tokenizedFieldType()));
 
 				writer.addDocument(doc);
 			}
 
-			indexedTotal = writer.numDocs();
+			indexedTotal = writer.numRamDocs();
 
 			writer.close();
 		} catch (CorruptIndexException e) {
@@ -214,13 +216,13 @@ public class Indexer {
 	 * @param term
 	 */
 	public static void deleteIndexedes(File indexDir, Term term) {
-		Analyzer analyzer = new IKAnalyzer();
+		Analyzer analyzer = new IndonesianAnalyzer();
 		Directory directory = null;
 		IndexWriter writer = null;
 		try {
-			directory = FSDirectory.open(indexDir);
+			directory = FSDirectory.open(indexDir.toPath());
 
-			IndexWriterConfig iwConfig = new IndexWriterConfig(Version.LUCENE_35, analyzer);
+			IndexWriterConfig iwConfig = new IndexWriterConfig( analyzer);
 			iwConfig.setOpenMode(IndexWriterConfig.OpenMode.CREATE_OR_APPEND);
 			writer = new IndexWriter(directory, iwConfig);
 
@@ -231,5 +233,18 @@ public class Indexer {
 		} finally {
 			closeWriter(writer);
 		}
+	}
+
+	/**
+	 * 删除索引
+	 * 此操作将会删除索引目录，然后重建
+	 * @param indexDir 索引目录
+	 */
+	public static void clearIndexedes(String indexDir) {
+		File file = new File(indexDir);
+		if(file.exists()) {
+			file.delete();
+		}
+		file.mkdirs();
 	}
 }

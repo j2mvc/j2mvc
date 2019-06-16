@@ -27,6 +27,8 @@ public class Error{
 	public static final int ERROR_NOT_EXISTS = 404;
 	/** IO */
 	public static final int ERROR_IO = 504;
+	/** 权限不足 */
+	public static final int ERROR_AUTH = 601;
 
 	/** 错误码 */
 	@JSONField("code")

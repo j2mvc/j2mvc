@@ -1,6 +1,5 @@
 package com.j2mvc.authorization.entity;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import com.j2mvc.authorization.global.EntityConstants;
@@ -58,7 +57,7 @@ public class UserToken extends BaseEntity{
 	/** 创建时间 */
 	@JSONField("create_time")
 	@Column(name = "create_time")
-	private String createTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());		
+	private Long createTime = new Date().getTime();		
 
 	
 	public String getId() {
@@ -102,11 +101,11 @@ public class UserToken extends BaseEntity{
 		this.token = token;
 	}
 
-	public String getCreateTime() {
+	public Long getCreateTime() {
 		return createTime;
 	}
 
-	public void setCreateTime(String createTime) {
+	public void setCreateTime(Long createTime) {
 		this.createTime = createTime;
 	}
 

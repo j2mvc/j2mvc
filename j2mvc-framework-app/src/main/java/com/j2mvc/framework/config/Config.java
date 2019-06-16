@@ -40,6 +40,7 @@ import org.xml.sax.SAXException;
 		<factory>org.eclipse.jetty.jndi.InitialContextFactory</factory>
 		<url></url>
 		<protocol></protocol>
+		<pkg></pkg>
 	</naming>
 	
  * 	
@@ -233,7 +234,7 @@ public class Config {
 						Session.providerUrl = value;
 					}else if(nodeName.equalsIgnoreCase("protocol")) {
 						Session.securityProtocol = value;
-					}else if(nodeName.equalsIgnoreCase("url-pkg-prefixes")) {
+					}else if(nodeName.equalsIgnoreCase("pkg")) {
 						Session.urlPkgPrefixes = value;
 					}
 				}

@@ -25,9 +25,9 @@ public class SearchItem {
 	/** 分类ID */
 	private String catId;
 	/** 创建时间 */
-	private String createTime;
+	private Long createTime;
 	/** 更新时间 */
-	private String updateTime;
+	private Long updateTime;
 	/** 索引时间 */
 	private String indexedTime;
 	/** 图片组 */
@@ -65,19 +65,19 @@ public class SearchItem {
 	public void setCatId(String catId) {
 		this.catId = catId!=null?catId:"";
 	}
-	public String getCreateTime() {
+
+	public Long getCreateTime() {
 		return createTime;
 	}
-	public void setCreateTime(String createTime) {
-		this.createTime = createTime!=null?createTime:"";
+	public void setCreateTime(Long createTime) {
+		this.createTime = createTime;
 	}
-	public String getUpdateTime() {
+	public Long getUpdateTime() {
 		return updateTime;
 	}
-	public void setUpdateTime(String updateTime) {
-		this.updateTime = updateTime!=null?updateTime:"";
+	public void setUpdateTime(Long updateTime) {
+		this.updateTime = updateTime;
 	}
-
 	public String getIndexedTime() {
 		return indexedTime;
 	}

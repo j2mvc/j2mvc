@@ -10,7 +10,7 @@
 	</parent>
 
 	<artifactId>j2mvc-framework-app</artifactId>
-	<version>2.1.03</version>
+	<version>2.1.04</version>
 
 	<name>J2mvc Appframework</name>
 	<!-- FIXME change it to the project's website -->
@@ -62,8 +62,7 @@
 			<scope>provided</scope>
 		</dependency>
 	</dependencies>
-<description>
-强烈建议使用J2mvc 2.1以后的版本。
+<description>强烈建议使用J2mvc 2.1以后的版本。
 
 version 2.1.01
 1.更换JSON依赖包.
@@ -74,5 +73,7 @@ version 2.1.02
 
 version 2.1.03
 1.更新JNDI连接设置
-</description>
+
+version 2.1.04
+1.修改works.xml配置url-pkg-prefixes改为pkg</description>
 </project>
