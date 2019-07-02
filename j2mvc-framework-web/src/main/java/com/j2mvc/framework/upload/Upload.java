@@ -11,8 +11,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
-import java.util.UUID;
 import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServletRequest;
@@ -32,7 +30,7 @@ import com.j2mvc.util.json.JSONFactory;
  * @author 杨朔
  *	2014年1月14日
  */
-public class UploadMutli {
+public class Upload {
 	Logger log = Logger.getLogger(getClass().getSimpleName());
 	private HttpServletRequest request;
 	private HttpServletResponse response;
@@ -66,7 +64,7 @@ public class UploadMutli {
 	// 上传成功的文件列表
 	List<FileInfo> fileList = new ArrayList<FileInfo>();
 	 
-	public UploadMutli(HttpServletRequest request, HttpServletResponse response) {
+	public Upload(HttpServletRequest request, HttpServletResponse response) {
 		super();
 		this.request = request;
 		this.response = response;
