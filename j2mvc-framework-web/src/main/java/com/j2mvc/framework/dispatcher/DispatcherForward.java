@@ -101,7 +101,7 @@ public class DispatcherForward {
 							// multipart/file
 							log.info(" read File data.");
 							FileReader reader  = new FileReader(request,method,obj,response,bean.getActionUpload());
-							log.info("接收上传完毕："+reader.getUploadBean().getFileInfo().getFilename());
+							log.info("接收上传完毕.");
 							InvokeUtils.invoke(clazz, "setUploadBean", obj,  new Object[]{reader.getUploadBean()},UploadBean.class);
 							result = reader.result();
 						}else if(contentType!=null && ContentType.XWwwFormUrlencoded.equalsIgnoreCase(contentType)) {

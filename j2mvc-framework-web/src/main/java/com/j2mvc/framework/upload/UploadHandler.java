@@ -1,6 +1,7 @@
 package com.j2mvc.framework.upload;
 
 import java.util.List;
+import java.util.Map;
 
 import com.j2mvc.util.Error;
 import com.j2mvc.framework.upload.entity.FileInfo;
@@ -16,23 +17,12 @@ public abstract class UploadHandler {
 	 * 上传错误
 	 * @param error
 	 */
-	public abstract void error(Error error);
+	public abstract void error(List<Error> errors);
 
 	/**
 	 * 上传完成
 	 * @param fileInfos
 	 */
-	public abstract void success(List<FileInfo> fileInfos);
+	public abstract void success(List<FileInfo> fileInfos,Map<String,String> textData);
 	
-	/**
-	 * 上传完成
-	 * @param fileInfo
-	 */
-	public abstract void success(FileInfo fileInfo);
-	
-	/**
-	 * 重命名，可以为空，
-	 * 文件名称不含后缀名
-	 */
-	public abstract String getFilename();
 }

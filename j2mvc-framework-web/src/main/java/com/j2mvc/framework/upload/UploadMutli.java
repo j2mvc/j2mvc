@@ -10,6 +10,9 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Random;
+import java.util.UUID;
 import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServletRequest;
@@ -54,11 +57,31 @@ public class UploadMutli {
 	private String contextPath;
 	// 上传通知
 	private UploadHandler handler;
+	// 保持原文件名
+	private boolean keepOriginName = true;
+	// 文本数据
+	private Map<String,String> textData = new HashMap<String,String>();
+	// 错误列表
+	private List<Error> errors = new ArrayList<Error>();
+	// 上传成功的文件列表
+	List<FileInfo> fileList = new ArrayList<FileInfo>();
 	 
 	public UploadMutli(HttpServletRequest request, HttpServletResponse response) {
 		super();
 		this.request = request;
 		this.response = response;
+	}
+	public List<FileInfo> getFileList() {
+		return fileList;
+	}
+	public Map<String, String> getTextData() {
+		return textData;
+	}
+	public List<Error> getErrors() {
+		return errors;
+	}
+	public void setKeepOriginName(boolean keepOriginName) {
+		this.keepOriginName = keepOriginName;
 	}
 	/**
 	 *  上传最大文件大小，默认为1MB，单位为b
@@ -114,7 +137,7 @@ public class UploadMutli {
 	 * @param response
 	 * @throws IOException
 	 */
-	public void execute() throws IOException{
+	synchronized public void execute() throws IOException{
 		// 限制文件大小
 		String maxSizeStr = !getParam("maxSize").equals("")?getParam("maxSize"):"";
 		if(!maxSizeStr.equals("")){
@@ -139,22 +162,11 @@ public class UploadMutli {
 		}
 		// 上传实例
 		ServletFileUpload servletFileUpload = new ServletFileUpload(new DiskFileItemFactory());
-		
-		// 写文件
-		write(request,response,servletFileUpload);
-	}
-	/**
-	 * 写文件
-	 * @param request
-	 * @param servletFileUpload
-	 * @throws UnsupportedEncodingException 
-	 */
-	private void write(HttpServletRequest request,HttpServletResponse response,ServletFileUpload servletFileUpload) throws UnsupportedEncodingException{
-		request.setCharacterEncoding("UTF-8");
-		
+
 		List<FileItem> list = null;
 		try {
 			list = servletFileUpload.parseRequest(request);
+			
 		} catch (FileUploadException e) {
 			setError(Error.ERROR_NULL,"FileUploadException:"+e.getMessage());
 		}
@@ -162,12 +174,55 @@ public class UploadMutli {
 			setError(Error.ERROR_NULL,"上传列表为空。");
 			return;
 		}
-		List<FileInfo> infos = new ArrayList<FileInfo>();
-		for(FileItem item:list){
+		for(int i=0;i<list.size();i++) {
+			FileInfo fileInfo = new FileInfo();
+			// 保存到session，用于获取上传进度
+			request.setAttribute(fileInfo.getId(), fileInfo);
+			// 兼听器实例
+			Lister lister = new Lister(fileInfo);
+			// 注册兼听器
+			servletFileUpload.setProgressListener(lister);
+			fileList.add(fileInfo);
+		}
+		log.info("获取到上传列表,共"+list.size()+"个数据对象。");
+		// 写文件
+		write(list,request,response,servletFileUpload);
+
+		if(handler!=null){
+			handler.success(fileList,textData);
+			if(errors.size()>0){
+				handler.error(errors);
+			}
+		}else {
+			Map<String,Object> m = new HashMap<String,Object>();
+			m.put("fileList",fileList);
+			m.put("textData",textData);
+			if(errors.size()>0){
+				m.put("errors", errors);
+			}
+			printJson(m);
+		}
+	}
+	/**
+	 * 写文件
+	 * @param request
+	 * @param servletFileUpload
+	 * @throws UnsupportedEncodingException 
+	 */
+	synchronized private void write(List<FileItem> list,HttpServletRequest request,HttpServletResponse response,ServletFileUpload servletFileUpload) throws UnsupportedEncodingException{
+		request.setCharacterEncoding("UTF-8");
+		
+		for(int i=0;i<list.size();i++){
 			// 上传实例
-			FileInfo info = new FileInfo();
+			FileInfo info = fileList.get(i);
 			// 得到文件对象
+			FileItem item = list.get(i);
 			String filename = item.getName();
+			if(!item.isFormField()) {
+				log.info("正在接收上传任务："+i+";实体对象[fileInfo.id] >> "+info.getId()+";文件对象[fileItem] >> "+filename);
+			}else {
+				log.info("正在接收文本数据："+filename);
+			}
 			// 是表单才进行处理
 			if(!item.isFormField()){
 				// 文件扩展名
@@ -188,14 +243,11 @@ public class UploadMutli {
 					//检查文件扩展名
 					setError(Error.ERROR_AUTH,"不允许的扩展名!只允许" + extMap.get(dirName) + "格式。");
 				}else{
-					// 设置文件名:时间戳+"_"+4位随机数
-					//String newFileName = (new Date().getTime()) + "_" + new Random().nextInt(1000) + "." + fileExt;
-					if(handler!=null){
-						String newFilename = handler.getFilename();
-						if(newFilename!=null && !newFilename.equals("")){
-							filename = newFilename  + "." +  fileExt;
-						}
+					if(!keepOriginName) {
+						// 不保持原文件名
+						filename = Util.getRandomUUID(String.valueOf(new Date().getTime())) + "." + fileExt;
 					}
+					// 设置文件名:时间戳+"_"+4位随机数
 					// 保存路径和访问路径
 					info.setSavePath(savePath+filename);
 					info.setUrl(saveUrl+filename);
@@ -204,27 +256,16 @@ public class UploadMutli {
 				    	// 写文件
 						File uploadedFile = new File(savePath, filename);
 						item.write(uploadedFile);
-						infos.add(info);
+						fileList.set(i, info);// 或许不需要
 				    } catch (Exception e) {
-				    		setError(Error.ERROR_IO,"上传失败。");
-				    		printJson(new Error(Error.ERROR_IO,"上传失败。"));
+				    	setError(Error.ERROR_IO,"上传失败。");
+				    	printJson(new Error(Error.ERROR_IO,"上传失败。"));
 				    }
 				}
 			}else {
 				// 文本数据
-				//System.out.println(item.getFieldName()+"="+item.getString());
+				textData.put(item.getFieldName(),item.getString());
 			}		
-		}
-		if(handler!=null){
-			handler.success(infos);
-		}else {
-			printJson(new JSONFactory().toJsonArray(infos));
-		}
-		try {
-			Runtime.getRuntime().exec("chmod 665 -R " + savePath);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 	}
 	
@@ -313,11 +354,7 @@ public class UploadMutli {
 	 */
 	private void setError(int code,String message){
 		Error error = new Error(code,message);
-		if(handler!=null){
-			handler.error(error);
-		}else {
-			printJson(error);
-		}
+    	errors.add(error);
 	}
 	private void printJson(Object object){
 		try {

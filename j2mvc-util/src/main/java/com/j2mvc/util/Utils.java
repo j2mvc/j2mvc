@@ -13,6 +13,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Random;
+import java.util.UUID;
 
 import org.apache.log4j.Logger;
 
@@ -30,7 +31,36 @@ public class Utils {
 	 * 创建ID
 	 */
 	public static String createId(){	
-		return DATE_FORMAT.format(new java.util.Date()) + Math.round(Math.random()*8999+1000);
+		return getRandomUUID(null).toString();
+	}
+    /**
+     * 驗證UUID
+     * @param str
+     * @return
+     */
+	public static boolean isValidUUID(String uuid) {
+		// UUID校验
+		if (uuid == null) {
+			return false;
+		}
+		String regex = "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$";
+		if (uuid.matches(regex)) {
+			return true;
+		}
+		return false;
+	}
+    /**
+     * 創建UUID
+     * @param str
+     * @return
+     */
+	public static UUID getRandomUUID(String str) {
+		// 产生UUID
+		if (str == null) {
+			return UUID.randomUUID();
+		} else {
+			return UUID.nameUUIDFromBytes(str.getBytes());
+		}
 	}
 	/**
      * 获取当前日期是星期几<br>
@@ -504,9 +534,10 @@ public class Utils {
 //		String time = "2011-5-2";
 //		System.out.println(time.matches(rgx));
 		
-		String DATETIME_REGEXT = "(20)([1-9])([0-9])([-])([0-1])?([0-9])([-])([0-3])?([0-9])([\\s]+)(([0-1][0-9])|([2][0-3]))([:][0-5][0-9])([:][0-5][0-9])?";
-		String dtime = "2011-5-2 09:08:45";
-		System.out.println(dtime.matches(DATETIME_REGEXT));
+//		String DATETIME_REGEXT = "(20)([1-9])([0-9])([-])([0-1])?([0-9])([-])([0-3])?([0-9])([\\s]+)(([0-1][0-9])|([2][0-3]))([:][0-5][0-9])([:][0-5][0-9])?";
+//		String dtime = "2011-5-2 09:08:45";
+//		System.out.println(dtime.matches(DATETIME_REGEXT));
+		System.out.println(Utils.createId().length());
 
 	}
 }

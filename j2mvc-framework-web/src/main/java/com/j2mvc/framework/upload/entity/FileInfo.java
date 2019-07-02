@@ -1,8 +1,11 @@
 package com.j2mvc.framework.upload.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import com.j2mvc.framework.upload.Lister;
+import com.j2mvc.framework.upload.Util;
+import com.j2mvc.util.json.NotJSONField;
 
 /**
  * 上传类
@@ -12,6 +15,7 @@ import com.j2mvc.framework.upload.Lister;
 public class FileInfo implements Serializable{
 	private static final long serialVersionUID = -8300150424507048521L;
 	/** 保存根路径 */
+	@NotJSONField
     private String savePath;
 	/** 访问URL */
     private String url;
@@ -42,6 +46,14 @@ public class FileInfo implements Serializable{
 	/** 速度 */
     private long spead = 0;
 
+    private String id = Util.getRandomUUID(String.valueOf(new Date().getTime())).toString();
+    
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
 	public long getTotalSize() {
 		return totalSize;
 	}

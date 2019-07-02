@@ -64,8 +64,8 @@ public class ActionMatch {
 							log.info("成功匹配 >> configUri="+regex+" requestUri="+uri);
 						return Session.beans.get(regex);
 					}else{
-						if(Session.uriLog)
-							log.info("未匹配 >> configUri="+regex+" requestUri="+uri);
+//						if(Session.uriLog)
+//							log.info("未匹配 >> configUri="+regex+" requestUri="+uri);
 					}
 				}
 			}

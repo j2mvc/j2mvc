@@ -17,7 +17,7 @@ import com.j2mvc.framework.Constants;
 import com.j2mvc.framework.action.ActionUpload;
 import com.j2mvc.framework.action.RequestUri;
 import com.j2mvc.framework.action.UploadBean;
-import com.j2mvc.framework.upload.Upload;
+import com.j2mvc.framework.upload.UploadMutli;
 import com.j2mvc.framework.util.FieldUtil;
 import com.j2mvc.framework.util.InvokeUtils;
 import com.j2mvc.util.StringUtils;
@@ -74,19 +74,18 @@ public class FileReader extends BaseReader {
 	}
 
 	private synchronized void upload() {
-		Upload upload =  new Upload(request, response);
+		UploadMutli upload =  new UploadMutli(request, response);
 		upload.setDirName(actionUpload.getDirname());
 		upload.setExt(actionUpload.getExt());
 		upload.setMaxSize(actionUpload.getMaxSize());
 		upload.setSavePath(actionUpload.getSavePath());
 		upload.setSaveUrl(actionUpload.getSaveUrl());
-		upload.setFilename(actionUpload.getFilename());
 		upload.setKeepOriginName(actionUpload.isKeepOriginName());
 		try { 
 			upload.execute();
 			uploadBean = new UploadBean();
-			uploadBean.setError(upload.getError());
-			uploadBean.setFileInfo(upload.getFileInfo());
+			uploadBean.setErrors(upload.getErrors());
+			uploadBean.setFileList(upload.getFileList());
 		} catch (Exception e) { 
 			e.printStackTrace();  
 		}  
