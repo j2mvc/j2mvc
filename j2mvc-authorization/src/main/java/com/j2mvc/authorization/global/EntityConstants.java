@@ -22,7 +22,7 @@ public class EntityConstants {
 	/** 用户表名 */
 	public static final String TABLE_USER = "users";
 	/** 用户会话表名 */
-	public static final String TABLE_USER_TOKEN = "user_tokens";
+	public static final String TABLE_USER_TOKEN = "tokens";
 	/** 角色权限表名 */
 	public static final String TABLE_ROLE_AUTH = "role_auths";
 	/** 角色菜单表名 */
