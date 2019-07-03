@@ -10,7 +10,7 @@
 	</parent>
 
 	<artifactId>j2mvc-framework-web</artifactId>
-	<version>2.1.10</version>
+	<version>2.1.11</version>
 
 	<name>J2mvc Webframework</name>
 	<!-- FIXME change it to the project's website -->
@@ -101,7 +101,7 @@
 		<dependency>
 			<groupId>com.j2mvc</groupId>
 			<artifactId>j2mvc-util</artifactId>
-			<version>2.1.02</version>
+			<version>2.1.04</version>
 			<scope>provided</scope>
 		</dependency>
 
@@ -162,6 +162,6 @@ version 2.1.05,2.1.06,2.1.07
 version 2.1.09
 增加上传功能，修改RequestMethod,ContentType设置方式
 
-version 2.1.10
-更改上传文件名格式为UUID格式，移除JSON映射类</description>
+version 2.1.10,2.1.11
+更改上传文件名格式为UUID格式，移除JSON映射类,更改接收多文件上传。</description>
 </project>

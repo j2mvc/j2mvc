@@ -44,12 +44,12 @@
 
 	<distributionManagement>
 		<snapshotRepository>
-			<id>oss</id>
+			<id>ossrh</id>
 			<name>OSS Snapshots Repository</name>
 			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
 		</snapshotRepository>
 		<repository>
-			<id>oss</id>
+			<id>ossrh</id>
 			<name>OSS Staging Repository</name>
 			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
 		</repository>
@@ -72,7 +72,7 @@
 				<version>1.6.7</version>
 				<extensions>true</extensions>
 				<configuration>
-					<serverId>oss</serverId>
+					<serverId>ossrh</serverId>
 					<nexusUrl>https://oss.sonatype.org/</nexusUrl>
 					<autoReleaseAfterClose>true</autoReleaseAfterClose>
 				</configuration>
