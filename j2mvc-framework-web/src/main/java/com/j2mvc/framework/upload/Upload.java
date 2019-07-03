@@ -7,6 +7,7 @@ import java.net.URI;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -185,7 +186,8 @@ public class Upload {
 		log.info("获取到上传列表,共"+list.size()+"个数据对象。");
 		// 写文件
 		write(list,request,response,servletFileUpload);
-
+		// 删除空对象
+		fileList.removeAll(Collections.singleton(null));
 		if(handler!=null){
 			handler.success(fileList,textData);
 			if(errors.size()>0){
@@ -193,8 +195,10 @@ public class Upload {
 			}
 		}else {
 			Map<String,Object> m = new HashMap<String,Object>();
-			m.put("fileList",fileList);
-			m.put("textData",textData);
+			if(fileList!=null && fileList.size()>0)
+				m.put("fileList",fileList);
+			if(textData!=null && textData.size()>0)
+				m.put("textData",textData);
 			if(errors.size()>0){
 				m.put("errors", errors);
 			}
@@ -219,6 +223,8 @@ public class Upload {
 			if(!item.isFormField()) {
 				log.info("正在接收上传任务："+i+";实体对象[fileInfo.id] >> "+info.getId()+";文件对象[fileItem] >> "+filename);
 			}else {
+				// 将fileInfo重置为空对象
+				fileList.set(i, null);
 				log.info("正在接收文本数据："+filename);
 			}
 			// 是表单才进行处理
@@ -236,33 +242,38 @@ public class Upload {
 				}
 				if(info.getTotalSize() > maxSize){
 					//检查文件大小
-					setError(Error.ERROR_IO,"大小超过限制。");
+					fileList.set(i, null);
+					setError(Error.ERROR_IO,"["+filename+"]大小超过限制。");
 				}else if(extMap.get(dirName)!=null && !extMap.get(dirName).equalsIgnoreCase("all") && !Arrays.<String>asList(extMap.get(dirName).split(",")).contains(fileExt)){
 					//检查文件扩展名
-					setError(Error.ERROR_AUTH,"不允许的扩展名!只允许" + extMap.get(dirName) + "格式。");
+					fileList.set(i, null);
+					setError(Error.ERROR_AUTH,"["+filename+"]不允许的扩展名!只允许" + extMap.get(dirName) + "格式。");
 				}else{
+					String newFilename = filename;
 					if(!keepOriginName) {
 						// 不保持原文件名
-						filename = Util.getRandomUUID(String.valueOf(new Date().getTime())) + "." + fileExt;
+						newFilename = Util.getRandomUUID(String.valueOf(new Date().getTime())) + "." + fileExt;
 					}
 					// 设置文件名:时间戳+"_"+4位随机数
 					// 保存路径和访问路径
-					info.setSavePath(savePath+filename);
-					info.setUrl(saveUrl+filename);
-					info.setFilename(filename);
+					info.setSavePath(savePath+newFilename);
+					info.setUrl(saveUrl+newFilename);
+					info.setFilename(newFilename);
 					try {
 				    	// 写文件
-						File uploadedFile = new File(savePath, filename);
+						File uploadedFile = new File(savePath, newFilename);
 						item.write(uploadedFile);
 						fileList.set(i, info);// 或许不需要
 				    } catch (Exception e) {
-				    	setError(Error.ERROR_IO,"上传失败。");
-				    	printJson(new Error(Error.ERROR_IO,"上传失败。"));
+				    	fileList.set(i, null);
+				    	setError(Error.ERROR_IO,"["+filename+"]上传失败。");
+				    	printJson(new Error(Error.ERROR_IO,"["+filename+"]上传失败。"));
 				    }
 				}
 			}else {
 				// 文本数据
-				textData.put(item.getFieldName(),item.getString());
+				if(filename!=null)
+					textData.put(filename,item.getString());
 			}		
 		}
 	}

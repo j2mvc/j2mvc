@@ -10,7 +10,7 @@
 	</parent>
 
 	<artifactId>j2mvc-framework-web</artifactId>
-	<version>2.1.11</version>
+	<version>2.1.12</version>
 
 	<name>J2mvc Webframework</name>
 	<!-- FIXME change it to the project's website -->
@@ -163,5 +163,7 @@ version 2.1.09
 增加上传功能，修改RequestMethod,ContentType设置方式
 
 version 2.1.10,2.1.11
-更改上传文件名格式为UUID格式，移除JSON映射类,更改接收多文件上传。</description>
+更改上传文件名格式为UUID格式，移除JSON映射类,更改接收多文件上传。
+version 2.1.12
+删除文件列有的空对象</description>
 </project>
