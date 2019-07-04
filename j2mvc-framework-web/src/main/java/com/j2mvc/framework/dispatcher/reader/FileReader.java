@@ -75,11 +75,22 @@ public class FileReader extends BaseReader {
 
 	private synchronized void upload() {
 		Upload upload =  new Upload(request, response);
-		upload.setDirName(actionUpload.getDirname());
-		upload.setExt(actionUpload.getExt());
-		upload.setMaxSize(actionUpload.getMaxSize());
-		upload.setSavePath(actionUpload.getSavePath());
-		upload.setSaveUrl(actionUpload.getSaveUrl());
+		
+		if(!StringUtils.isEmpty(actionUpload.getDirname()))
+			upload.setDirName(actionUpload.getDirname());
+		
+		if(!StringUtils.isEmpty(actionUpload.getSuffixes()))
+			upload.setSuffixes(actionUpload.getSuffixes());
+		
+		if(!StringUtils.isEmpty(actionUpload.getSavePath()))
+			upload.setSavePath(actionUpload.getSavePath());
+		
+		if(!StringUtils.isEmpty(actionUpload.getSaveUrl()))
+			upload.setSaveUrl(actionUpload.getSaveUrl());
+
+		if(actionUpload.getMaxSize() > 0)
+			upload.setMaxSize(actionUpload.getMaxSize());
+		
 		upload.setKeepOriginName(actionUpload.isKeepOriginName());
 		try { 
 			upload.execute();

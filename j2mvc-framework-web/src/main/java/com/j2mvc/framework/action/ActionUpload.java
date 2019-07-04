@@ -4,7 +4,7 @@ public class ActionUpload {
 	private String saveUrl;
 	private String savePath;
 	private String dirname;
-	private String ext;
+	private String suffixes;
 	private long maxSize;
 	private String filename;
 	private boolean keepOriginName;
@@ -27,11 +27,12 @@ public class ActionUpload {
 	public void setDirname(String dirname) {
 		this.dirname = dirname;
 	}
-	public String getExt() {
-		return ext;
+
+	public String getSuffixes() {
+		return suffixes;
 	}
-	public void setExt(String ext) {
-		this.ext = ext;
+	public void setSuffixes(String suffixes) {
+		this.suffixes = suffixes;
 	}
 	public long getMaxSize() {
 		return maxSize;

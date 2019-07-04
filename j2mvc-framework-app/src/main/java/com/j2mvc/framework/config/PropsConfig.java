@@ -1,18 +1,16 @@
 package com.j2mvc.framework.config;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.net.URL;
 
 import org.apache.log4j.Logger;
-import com.j2mvc.framework.i18n.I18n;
+
 import com.j2mvc.util.OSType;
 import com.j2mvc.util.PropertiesConfiguration;
 
 public class PropsConfig {
 
-	final static Logger log = Logger.getLogger(I18n.class);
+	final static Logger log = Logger.getLogger(PropsConfig.class);
 	static String path = "/conf";
 
 	public static void init(){
@@ -21,7 +19,7 @@ public class PropsConfig {
 		if(OSType.OSinfo.isWindows())
 			dir = System.getProperty("user.dir");
 		else {
-			URL url =  Config.class.getResource("/");
+			URL url =  PropsConfig.class.getResource("/");
 			if(url!=null){
 				dir = url.getPath();
 			}
@@ -30,7 +28,7 @@ public class PropsConfig {
 		File file = new File(source);
 		if(!file.exists()){
 			// 获取Jar包路径
-			URL url = Config.class.getProtectionDomain().getCodeSource().getLocation();
+			URL url = PropsConfig.class.getProtectionDomain().getCodeSource().getLocation();
 			if(url!=null){
 				String jarPath  = url.getPath();
 				File jarFile = new File(jarPath);
@@ -44,7 +42,7 @@ public class PropsConfig {
 		}
 		if(!file.exists()){
 			// 文件不存在
-			file = new File(Config.class.getResource(path).getFile());
+			file = new File(PropsConfig.class.getResource(path).getFile());
 			source = file.getAbsolutePath();
 		}
 		log.info(" init config >> "+source);

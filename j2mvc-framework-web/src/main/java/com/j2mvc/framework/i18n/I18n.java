@@ -28,9 +28,9 @@ public class I18n {
 	 */
     public I18n(ServletContext context,String fileName) {
     	PropertiesConfiguration configuration = new PropertiesConfiguration(fileName);
-    	i18n = configuration.map();
-    	context.setAttribute("i18n", i18n);
     	Map<String, String> map = configuration.map();
+    	i18n = map;
+    	context.setAttribute("i18n", i18n);
 	   	Set<Entry<String,String>> set = map.entrySet();
 	   	Iterator<Entry<String,String>> iterator = set.iterator();
 	   	while (iterator.hasNext()) {

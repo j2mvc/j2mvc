@@ -5,7 +5,9 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import org.apache.log4j.Logger;
@@ -36,7 +38,11 @@ public class Config {
 
 
     private ServletContext context;
+    /** 主配置文件名 */
     private String fileName;
+    /**  properties 配置文件键值集合 */
+	public static Map<String, Map<String,String>> props = new HashMap<String, Map<String,String>>();
+
     /**
      * 加载XML配置文件构造器
      * @param context
@@ -45,6 +51,8 @@ public class Config {
     public Config(ServletContext context,String fileName) {
     	this.context = context;
     	this.fileName = fileName;
+        // Properties配置导入
+    	PropsConfig.init(context);
     	loadDom();
     	// 绑定数据源
     	DataSourceJndi.init();

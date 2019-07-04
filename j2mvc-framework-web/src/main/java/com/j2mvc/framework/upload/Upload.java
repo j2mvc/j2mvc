@@ -14,6 +14,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineManager;
+import javax.script.ScriptException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -23,8 +26,11 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 import com.j2mvc.util.Error;
+import com.j2mvc.util.OSType;
+import com.j2mvc.framework.config.Config;
 import com.j2mvc.framework.upload.entity.FileInfo;
 import com.j2mvc.util.json.JSONFactory;
+import com.j2mvc.util.json.JSONParse;
 
 /**
  * 上传文件
@@ -40,20 +46,18 @@ public class Upload {
 	// 最大文件大小1MB
 	long maxSize =  5*1024*1024;
 	// 保存类型：media,file,image,flash
-  	private String dirName = "image";
+  	private String dirName = "";
 	// 定义允许上传的文件扩展名
-	private HashMap<String, String> extMap;
-	private String ext = "";
+	private Map<String, String> suffixMap = new HashMap<String,String>();
+	private String suffixes = "";
     // 保存路径
 	private String savePath = "";
 	// 保存URL
 	private String saveUrl = "";
 	// 图标路径
-	private String iconPath;
+	private String iconPath = "";
 	// 图标文件真实路径
 	private String iconFilePath = "";
-	// 项目路径
-	private String contextPath;
 	// 上传通知
 	private UploadHandler handler;
 	// 保持原文件名
@@ -69,6 +73,42 @@ public class Upload {
 		super();
 		this.request = request;
 		this.response = response;
+		init();
+	}
+	private void init() {
+		Map<String,String> config = Config.props.get("upload");
+		if(config!=null) {
+			// 最大文件大小1MB
+			ScriptEngineManager scriptEngineManager = new ScriptEngineManager();
+			ScriptEngine scriptEngine = scriptEngineManager.getEngineByName("JavaScript"); 
+			if(config.get("maxSize")!=null) {
+				try {
+					maxSize = Long.parseLong(String.valueOf(scriptEngine.eval(config.get("maxSize"))));
+				} catch (NumberFormatException e) {
+					e.printStackTrace();
+				} catch (ScriptException e) {
+					e.printStackTrace();
+				}
+			}
+			// 保存类型：media,file,image,flash
+		  	dirName = config.get("dirName");
+			// 定义允许上传的文件扩展名
+			suffixes =  config.get("suffixes");
+		    // 保存路径
+			savePath = config.get("savePath");
+			// 保存URL
+			saveUrl = config.get("saveUrl");
+			// 图标路径
+			iconPath = config.get("iconPath");
+			// 图标文件真实路径
+			iconFilePath = config.get("iconFilePath");
+		}else {
+			try {
+				throw new Exception("未找到配置文件upload.properties");
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 	}
 	public List<FileInfo> getFileList() {
 		return fileList;
@@ -112,10 +152,10 @@ public class Upload {
 	}
 	/**
 	 *  文件允许的后缀，多个用英文逗号分隔,如:".png,.jpg,.gif"
-	 * @param ext
+	 * @param suffixes
 	 */
-	public void setExt(String ext) {
-		this.ext = ext;
+	public void setSuffixes(String suffixes) {
+		this.suffixes = suffixes;
 	}
 
 	/**
@@ -128,6 +168,7 @@ public class Upload {
 	 */
 	public void execute(UploadHandler handler) throws IOException{
 		this.handler = handler;
+		
 		execute();
 	}
 	/**
@@ -137,28 +178,62 @@ public class Upload {
 	 * @throws IOException
 	 */
 	synchronized public void execute() throws IOException{
-		// 限制文件大小
-		String maxSizeStr = !getParam("maxSize").equals("")?getParam("maxSize"):"";
-		if(!maxSizeStr.equals("")){
-			try{
-				maxSize = Long.parseLong(maxSizeStr);
-			}catch(Exception e){
-			}
+		// 初始化路径配置
+		// 首先是加载配置文件upload.properties
+		// 这里有可能会被注解方法改写
+		if(suffixes!=null) {
+		  	// 设置文件扩展名
+			initSuffixMap(suffixes);
 		}
-
-		// 目录
-	  	dirName = getParam("dir")!=null && !getParam("dir").equals("")?getParam("dir"):dirName;
-	  	dirName = dirName.toLowerCase().trim();
-	  	// 设置文件扩展名
-	  	initExtMap();
-	  	// 保存路径和访问路径
-	  	initSaves();
-
+		// 检查目录
+		File uploadDir = new File(savePath);
+		if(!uploadDir.isDirectory()){
+			uploadDir.mkdirs();
+		}
+		// 检查目录写权限
+		if(!uploadDir.canWrite()){
+			//setError(Error.ERROR_AUTH,"上传目录没有写权限。");
+			
+			if(!OSType.OSinfo.isWindows()) {
+				Runtime rn = Runtime.getRuntime();
+				try {
+					rn.exec("chmod 655 -R "+uploadDir);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}	  	
+		// 按文件类型保存
+	  	if(!suffixMap.containsKey(dirName)){
+			setError(Error.ERROR_IO,"目录名不正确。");
+	  		return;
+	  	}
+	  	savePath += dirName + "/";
+	  	saveUrl += dirName + "/";
+		// 按日期保存
+	  	String ymd = format.format(new Date());
+	  	savePath += ymd + "/";
+	  	saveUrl += ymd + "/";
+	  	File dirFile = new File(savePath);
+	  	if (!dirFile.exists()) {
+	  		dirFile.mkdirs();
+	  	}	
+		// 最终保存路径
+		savePath = savePath.replace("\\", "/");
+		if(!savePath.endsWith("\\") && !savePath.endsWith("/")){
+			savePath = savePath + "/";
+		}	
+		// 最终访问路径
+		if( !saveUrl.endsWith("/")){
+			saveUrl = saveUrl + "/";
+		}	
+		/**** 以下开始读取文件 */
 		// 判断是否有文件
 		if(!ServletFileUpload.isMultipartContent(request)){
 			setError(Error.ERROR_NULL,"请选择文件。");
 			return;
 		}
+		
 		// 上传实例
 		ServletFileUpload servletFileUpload = new ServletFileUpload(new DiskFileItemFactory());
 
@@ -167,7 +242,7 @@ public class Upload {
 			list = servletFileUpload.parseRequest(request);
 			
 		} catch (FileUploadException e) {
-			setError(Error.ERROR_NULL,"FileUploadException:"+e.getMessage());
+			setError(Error.ERROR_NULL,e.getMessage());
 		}
 		if(list == null || list.size() == 0){
 			setError(Error.ERROR_NULL,"上传列表为空。");
@@ -230,9 +305,9 @@ public class Upload {
 			// 是表单才进行处理
 			if(!item.isFormField()){
 				// 文件扩展名
-				String fileExt = filename.substring(filename.lastIndexOf(".") + 1).toLowerCase();
+				String fileSuffix = filename.substring(filename.lastIndexOf(".") + 1).toLowerCase();
 				if( !iconPath.equals("")){
-					String iconExt = fileExt+".png";
+					String iconExt = fileSuffix+".png";
 					File iconFile = new File(iconFilePath+iconExt);
 					if(!iconFile.exists()){
 						iconExt = "file.png";
@@ -244,15 +319,16 @@ public class Upload {
 					//检查文件大小
 					fileList.set(i, null);
 					setError(Error.ERROR_IO,"["+filename+"]大小超过限制。");
-				}else if(extMap.get(dirName)!=null && !extMap.get(dirName).equalsIgnoreCase("all") && !Arrays.<String>asList(extMap.get(dirName).split(",")).contains(fileExt)){
+				}else if(suffixMap!=null && suffixMap.get(dirName)!=null 
+						&& !Arrays.<String>asList(suffixMap.get(dirName).split(",")).contains(fileSuffix)){
 					//检查文件扩展名
 					fileList.set(i, null);
-					setError(Error.ERROR_AUTH,"["+filename+"]不允许的扩展名!只允许" + extMap.get(dirName) + "格式。");
+					setError(Error.ERROR_AUTH,"["+filename+"]不允许的扩展名!只允许" + suffixMap.get(dirName) + "格式。");
 				}else{
 					String newFilename = filename;
 					if(!keepOriginName) {
 						// 不保持原文件名
-						newFilename = Util.getRandomUUID(String.valueOf(new Date().getTime())) + "." + fileExt;
+						newFilename = Util.getRandomUUID(String.valueOf(new Date().getTime())) + "." + fileSuffix;
 					}
 					// 设置文件名:时间戳+"_"+4位随机数
 					// 保存路径和访问路径
@@ -277,83 +353,19 @@ public class Upload {
 			}		
 		}
 	}
-	
 	/**
 	 * 设置文件扩展名
 	 */
-	private void initExtMap(){
-		extMap = new HashMap<String, String>();
-		extMap.put("image", "gif,jpg,jpeg,png,bmp");
-		extMap.put("flash", "swf,flv");
-		extMap.put("media", "swf,flv,mp3,wav,wma,wmv,mid,avi,mpg,asf,rm,rmvb");
-		extMap.put("file", "sql,js,css,jsp,html,doc,docx,xls,xlsx,ppt,htm,html,txt,zip,rar,gz,bz2");
+	private void initSuffixMap(String json){
+		suffixMap = JSONParse.parseMap(json, String.class, String.class, suffixMap);
+		suffixMap = suffixMap == null?new HashMap<String,String>():suffixMap;
 		// 自定义扩展名
-	  	ext = !getParam("ext").equals("")?getParam("ext"):ext;
-	  	if(!ext.equals("") && dirName!=null){
-	  		ext = ext.replace("*.", "");
-	  		ext = ext.replace(";", ",");
-	  		extMap.put(dirName, ext.toLowerCase());
+		String suffixes = getParam("suffixes");
+	  	if(suffixes!=null && !suffixes.equals("") && dirName!=null){
+	  		suffixes = suffixes.replaceAll("*.", "");
+	  		suffixes = suffixes.replaceAll(";", ",");
+	  		suffixMap.put(dirName, suffixes.toLowerCase());
 	  	}
-	}
-
-	/**
-	 * 设置保存路径和访问路径
-	 * @param savePath
-	 */
-	@SuppressWarnings("deprecation")
-	private void initSaves(){
-		contextPath = request.getContextPath();
-		// 获取传来的图标路径
-		iconPath = getParam("iconPath");
-		iconPath = iconPath.endsWith("/")?iconPath:iconPath+"/";
-		if(!contextPath.equals("")&& iconPath.length()>contextPath.length())
-			iconFilePath = iconPath.substring(contextPath.length(),iconPath.length());
-		iconFilePath = request.getRealPath(iconFilePath);
-		iconFilePath = iconFilePath.endsWith("/")?iconFilePath:iconFilePath+"/";
-		// 获取传来的保存路径
-		savePath = !getParam("savePath").equals("")?getParam("savePath"):savePath;
-		// 获取传来的访问URL
-		saveUrl = !getParam("saveUrl").equals("")?getParam("saveUrl"):saveUrl;
-		
-		// 保存路径
-		savePath = !savePath.equals("")?savePath: request.getRealPath("/") + "upload/";
-		// 文件访问URL
-		saveUrl  = !saveUrl.equals("")?saveUrl: request.getContextPath() + "/upload/";		
-		
-		// 检查目录
-		File uploadDir = new File(savePath);
-		if(!uploadDir.isDirectory()){
-			uploadDir.mkdirs();
-		}
-		// 检查目录写权限
-		if(!uploadDir.canWrite()){
-			setError(Error.ERROR_AUTH,"上传目录没有写权限。");
-			return;
-		}	  	
-		// 按文件类型保存
-	  	if(!extMap.containsKey(dirName)){
-			setError(Error.ERROR_IO,"目录名不正确。");
-	  		return;
-	  	}
-	  	savePath += dirName + "/";
-	  	saveUrl += dirName + "/";
-		// 按日期保存
-	  	String ymd = format.format(new Date());
-	  	savePath += ymd + "/";
-	  	saveUrl += ymd + "/";
-	  	File dirFile = new File(savePath);
-	  	if (!dirFile.exists()) {
-	  		dirFile.mkdirs();
-	  	}	
-		// 最终保存路径
-		savePath = savePath.replace("\\", "/");
-		if(!savePath.endsWith("\\") && !savePath.endsWith("/")){
-			savePath = savePath + "/";
-		}	
-		// 最终访问路径
-		if( !saveUrl.endsWith("/")){
-			saveUrl = saveUrl + "/";
-		}	
 	}
 
 	/**
