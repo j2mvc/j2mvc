@@ -134,7 +134,7 @@ public class InjectUri {
 					ActionUpload actionUpload = new ActionUpload();
 					actionUpload.setSavePath(uploadMeta.savePath());
 					actionUpload.setSaveUrl(uploadMeta.saveUrl());
-					actionUpload.setSuffixes(uploadMeta.suffixes());
+					actionUpload.setExts(uploadMeta.exts());
 					actionUpload.setDirname(uploadMeta.dirname());
 					actionUpload.setMaxSize(uploadMeta.maxSize());
 					actionUpload.setFilename(uploadMeta.filename());

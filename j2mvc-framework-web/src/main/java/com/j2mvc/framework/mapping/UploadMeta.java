@@ -29,8 +29,8 @@ public @interface  UploadMeta {
 	/** 附件访问Url */
 	public String saveUrl() default "";
 
-	/** 附件后缀限制 */
-	public String suffixes() default "";
+	/** 附件扩展名限制 */
+	public String exts() default "";
 	
 	/** 附件目录 */
 	public String dirname() default "";

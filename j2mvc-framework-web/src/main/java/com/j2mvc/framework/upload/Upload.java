@@ -49,7 +49,7 @@ public class Upload {
   	private String dirName = "";
 	// 定义允许上传的文件扩展名
 	private Map<String, String> suffixMap = new HashMap<String,String>();
-	private String suffixes = "";
+	private String exts = "";
     // 保存路径
 	private String savePath = "";
 	// 保存URL
@@ -93,7 +93,7 @@ public class Upload {
 			// 保存类型：media,file,image,flash
 		  	dirName = config.get("dirName");
 			// 定义允许上传的文件扩展名
-			suffixes =  config.get("suffixes");
+			exts =  config.get("exts");
 		    // 保存路径
 			savePath = config.get("savePath");
 			// 保存URL
@@ -152,10 +152,10 @@ public class Upload {
 	}
 	/**
 	 *  文件允许的后缀，多个用英文逗号分隔,如:".png,.jpg,.gif"
-	 * @param suffixes
+	 * @param exts
 	 */
-	public void setSuffixes(String suffixes) {
-		this.suffixes = suffixes;
+	public void setExts(String exts) {
+		this.exts = exts;
 	}
 
 	/**
@@ -181,9 +181,9 @@ public class Upload {
 		// 初始化路径配置
 		// 首先是加载配置文件upload.properties
 		// 这里有可能会被注解方法改写
-		if(suffixes!=null) {
+		if(exts!=null) {
 		  	// 设置文件扩展名
-			initSuffixMap(suffixes);
+			initSuffixMap(exts);
 		}
 		// 检查目录
 		File uploadDir = new File(savePath);
@@ -360,11 +360,11 @@ public class Upload {
 		suffixMap = JSONParse.parseMap(json, String.class, String.class, suffixMap);
 		suffixMap = suffixMap == null?new HashMap<String,String>():suffixMap;
 		// 自定义扩展名
-		String suffixes = getParam("suffixes");
-	  	if(suffixes!=null && !suffixes.equals("") && dirName!=null){
-	  		suffixes = suffixes.replaceAll("*.", "");
-	  		suffixes = suffixes.replaceAll(";", ",");
-	  		suffixMap.put(dirName, suffixes.toLowerCase());
+		String exts = getParam("exts");
+	  	if(exts!=null && !exts.equals("") && dirName!=null){
+	  		exts = exts.replaceAll("*.", "");
+	  		exts = exts.replaceAll(";", ",");
+	  		suffixMap.put(dirName, exts.toLowerCase());
 	  	}
 	}
 

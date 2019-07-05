@@ -79,8 +79,8 @@ public class FileReader extends BaseReader {
 		if(!StringUtils.isEmpty(actionUpload.getDirname()))
 			upload.setDirName(actionUpload.getDirname());
 		
-		if(!StringUtils.isEmpty(actionUpload.getSuffixes()))
-			upload.setSuffixes(actionUpload.getSuffixes());
+		if(!StringUtils.isEmpty(actionUpload.getExts()))
+			upload.setExts(actionUpload.getExts());
 		
 		if(!StringUtils.isEmpty(actionUpload.getSavePath()))
 			upload.setSavePath(actionUpload.getSavePath());
