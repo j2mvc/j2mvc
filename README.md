@@ -38,7 +38,7 @@ JAVA应用程序MVC框架，封装了数据库，及控制调用。
 		<dependency>
 			<groupId>com.j2mvc</groupId>
 			<artifactId>j2mvc-framework-web</artifactId>
-			<version>2.1.16</version>
+			<version>2.1.17</version>
 		</dependency>
 		<dependency>
 			<groupId>com.j2mvc</groupId>

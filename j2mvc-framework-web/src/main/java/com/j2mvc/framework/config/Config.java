@@ -41,7 +41,9 @@ public class Config {
     /** 主配置文件名 */
     private String fileName;
     /**  properties 配置文件键值集合 */
-	public static Map<String, Map<String,String>> props = new HashMap<String, Map<String,String>>();
+	public static Map<String, Map<String, String>> props = new HashMap<String, Map<String, String>>();
+    /**  properties 配置文件键值集合 */
+	public static Map<String, String> attributes = new HashMap<String, String>();
 
     /**
      * 加载XML配置文件构造器
