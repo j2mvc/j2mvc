@@ -71,8 +71,9 @@ public class PropsConfig {
 	   		 Entry<String,String> entry = iterator.next();
 	   		 String key = entry.getKey().trim();
 	   		 String value = entry.getValue().trim();
-	   		 log.info("已导入配置变量："+name+"."+key+"="+value);
-	   		 context.setAttribute(name+"."+key,value);	
+	   		 key = key.substring(0, 1).toUpperCase()+key.substring(1, key.length());
+	   		 log.info("已导入配置变量："+name+key+"="+value);
+	   		 context.setAttribute(name+key,value);	
 		}
 	}
 }
