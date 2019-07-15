@@ -1,0 +1,130 @@
+/* 菜单面板 */
+.menuspanel{	
+	margin: 0;
+	padding: 0;
+	border: 0;
+	border-collapse:collapse;
+	border-spacing:0;
+	position:relative;
+}
+.menuspanel .menus{
+	display:block;
+	clear:both;
+	
+}
+.menuspanel td{margin:0;padding:0;border:0}
+
+/* 菜单面板 >> 菜单栏外层，可能菜单总宽度会超过父层宽度，所以设置一个外层嵌套 */
+.menuspanel .menus-outer
+{
+	position:relative;
+	padding:0;
+	margin:0;
+	overflow:auto;
+}
+/* 菜单面板 >> 菜单栏 */
+.menuspanel .menus{
+	padding:0;
+	margin:0;
+	position:relative;
+	display:block;
+}
+
+.menuspanel .menus ul,li{margin:0;padding:0;list-style-type:none}
+.menuspanel .menus li{line-height:30px}
+.menuspanel .menus .menu {
+	display:block;
+	overflow:hidden;
+	height:30px;
+}
+.menuspanel .menus .menu .icon{
+	margin-top:5px;
+	margin-right:5px;
+	width:16px;
+	float:left;
+	display:none;
+}
+.menuspanel .menus .menu .label{cursor:pointer;float:left;display:inline-block;line-height:30px;padding:0}
+.menuspanel .menus .menu .label.edit{border:1px solid #ddd;background:#eee}
+
+.menuspanel .menus .menu .folding{
+	margin-top:5px;
+	width:15px;
+	height:22px;
+	overflow:hidden;
+	float:left;
+	background:url(../default/icons/ui-icons_888888_256x240.png) no-repeat;
+}
+.menuspanel .menus .menu .folding.expand{
+	background-position:-52px -14px;
+}
+.menuspanel .menus .menu .folding.collapse{
+	background-position:-37px -14px;
+}
+.menuspanel .menus .menu .folding.expand:hover{
+	background:url(../default/icons/ui-icons_cd0a0a_256x240.png) no-repeat;
+	background-position:-52px -14px;
+}
+.menuspanel .menus .menu .folding.collapse:hover{
+	background:url(../default/icons/ui-icons_cd0a0a_256x240.png) no-repeat;
+	background-position:-37px -14px;
+}
+/* 菜单面板 >> 菜单组 */
+.menuspanel .menus .menu-group{
+	
+}
+/* 菜单面板 >> 菜单组标题 */
+.menuspanel .menus .menu-group-title{
+	font:bold 14px Verdana;
+	padding:0 0 0 10px;
+	line-height:30px;
+	height:30px;
+}
+
+/* 菜单面板 >> 滚动按钮 */
+.menuspanel a.menu-scroll{
+	width:16px;
+	height: 16px;
+	overflow:hidden;
+	position:absolute;
+	margin-top:8px;
+	background:url(icons/ui-icons_888888_256x240.png) no-repeat;
+	z-index:999;
+	cursor:pointer;
+}
+/* 菜单面板 >> 滚动按钮 >> 顶部按钮，点击菜单栏会向下滚动 */
+.menuspanel a.menu-scroll.top-to{
+	background-position: -80px -193px;
+	left:0
+}
+.menuspanel a.menu-scroll.top-to:hover{
+	background:url(icons/ui-icons_cd0a0a_256x240.png) no-repeat;
+	background-position: -80px -193px;
+}
+/* 菜单面板 >> 滚动按钮 >> 底部按钮，点击菜单栏会向上滚动 */
+.menuspanel a.menu-scroll.bottom-to{
+	background-position: -49px -193px;
+	right:0
+}
+.menuspanel a.menu-scroll.bottom-to:hover{
+	background:url(icons/ui-icons_cd0a0a_256x240.png) no-repeat;
+	background-position: -49px -193px;
+}
+
+/* 菜单面板 >> 菜单栏 >> 菜单元素 */
+.menuspanel .menus .menu{
+	display:block;
+	padding:0;
+	margin:0;	
+	cursor:pointer;
+	position:relative;
+	padding-bottom:0px;
+}
+.menuspanel .menus .menu span,.menuspanel .menus .menu a,.menuspanel .menus .menu img{
+	/* float:left; */
+}
+
+/* 菜单面板 >> 内容区域 */
+.menuspanel .menus-content{
+	padding:0;
+}

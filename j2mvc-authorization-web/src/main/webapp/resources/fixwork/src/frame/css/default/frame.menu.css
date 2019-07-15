@@ -1,0 +1,32 @@
+.frame-main-left .frame-menu{
+	margin:10px 0 10px 0;
+}
+.frame-main-left .frame-menu .frame-menu-title {
+	background: url(images/left-bg-t.gif) repeat-x left bottom;
+	color: #000002;
+}
+.frame-main-left .frame-menu a {
+	color: #4c4733;
+	border:1px;
+	border-radius:5px;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+}
+.frame-main-left .frame-menu a:hover{
+	background:url(images/background.png) repeat-x 0 -20px;
+	border:1px solid #dedede;
+	filter:alpha(opacity=60);
+	-moz-opacity:0.6;
+	-khtml-opacity: 0.6;
+	opacity: 0.6;
+	color:#000
+}
+.frame-main-left .frame-menu a:hover{
+	color:#000;
+}
+
+.frame-main-left .frame-menu a.select{
+	text-shadow: 0px -1px  #6c4f03,0 2px #fff;
+	background:url(images/background.png) repeat-x 0 0;
+	border:1px solid #dedede;
+}

@@ -1,0 +1,63 @@
+/*轮播*/
+.rotation-mutli{
+	position:relative;
+	overflow:hidden;
+	background:#f7f7f7;	
+}
+.rotation-mutli .rotation-mutli-item{ 
+	display:block;
+	 position:absolute; 
+	 orverflow:hidden;
+	width:100%;
+ }
+ 
+.rotation-mutli .rotation-mutli-item .item-main{
+	position:relative;
+	margin:0 auto;
+	overflow:hidden
+}
+.rotation-mutli .rotation-mutli-item .item-main .inner-item{
+	position:absolute
+}
+.rotation-mutli .handlers{position:absolute;z-index:999;bottom:10px;}
+.rotation-mutli .handlers.align-left{
+	left:10px;
+}
+
+.rotation-mutli .handlers.align-right{
+	right:10px;
+}
+.rotation-mutli .handlers .handler{
+	float:left;
+	overflow:hidden;
+	width:10px;
+	height:10px;
+	line-height:10px;
+	margin:3px;
+	font-size:10px;
+	background:#dadada;
+	cursor:pointer;
+	color:#777;
+	text-align:center;
+}
+.rotation-mutli .handlers .handler.hover{
+	background:#ff6600;
+	color:#fff;
+}
+
+.rotation-mutli .handlers .handler.select{
+	background:#ff6600;
+	color:#fff;
+}
+
+.rotation-mutli .handlers .handler.circle{
+	width:20px;
+	height:20px;
+	background:url(images/background.png) no-repeat 0 0;
+}
+.rotation-mutli .handlers .handler.circle.hover{
+	background:url(images/background.png) no-repeat 0 20px;
+}
+.rotation-mutli .handlers .handler.circle.select{
+	background:url(images/background.png) no-repeat 0 -81px;
+}

@@ -1,0 +1,92 @@
+.menuspanel .menus-outer{
+	border-right:1px solid #ababab;
+	background:#f7f7f7;/*url(images/lbg.png) repeat-y ;*/
+}
+.showhide{
+	position:absolute;
+	width:15px;
+	overflow:hidden;
+	top:0;
+	right:0;
+	cursor:pointer;
+}
+.showhide.hide{
+	background-image:url(images/hide-panel.gif);
+	background-repeat:no-repeat;
+	background-position:center left;
+}
+.showhide.show{
+	background-image:url(images/show-panel.gif);
+	background-repeat:no-repeat;
+	background-position:center right;
+}
+
+.menuspanel .menus .menu-group-title{
+	font-size:14px;
+	line-height:32px;
+	height:32px;
+	background:#efefef/* url(images/bg.gif) repeat-x 0 0 */;
+	color:#000;
+}
+.menuspanel .menus .menu.hover{
+	background:#21a0e0
+}
+.menuspanel .menus .menu.hover a{
+	color:#fff;
+	text-shadow:0 0 0 ;
+}
+.menuspanel .menus .menu.select{
+	/* background-color:#dedede; */
+}
+.menuspanel .menus .menu.select.hover{
+	background-color:#fff;
+}
+.menuspanel .menus .menu .icon{
+	margin-right:10px;
+	margin-left:10px;
+}
+
+.menuspanel .menus .menu a{
+	display:block;
+	font-size:14px;
+	color:#333;
+	font-family:微软雅黑,宋体,Verdana;
+	text-shadow:1px 2px 1px #f7f7f7;
+}
+.menuspanel .menus .menu.select a{
+	color:#cc6600;
+}
+.menuspanel .menus .menu.mbutton{
+	height:36px;
+	margin-bottom:10px;
+	margin-left:5px;
+	background-image:url(../../../../../../../icons/default/buttons_fix.png);
+	background-repeat: no-repeat;
+	background-position: -80px -90px;
+}
+.menuspanel .menus .menu.mbutton .icon{
+	margin-top:10px;
+	margin-left:5px;
+}
+.menuspanel .menus .menu.mbutton a{
+	letter-spacing:5px;
+	margin-top:6px;
+	font:bold 16px Verdana;
+	color: #666;
+}
+.menuspanel .menus .menu.mbutton.hover,.menuspanel .menus .menu.mbutton.select{
+	background-position:-80px -40px;
+	background-color:transparent;
+}
+.menuspanel .menus .menu.mbutton a:hover{
+	color: #666;
+}
+.menuspanel .menus .menu.mbutton.select a{
+	color:#FFF;
+}
+
+/* 菜单面板 >> 内容区域 */
+.menuspanel .menus-content{
+	padding:0;
+	margin:0;
+}

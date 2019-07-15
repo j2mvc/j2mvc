@@ -1,0 +1,89 @@
+/*轮播*/
+.rotation{
+	position:relative;
+	overflow:hidden;
+}
+.rotation .container{
+	position:relative;
+	*display:inline;
+	_display:inline;
+	display:inline-block;
+	white-space:nowrap;
+	word-break:keep-all;
+	overflow: hidden;
+}
+.rotation .container .item{ 
+	*display:inline;
+	_display:inline;
+	display:inline-block;
+	white-space:nowrap;
+	word-break:keep-all;
+	cursor:pointer;
+	overflow: hidden;
+	margin:0;padding:0;
+}
+.rotation .container .item .image{
+	float:left;
+	display:block;
+}
+.rotation .container .item .text{
+	overflow:hidden;
+	line-height:18px;
+	display:block;
+	color:#666;
+	padding-left:10px;
+}
+.rotation .container .item a span{
+	color:#666;
+}
+.rotation .container .item a span:hover {
+	color:#ff6600;
+}
+.rotation .handlers{
+	position:absolute;
+	z-index:999;
+	bottom:6px;
+	right:10px;
+}
+.rotation .handlers.b{bottom:0}
+
+.rotation .handlers.notext{
+	bottom:20px;
+}
+
+.rotation .handlers.align-left{
+	left:10px;
+}
+
+.rotation .handlers.align-right{
+	right:10px;
+}
+.rotation .handlers .handler{
+	float:left;
+	overflow:hidden;
+	width:10px;
+	height:10px;
+	line-height:10px;
+	margin:3px;
+	font-size:10px;
+	background:#dadada;
+	cursor:pointer;
+	color:#777;
+	text-align:center;
+}
+.rotation .handlers .handler.select{
+	background:#ff6600;
+	color:#fff;
+}
+
+.rotation .handlers .handler.circle{
+	width:20px;
+	height:20px;
+	background:url(images/background.png) no-repeat 0 0;
+}
+.rotation .handlers .handler.circle.hover{
+	background:url(images/background.png) no-repeat 0 20px;
+}
+.rotation .handlers .handler.circle.select{
+	background:url(images/background.png) no-repeat 0 -81px;
+}

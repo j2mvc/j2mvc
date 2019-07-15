@@ -1,0 +1,76 @@
+.fixwork-static-tree{
+	list-style-type:none;
+	padding:5px 0px 0 0 ;
+	margin:0;
+	line-height:22px;
+	text-align:left;
+	clear:both;	
+}
+.fixwork-static-tree ul{
+	list-style-type:none;
+	padding:0;
+	margin:0;
+	clear:both;	
+	display:none;
+}
+.fixwork-static-tree li{
+	margin:0 0 0 18px;
+	padding:0 0 0 0px;
+	list-style-type:none;
+	clear:both;	
+}
+.fixwork-static-tree a{
+	margin:0;
+	cursor:pointer;
+	color:#47aefe;
+	float:left;
+	white-space:nowrap;
+}
+.fixwork-static-tree a:hover{color:#0033cc}
+.fixwork-static-tree a.tree-item-toggle{
+	
+}
+.fixwork-static-tree a.tree-item-toggle.closed{
+	background:url(images/plus.gif) left 7px no-repeat;
+	width:10px;
+	height:18px;
+	overflow:hidden;
+}
+.fixwork-static-tree a.tree-item-toggle.opened{
+	background:url(images/minus.gif) left 7px no-repeat;
+	width:10px;
+	height:18px;
+	overflow:hidden;
+}
+.fixwork-static-tree a.folder{
+	/* background:url(images/folder.gif) left 4px no-repeat;  */
+	width:16px;
+	height:26px;
+	margin:0 0 0 2px;
+}
+.fixwork-static-tree a.folder-closed{
+	/* background:url(images/folder-closed.gif) left 4px no-repeat; */
+	width:16px;
+	height:26px;
+	margin:0 0 0 2px;
+}
+.fixwork-static-tree a.file{
+	/* background:url(images/file.gif) left 2px no-repeat; */
+	width:16px;
+	height:26px;
+	margin:0 0 0 2px;
+}
+.fixwork-static-tree a.tree-item{
+	margin:0;
+	padding:0;
+	padding-top:0px;
+	padding-left:5px;
+	cursor:pointer;
+	color:#333;
+	white-space:nowrap;
+	font-family:微软雅黑,Verdana,Arail;
+}
+
+.fixwork-static-tree a.tree-item:hover{
+	color:#ff6600
+}

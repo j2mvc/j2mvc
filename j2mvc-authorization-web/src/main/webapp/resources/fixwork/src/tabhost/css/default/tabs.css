@@ -1,0 +1,50 @@
+
+/* 标签页面板 */
+/* 标签页面板 >> 标签栏外层，可能标签总宽度会超过父层宽度，所以设置一个外层嵌套 */
+.tabhostpanel.default .tabs-outer.default
+{
+	height:32px;
+	border-bottom:1px solid #f3f3f3;
+}
+/* 标签页面板 >> 标签栏 >> 标签元素 */
+.tabhostpanel.default .tabs-outer.default .tabs .tab{
+	height:30px;
+	padding:0;
+	margin:2px 0 0 1px;	
+	background:url(images/themebg.png) repeat-x 0 0px;
+	background-position: 0 -25px;
+	border-right:1px solid #dedede;
+	border-left:1px solid #dedede;
+	border-top:1px solid #dedede;
+	color:#333;
+	border-top-left-radius:3px;
+	border-top-right-radius:3px;
+	-moz-border-top-left-radius:3px;
+	-moz-border-top-right-radius:3px;
+	-webkit-border-top-left-radius:3px;
+	-webkit-border-top-right-radius:3px;
+	font:normal 13px Verdana,Arial,宋体;
+}
+.tabhostpanel.default .tabs-outer.default .tabs .tab.last{
+}
+.tabhostpanel.default .tabs-outer.default .tabs .tab.select{
+	border-right:1px solid #dedede;
+	border-left:1px solid #dedede;
+	border-top:1px solid #dedede;
+	background-position: 0 0px;
+	font-weight:bold;
+}
+.tabhostpanel.default .tabs-outer.default .tabs .tab.select:hover{
+	background-position: 0 -0px;
+}
+.tabhostpanel.default .tabs-outer.default .tabs .tab.hover{
+	background-position: 0 -150px;
+}
+.tabhostpanel .tabs-outer .tabs .tab a{
+	padding:8px 15px 3px 15px;
+}
+.tabhostpanel .tabs-outer .tabs .tab.extra a{
+	padding:8px 5px 3px 18px;
+}
+.tabhostpanel.default .contents-outer{
+}

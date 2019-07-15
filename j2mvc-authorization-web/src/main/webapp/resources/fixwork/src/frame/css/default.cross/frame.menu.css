@@ -1,0 +1,33 @@
+
+.frame-main-left .frame-menus {
+	border: 1px solid #ddd;
+	background:#fff;
+	border-radius:5px;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+    -moz-box-shadow: 3px 3px 4px #e5e5e5;
+    -webkit-box-shadow: 3px 3px 4px #e5e5e5;
+    box-shadow: 3px 3px 4px #e5e5e5;
+}
+.frame-main-left .frame-menu .frame-menu-title {
+	color: #333;
+	border-top-left-radius:5px;
+	-moz-border-top-left-radius:5px;
+	-webkit-border-top-left-radius:5px;
+	border-top-right-radius:5px;
+	-moz-border-top-right-radius:5px;
+	-webkit-border-top-right-radius:5px;
+	background: url(images/background.png) repeat-x 0 -63px;
+}
+
+.frame-main-left .frame-menu a {
+	color: #484848;
+}
+.frame-main-left .frame-menu a:hover{
+	background:#f3f3f3;
+}
+
+.frame-main-left .frame-menu a.select{
+	text-shadow: 0px -1px  #99ffcc,0 1px #ccffcc;
+	color:#006633;
+}

@@ -1,0 +1,137 @@
+.button{overflow:hidden;position:relative;
+	cursor:pointer;	line-height:30px;padding:0;background:transparent;border:0;
+}
+.button span{display:inline-block;float:left;overflow:hidden;}
+.button .button-outer{border:1px solid #ccc;height:30px;padding-left:3px;overflow:hidden;cursor:pointer}
+.button .button-outer.hover{
+	background: -webkit-linear-gradient(#fcfcfc, #eee); /* Safari 5.1 - 6.0 */
+  background: -o-linear-gradient(#fcfcfc, #eee); /* Opera 11.1 - 12.0 */
+  background: -moz-linear-gradient(#fcfcfc, #eee); /* Firefox 3.6 - 15 */
+  background: linear-gradient(#fcfcfc, #eee); /* 标准的语法 */}
+  
+.button .button-outer.green{background:#33cc00;border:1px solid #339900}
+.button .button-outer.green.hover{background:#339900;border:1px solid #339900}
+.button .button-outer.blue{background:#3399ff;border:1px solid #3399ff}
+.button .button-outer.blue.hover{background:#3366cc;border:1px solid #3366cc}
+.button .button-outer.yellow{background:#ffcc00;border:1px solid #ffcc00}
+.button .button-outer.yellow.hover{background:#ff9900;border:1px solid #ff9900}
+
+.button .button-inner{height:30px;padding-right:3px;overflow:hidden;}
+.button .button-inner.hover{}
+.button .button-label{color:#666;height:30px;padding-right:12px;padding-left:12px;white-space:nowrap;overflow:hidden;}
+.button .button-label.hover{}
+/* 无左圆角 */
+.button.corner-left-no .button-outer{padding-left:0;border-left:1px solid #ccc}
+/* 无右圆角 */
+.button.corner-right-no .button-inner{padding-right:0;border-right:1px solid #ccc}
+/* 无上圆角 */
+.button.corner-top-no .button-outer{	background-position:0 -3px;height:29px;border-top:1px solid #ccc}
+.button.corner-top-no .button-inner{background-position:0 -43px;height:29px;border-top:1px solid #ccc}
+.button.corner-top-no .button-label{	background-position:0 -83px;height:29px;border-top:1px solid #ccc}
+/* 无下圆角 */
+.button.corner-bottom-no .button-outer{height:29px;border-bottom:1px solid #ccc}
+.button.corner-bottom-no .button-inner{height:29px;border-bottom:1px solid #ccc}
+.button.corner-bottom-no .button-label{height:29px;border-bottom:1px solid #ccc}
+
+/* 无左边框 */
+.button.border-left-no .button-outer{padding-left:0;}
+/* 无右边框 */
+.button.border-right-no .button-inner{padding-right:0;}
+/* 无上边框 */
+.button.border-top-no .button-outer{	background-position:0 -3px;height:29px}
+.button.border-top-no .button-inner{background-position:0 -43px;height:29px}
+.button.border-top-no .button-label{	background-position:0 -83px;height:29px;}
+/* 无下边框 */
+.button.border-bottom-no .button-outer{height:29px}
+.button.border-bottom-no .button-inner{height:29px}
+.button.border-bottom-no .button-label{height:29px;}
+/* 禁止 */
+.button.disabled .button-label{color:#ccc}
+
+.button.remove .button-inner{
+	background-image: url(images/remove.png);
+	background-repeat:no-repeat;
+	background-position:top right;
+	padding-right:12px;
+}
+.button .icon{
+	background-image: url(../../../../icons/default/icons_666666_16x16.png);
+	background-repeat:no-repeat;
+	margin:8px 0px 0 4px;
+	*margin:4px 0px 0 2px;
+	width:18px;
+	height:16px;
+	float:left;
+	border:0
+}
+.button .icon.add{
+	background-position:-243px -357px ;
+}
+.button .icon.refresh{
+	background-position:-519px -296px ;
+}
+.button .icon.back{
+	background-position:-95px -47px;
+}
+/** 文件文档图标 */
+.button.file .icon.edit{
+	background-position:-305px -480px;
+}
+.button.file .icon.dele{
+	background-position:-212px -480px;
+}
+.button.file .icon.copy{
+	background-position:-243px -479px;
+}
+.button.file .icon.move{
+	background-position:-243px -479px;
+}
+.button.file .icon.remove{
+	background-position:-243px -479px;
+}
+.button.file .icon.add{
+	background-position:-180px -480px;
+}
+
+/** 人物图标 */
+.button.person .icon.add{
+	background-position:-428px -140px;
+}
+.button.person .icon.edit{
+	background-position:-367px -140px;
+}
+.button.person .icon.dele{
+	background-position:-458px -140px;
+}
+.button.person .icon.copy{
+	background-position:-520px -140px;
+}
+.button.person .icon.move{
+	background-position:-243px -479px;
+}
+.button.person .icon.remove{
+	background-position:-243px -479px;
+}
+.button .icon.submit{
+	background-position:0 -510px;
+}
+
+.button .icon.reset{
+	background-position:-88px -327px;
+}
+.button .icon.exit{
+	background-position:0 -173px;
+}
+.button .icon.sendcode{
+	background-position:-130px -95px;
+}
+.button .icon.filter{
+	background-position:-2px -222px;
+}
+.button .icon.write{
+	background-position:-428px -512px;
+}
+
+.button .icon.print{
+	background:url(images/print.png) no-repeat;
+}

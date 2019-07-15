@@ -1,0 +1,66 @@
+
+.tabs-footer.gray-navs div {
+	border-top:1px solid #dedede;
+	text-align:center;
+	padding:2px;
+	font:.8em normal Verdana;
+	color:#666
+}
+/* 标签页面板 >> 标签栏外层，可能标签总宽度会超过父层宽度，所以设置一个外层嵌套 */
+.tabhostpanel.gray-navs .tabs-outer.gray-navs
+{
+	height:37px;
+	padding:0;
+	margin:0;
+	background:;
+	border-bottom:1px solid #ccc;
+    -moz-box-shadow: 4px 4px 5px #dedede;
+    -webkit-box-shadow: 4px 4px 5px #dedede;
+    box-shadow: 4px 4px 5px #dedede;
+}
+
+/* 标签页面板 >> 标签栏 >> 标签元素 */
+.tabhostpanel.gray-navs .tabs-outer.gray-navs .tabs{
+	margin-left:50px
+}
+.tabhostpanel.gray-navs .tabs-outer.gray-navs .tabs .tab{
+	line-height:38px;
+	height:34px;
+	padding:0 10px 0 10px;
+	margin:2px 0 0 0;
+	background-image:url(images/background.png);
+	background-repeat: repeat-x;
+	background-position: 0 -10px;
+	background-color:#fff;
+	border-left:1px solid #eaeaea;
+	border-right:1px solid #eaeaea;
+	border-top:1px solid #eaeaea;
+	color:#333;
+	border-top-left-radius:5px;
+	border-top-right-radius:5px;
+	-moz-border-top-left-radius:5px;
+	-moz-border-top-right-radius:5px;
+	-webkit-border-top-left-radius:5px;
+	-webkit-border-top-right-radius:5px;
+}
+.tabhostpanel.gray-navs .tabs-outer.gray-navs .tabs .tab.last{
+}
+.tabhostpanel.gray-navs .tabs-outer.gray-navs .tabs .tab.select,.tabhostpanel.gray-navs .tabs-outer.gray-navs .tabs .tab.select:hover{
+	border-left:1px solid #bbb;
+	border-right:1px solid #bbb;
+	border-top:1px solid #bbb;
+	background-repeat: repeat-x;
+	background-position: 0 -63px;
+}
+.tabhostpanel.gray-navs .tabs-outer.gray-navs .tabs .tab.hover{
+	border-left:1px solid #dedede;
+	border-right:1px solid #dedede;
+	border-top:1px solid #dedede;
+	background-position: 0 -0px;
+	color:#000
+}
+.tabhostpanel.gray-navs .tabs-outer.gray-navs .tabs .tab a{
+	color:#333;
+	padding:6px 15px 3px 15px;
+	font:normal 1.1em 微软雅黑,Verdana,Arial,宋体;
+}

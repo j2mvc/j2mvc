@@ -1,0 +1,22 @@
+/*轮播*/
+.rotation{
+	position:relative;
+	overflow:hidden;
+	background:transparent;
+}
+.rotation .container{
+	position:relative;
+}
+.rotation .container .item{ 
+	display:none;
+	cursor:pointer;
+	overflow: hidden;
+	margin:0;padding:0;
+}
+.rotation .handlers{
+	clear:both;
+	text-align:center;
+	position:static;
+	margin-left:10px;
+	margin-bottom:5px;
+}

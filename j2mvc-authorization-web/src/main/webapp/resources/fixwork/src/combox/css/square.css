@@ -1,0 +1,145 @@
+.combox{
+	float:left;
+	margin:0;
+	padding:0;
+}
+.combox .combox-header-outer{
+	height:30px;
+}
+.combox .combox-header-outer.hover{
+	background-position:0 -120px;
+}
+.combox .combox-header-inner{
+	height:30px;
+	margin-right:3px;
+}
+.combox .combox-header-inner.hover{
+	background-position:right -160px;
+}
+.combox .combox-header{
+	border:1px solid #bbb;	
+	height:30px;
+}
+.combox .combox-header.hover{
+	background-position:0 -200px;
+}
+.combox .combox-header span{
+	float:left;
+	height:30px;
+	line-height:30px;
+}
+.combox .combox-header .combox-label{
+	font:14px bold Arail,Verdana;
+	line-height:26px;
+	padding-right:12px;
+	padding-left:12px;
+	color:#666;
+}
+.combox .combox-header .combox-button{
+	background-image:url(images/combox.gif) ;
+	background-repeat:no-repeat;
+	background-position: -125px -1px;
+	width:26px;
+	height:30px;
+	overflow:hidden;
+	margin-left:3px;
+	border-left:1px solid #ccc;
+	cursor:pointer;
+}
+.combox .combox-header .combox-button.hover{
+	background-position: -158px -1px;
+}
+
+/* 无左圆角 */
+.combox.corner-left-no .combox-header-inner{padding-left:0;border-left:1px solid #ccc}
+/* 无右圆角 */
+.combox.corner-right-no .combox-header-inner{padding-right:0;border-right:1px solid #ccc}
+/* 无上圆角 */
+.combox.corner-top-no .combox-header-outer{	background-position:0 -3px;height:28px;border-top:1px solid #ccc;overflow:hidden}
+.combox.corner-top-no .combox-header-inner{background-position:0 -43px;height:28px;border-top:1px solid #ccc}
+.combox.corner-top-no .combox-header{background-position:0 -83px;height:28px;border-top:1px solid #ccc}
+/* 无下圆角 */
+.combox.corner-bottom-no .combox-header-outer{height:28px;border-bottom:1px solid #ccc;overflow:hidden}
+.combox.corner-bottom-no .combox-header-inner{height:28px;border-bottom:1px solid #ccc}
+.combox.corner-bottom-no .combox-header{height:28px;border-bottom:1px solid #ccc}
+
+/* 无左边框 */
+.combox.border-left-no .combox-header-outer{padding-left:0;}
+/* 无右边框 */
+.combox.border-right-no .combox-header-inner{padding-right:0;}
+/* 无上边框 */
+.combox.border-top-no .combox-header-outer{	background-position:0 -3px;height:28px}
+.combox.border-top-no .combox-header-inner{background-position:0 -43px;height:28px}
+.combox.border-top-no .combox-header{background-position:0 -83px;height:28px}
+/* 无下边框 */
+.combox.border-bottom-no .combox-header-outer{height:28px}
+.combox.border-bottom-no .combox-header-inner{height:28px}
+.combox.border-bottom-no .combox-header{height:28px}
+
+.combox .combox-box{
+	border:1px solid #bbb;
+	position:absolute;
+	width:auto;
+	overflow: auto;
+	background:#fff;
+	clear:both;
+	display:none;
+	box-shadow: 1px 4px 7px #ccc;
+	-moz-box-shadow: 1px 4px 7px #ccc;
+	-webkit-box-shadow: 1px 4px 7px #ccc;
+	/* filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius='3', MakeShadow='true', ShadowOpacity='0.4'); */
+}
+
+.combox .combox-box .combox-box-row{
+	border-bottom:1px solid #ddd;
+	line-height:26px;
+	cursor:pointer;
+	padding:0 0 0 10px;
+	clear:both;
+	overflow:hidden
+}
+.combox .combox-box .combox-box-row.last{
+	border-bottom:0;
+}
+.combox .combox-box .combox-box-row div{
+	clear:both;
+}
+.combox .combox-box .combox-box-row .row-left{
+	float:left;
+}
+.combox .combox-box .combox-box-row .row-right{
+	float:left;
+}
+.combox .combox-box .combox-box-row .row-label{
+	font:14px bold Arail,Verdana;
+	color:#666;
+	line-height:36px;
+}
+.combox .combox-box .combox-box-row .row-description{
+}
+.combox .combox-box .combox-box-row img.row-icon{
+	border:0;
+	margin:2px;
+}
+.combox .combox-box .combox-box-row img.row-icon.16x16{
+	width:16px;
+	height:16px
+}
+.combox .combox-box .combox-box-row img.row-icon.32x32{
+	width:30px;
+	height:30px
+}
+.combox .combox-box .combox-box-row img.row-icon.48x48{
+	width:48px;
+	height:48px
+}
+
+.combox .combox-box .combox-box-row.focus{
+	background:#f1f1f1;
+}
+.combox .combox-box .combox-box-row.focus .row-label{
+	color:#000;
+}
+.combox .combox-box .combox-box-row.focus .row-description{
+	color:#333;
+}

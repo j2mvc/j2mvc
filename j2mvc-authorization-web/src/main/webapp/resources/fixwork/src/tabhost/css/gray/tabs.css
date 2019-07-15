@@ -1,0 +1,38 @@
+
+/* 标签页面板 */
+/* 标签页面板 >> 标签栏外层，可能标签总宽度会超过父层宽度，所以设置一个外层嵌套 */
+.tabhostpanel.gray .tabs-outer.gray
+{
+	height:28px;
+	background:url(images/point.gif) repeat-x left bottom;
+}
+
+/* 标签页面板 >> 标签栏 >> 标签元素 */
+.tabhostpanel.gray .tabs-outer.gray .tabs .tab{
+	line-height:20px;
+	height:28px;
+	padding:0;
+	margin:2px 0 0 1px;	
+	background:url(images/background.png) repeat-x 0 -10px;
+	border-right:1px solid #dedede;
+	border-left:1px solid #dedede;
+	border-top:1px solid #dedede;
+	color:#333;
+	border-top-left-radius:3px;
+	border-top-right-radius:3px;
+	-moz-border-top-left-radius:3px;
+	-moz-border-top-right-radius:3px;
+	-webkit-border-top-left-radius:3px;
+	-webkit-border-top-right-radius:3px;
+}
+.tabhostpanel.gray .tabs-outer.gray .tabs .tab.last{
+}
+.tabhostpanel.gray .tabs-outer.gray .tabs .tab.select{
+	background:url(images/background.png) repeat-x 0 -1250px;
+}
+.tabhostpanel.gray .tabs-outer.gray .tabs .tab.select:hover{
+	background:url(images/background.png) repeat-x 0 -1250px;
+}
+.tabhostpanel.gray .tabs-outer.gray .tabs .tab.hover{
+	background:url(images/background.png) repeat-x 0 -1250px;
+}

@@ -1,0 +1,12 @@
+.navbar{overflow:hidden;height:32px;}
+.nav{overflow:hidden;float:left;	position:relative;	cursor:pointer;	line-height:32px;padding:0;background:transparent;border:0}
+.nav span{display:inline-block;float:left;overflow:hidden;}
+.nav .nav-outer{background:url(images/nav.png) no-repeat 0 -120px;height:32px;padding-left:7px;overflow:hidden;}
+.nav.hover 	.nav-outer{	background-position:0 -240px;}
+.nav.select .nav-outer{	background-position:0 0;}
+.nav .nav-inner{background:url(images/nav.png) no-repeat right -201px;height:32px;padding-right:7px;overflow:hidden;}
+.nav.hover 	.nav-inner{background-position:right -320px;}
+.nav.select .nav-inner{background-position:right -80px;}
+.nav .nav-label{background:url(images/nav.png) repeat-x 0 -160px;color:#333;height:32px;font-size:16px;padding-right:14px;padding-left:14px;white-space:nowrap;overflow:hidden;}
+.nav.hover  .nav-label{	background-position:0 -280px;color:#000}
+.nav.select .nav-label{	background-position:0 -40px;color:#fff}

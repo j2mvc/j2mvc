@@ -1,0 +1,56 @@
+#frame-top.nonavbar{
+	line-height:60px;
+	height:60px;
+}
+#frame-top-navbar{
+	border:1px solid #ccc;
+	border-radius:5px;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	margin-bottom:15px;
+    -moz-box-shadow: 2px 2px 3px #e5e5e5;
+    -webkit-box-shadow: 2px 2px 3px #e5e5e5;
+    box-shadow: 2px 2px 3px #e5e5e5;
+}
+#frame-top-navbar a.nav{
+	background: url(images/background.png) repeat-x  0 -10px;
+	color:#484848;
+	border-right:1px solid #ccc;
+}
+#frame-top-navbar a.nav.first{
+	border-top-left-radius:5px;
+	-moz-border-top-left-radius:5px;
+	-webkit-border-top-left-radius:5px;
+	border-left-bottom-radius:5px;
+	-moz-border-left-bottom-radius:5px;
+	-webkit-border-left-bottom-radius:5px;
+}
+#frame-top-navbar a.nav.last{
+	border-right:0;
+	border-top-right-radius:5px;
+	-moz-border-top-right-radius:5px;
+	-webkit-border-top-right-radius:5px;
+	border-right-bottom-radius:5px;
+	-moz-border-right-bottom-radius:5px;
+	-webkit-border-right-bottom-radius:5px;
+}
+
+#frame-top-navbar a.nav:hover{
+	background:#f7f7f7;
+	color:#000
+}
+#frame-top-navbar a.nav.select{
+	background: url(images/background.png) repeat-x  0 -63px;
+}
+.frame-main-center{
+	margin:0 8px 8px 0;
+	padding:0;
+	border:1px solid #dedede;
+	border-radius:5px;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+    -moz-box-shadow: 3px 3px 4px #eee;
+    -webkit-box-shadow: 3px 3px 4px #eee;
+    box-shadow: 3px 3px 4px #eee;
+    overflow:hidden;
+}

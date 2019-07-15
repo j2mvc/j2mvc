@@ -1,0 +1,71 @@
+
+/* 标签页面板 >> 标签栏 */
+.static-tabs{
+	padding:0;
+	margin:0;
+	position:relative;
+	white-space:nowrap;
+	word-break:keep-all;
+}
+
+/* 标签页面板 >> 标签栏 >> 标签元素 */
+.static-tabs .tab{
+	*display:inline;
+	_display:inline;
+	display:inline-block;
+	white-space:nowrap;
+	word-break:keep-all;
+	cursor:pointer;
+}
+
+.static-tabs .tab.select{
+	color:#2386e2
+}
+
+/* 标签页面板 >> 标签栏 >> 扩展的可删除标签元素 */
+.static-tabs .tab.extra .delete{
+	width:13px;
+	height:13px;
+	float:left;
+	display:block;
+	border:1px solid transparent;
+	border-radius:2px;
+	-moz-border-radius:2px;
+	-webkit-border-radius:2px;
+	margin:1px 2px 0 0;
+}
+.static-tabs .tab.extra.hover .delete{
+	background: url(icons/ui-icons_888888_256x240.png) no-repeat -83px -130px;
+}
+.static-tabs .tab.extra.select .delete{
+	background: url(icons/ui-icons_888888_256x240.png) no-repeat -83px -130px;
+}
+.static-tabs .tab.extra .delete:hover{
+	background: url(icons/ui-icons_cd0a0a_256x240.png) no-repeat -83px -130px;
+}
+/* 标签页面板 >> 内容区域外层，可能会有滑动效果，所以添加一个外层嵌套 */
+.static-contents{
+	position:relative;
+	margin:0;
+	padding:0;
+	overflow:hidden;
+}
+/* 标签页面板 >> 内容区域 */
+.static-contents .container{
+	padding:0;
+	margin:0;
+	position:relative;
+	white-space:nowrap;
+}
+/* 标签页面板 >> 内容元素 */
+.static-contents .container .items-container,.static-contents .container .content{
+	display:-moz-inline-stack;
+	display:inline-block;
+/* 	overflow:hidden; */
+	overflow:auto;
+	vertical-align:top;
+	white-space:normal;
+	padding:0;
+	margin:0;
+	z-index:99;
+}

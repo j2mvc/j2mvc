@@ -1,0 +1,85 @@
+.fixwork-plugins-tree{
+	list-style-type:none;
+	padding:5px 0px 0 0 ;
+	margin:0;
+	line-height:22px;
+	text-align:left;
+	clear:both;	
+}
+.fixwork-plugins-tree ul{
+	list-style-type:none;
+	padding:0;
+	margin:0;
+	clear:both;	
+}
+.fixwork-plugins-tree li{
+	margin:0 0 0 18px;
+	padding:0 0 0 0px;
+	list-style-type:none;
+	clear:both;	
+}
+.fixwork-plugins-tree input[type='checkbox']{
+	float:left;
+} 
+.fixwork-plugins-tree input[type='checkbox']:checked
+  {
+    background-color: #003e6d;
+  }
+.fixwork-plugins-tree li div.loading{
+	width:16px;
+	height:16px;
+	overflow:hidden;
+	background:url(images/loading-16x16.gif) no-repeat;
+	clear:both;
+}
+.fixwork-plugins-tree a{
+	margin:0;
+	cursor:pointer;
+	color:#47aefe;
+	float:left;
+}
+.fixwork-plugins-tree a:hover{color:#0033cc}
+.fixwork-plugins-tree a.tree-item-toggle{
+	
+}
+.fixwork-plugins-tree a.tree-item-toggle.closed{
+	background:url(images/plus.gif) left 7px no-repeat;
+	width:10px;
+	height:18px;
+	overflow:hidden;
+}
+.fixwork-plugins-tree a.tree-item-toggle.opened{
+	background:url(images/minus.gif) left 7px no-repeat;
+	width:10px;
+	height:18px;
+	overflow:hidden;
+}
+.fixwork-plugins-tree a.folder{
+	background:url(images/folder.gif) left 4px no-repeat;
+	width:16px;
+	height:26px;
+	margin:0 0 0 2px;
+}
+.fixwork-plugins-tree a.folder-closed{
+	background:url(images/folder-closed.gif) left 4px no-repeat;
+	width:16px;
+	height:26px;
+	margin:0 0 0 2px;
+}
+.fixwork-plugins-tree a.file{
+	background:url(images/file.gif) left 2px no-repeat;
+	width:16px;
+	height:26px;
+	margin:0 0 0 2px;
+}
+.fixwork-plugins-tree a.tree-item{
+	margin:0;
+	padding:0 5px 0 5px;
+	cursor:pointer;
+	color:#333
+}
+
+.fixwork-plugins-tree a.tree-item:hover{
+	color:#000;
+	font-weight:bold;
+}

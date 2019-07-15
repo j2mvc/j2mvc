@@ -1,0 +1,257 @@
+
+/* 标签页面板 */
+iframe{frameborder:no;border:none;padding:0;margin:0;}
+html {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+} 
+*:focus {
+  outline: none;
+} 
+/* 标签页面板 >> 头部 */
+.tabhostpanel .tabs-header{	
+	clear: both;
+	overflow:hidden;
+	padding:0;
+	margin:0;
+	background:#000;
+	position:static;
+	border-top:1px solid #aaa;
+	text-align:center;
+	font:.8em normal 微软雅黑,宋体,Verdana;
+	background:#f7f7f7;
+	color:#999
+}
+/* 标签页面板 >> 底部 */
+.tabhostpanel .tabs-footer {
+	clear: both;
+	overflow:hidden;
+	padding:0;
+	margin:0;
+	border:0;
+	position:static
+}
+
+/* 标签页面板 >> 标签栏外层，可能标签总宽度会超过父层宽度，所以设置一个外层嵌套 */
+.tabhostpanel .tabs-outer
+{
+	float:left;
+	overflow:hidden;
+	position:relative;
+	padding:0;
+	margin:0;
+}
+/* 标签页面板 >> 标签栏 */
+.tabhostpanel .tabs-outer .tabs{
+	padding:0;
+	margin:0;
+	position:relative;
+	*display:inline;
+	_display:inline;
+	display:inline-block;
+	white-space:nowrap;
+	word-break:keep-all;
+}
+/* 标签页面板 >> 滚动按钮 */
+.tabhostpanel a.navbar-scroll{
+	width:16px;
+	height: 16px;
+	overflow:hidden;
+	position:absolute;
+	margin-top:8px;
+	background:url(icons/ui-icons_888888_256x240.png) no-repeat;
+	z-index:999;
+	cursor:pointer;
+}
+/* 标签页面板 >> 滚动按钮 >> 左侧按钮，点击标签栏会向右滚动 */
+.tabhostpanel a.navbar-scroll.left-to{
+	background-position: -80px -193px;
+	left:0
+}
+.tabhostpanel a.navbar-scroll.left-to:hover{
+	background:url(icons/ui-icons_cd0a0a_256x240.png) no-repeat;
+	background-position: -80px -193px;
+}
+/* 标签页面板 >> 滚动按钮 >> 右侧按钮，点击标签栏会向左滚动 */
+.tabhostpanel a.navbar-scroll.right-to{
+	background-position: -49px -193px;
+	right:0
+}
+.tabhostpanel a.navbar-scroll.right-to:hover{
+	background:url(icons/ui-icons_cd0a0a_256x240.png) no-repeat;
+	background-position: -49px -193px;
+}
+
+/* 标签页面板 >> 标签栏 >> 标签元素 */
+.tabhostpanel .tabs-outer .tabs .tab{
+	*display:inline;
+	_display:inline;
+	display:inline-block;
+	white-space:nowrap;
+	word-break:keep-all;
+	cursor:pointer;
+	overflow:hidden
+}
+.tabhostpanel .tabs-outer .tabs .icon img{
+	width:22px;
+	height:22px;
+}
+.tabhostpanel .tabs-outer.offset-top{
+	border-bottom:1px solid #aaa;
+}
+.tabhostpanel .tabs-outer.offset-bottom{
+	border-top:1px solid #aaa;
+}
+.tabhostpanel .tabs-outer.offset-left{
+	border-right:1px solid #aaa;
+}
+.tabhostpanel .tabs-outer.offset-right{
+	border-left:1px solid #aaa;
+}
+
+.tabhostpanel .tabs-outer.offset-top .tab{
+	border-right:1px solid #dedede;
+}
+.tabhostpanel .tabs-outer.offset-bottom .tab{
+	border-right:1px solid #dedede;
+}
+.tabhostpanel .tabs-outer.offset-left .tab{
+	border-bottom:1px solid #dedede;
+	display:block;
+	clear:both;
+	word-break:break-all;	
+}
+.tabhostpanel .tabs-outer.offset-right .tab{
+	border-bottom:1px solid #dedede;
+	clear:both;
+	word-break:break-all;		
+}
+.tabhostpanel .tabs-outer .tabs .icon{
+	overflow:hidden;
+	clear:both;
+	display:block;
+	padding:.3em 0 .2em 0;
+	text-align:center
+}
+.tabhostpanel .tabs-outer.offset-right .tabs .icon{
+	padding:.3em 0  0 0;
+}
+
+.tabhostpanel .tabs-outer .tabs .tab.hover{
+	color:#000
+}
+.tabhostpanel .tabs-outer .tab .label{
+	display:block;
+	color:#666;
+	font:normal 1em 微软雅黑,宋体,Verdana,Arial;
+	overflow:hidden;
+	clear:both;
+	text-align:center;
+	line-height:2.0em;
+}
+.tabhostpanel .tabs-outer .tab.select{
+	background:#fff;
+}
+.tabhostpanel .tabs-outer.offset-left .tab .label,.tabhostpanel .tabs-outer.offset-right .tab .label{
+	padding-left:1em;
+	padding-right:1em;
+	margin-top:.5em;
+	margin-bottom:.5em;
+}
+.tabhostpanel .tabs-outer.offset-top .tab .label,.tabhostpanel .tabs-outer.offset-bottom .tab .label{
+	padding-left:1em;
+	padding-right:1em;
+	padding-top:.2em;
+	padding-bottom:.2em;
+}
+.tabhostpanel .tabs-outer.offset-top .tab.select .label,.tabhostpanel .tabs-outer.offset-bottom .tab.select .label{
+	color:#ff6600;
+}
+.tabhostpanel .tabs-outer.offset-right .tab.select .label{
+	color:#ff6600;
+	border-right:.2em solid #ff6600;
+	padding-right:.5em;
+	margin-right:.3em;
+}
+.tabhostpanel .tabs-outer.offset-left .tab.select .label{
+	color:#ff6600;
+	border-left:.2em solid #ff6600;
+	padding-left:.5em;
+	margin-left:.3em;
+}
+.tabhostpanel .offset-top .tab.last,.tabhostpanel .offset-bottom .tab.last{border-right:0;}
+.tabhostpanel .offset-left .tab.last,.tabhostpanel .offset-right .tab.last{border-bottom:0;}
+/* 标签页面板 >> 标签栏 >> 扩展的可删除标签元素 */
+.tabhostpanel  .tabs .tab.extra .delete{
+	width:13px;
+	height:13px;
+	float:left;
+	display:block;
+	border:1px solid transparent;
+	border-radius:2px;
+	-moz-border-radius:2px;
+	-webkit-border-radius:2px;
+	margin:1px 2px 0 0;
+}
+.tabhostpanel  .tabs .tab.extra.hover .delete{
+	background: url(icons/ui-icons_888888_256x240.png) no-repeat -83px -130px;
+}
+.tabhostpanel  .tabs .tab.extra.select .delete{
+	background: url(icons/ui-icons_888888_256x240.png) no-repeat -83px -130px;
+}
+.tabhostpanel  .tabs .tab.extra .delete:hover{
+	background: url(icons/ui-icons_cd0a0a_256x240.png) no-repeat -83px -130px;
+}
+.tabhostpanel .contents-outer .content{
+	background:#fff
+}
+/* 标签页面板 >> 内容区域外层，可能会有滑动效果，所以添加一个外层嵌套 */
+.tabhostpanel .contents-outer{
+	position:relative;
+	margin:0;
+	padding:0;
+	overflow:hidden;
+}
+/* 标签页面板 >> 内容区域 */
+.tabhostpanel .contents-outer .contents{
+	padding:0;
+	margin:0;
+	position:relative;
+	white-space:nowrap;
+}
+/* 标签页面板 >> 内容区域纵向布局 */
+.tabhostpanel .contents-outer.vertical .contents{
+	overflow:hidden;
+	white-space:normal;
+}
+/* 标签页面板 >> 内容元素 */
+.tabhostpanel .contents-outer .content{
+	display:-moz-inline-stack;
+	display:inline-block;
+	overflow:hidden;
+	overflow-y:auto;
+	vertical-align:top;
+	white-space:normal;
+	padding:0;
+	margin:0;
+	z-index:99;
+}
+.tabhostpanel .contents-outer .content.loading{
+	background-image:url(icons/loading.gif);
+	background-repeat:no-repeat;
+	background-position:.3em .3em;
+}
+/* 滚动条样式 */
+/* 
+.tabhostpanel .contents-outer .content::-webkit-scrollbar { visibility: hidden; }width: 8px; Track & scroll thickness
+.tabhostpanel .contents-outer .content::-webkit-scrollbar-track { background-color:#ddd; }Track color
+.tabhostpanel .contents-outer .content::-webkit-scrollbar-thumb { background-color: #333;}Scroll color
+.tabhostpanel .contents-outer .content::-webkit-scrollbar-thumb:hover { background-color: #000 }Scroll hover color
+.tabhostpanel .contents-outer .content::-webkit-scrollbar-thumb:active { background-color: #000 }Scroll click & drag color
+ */
+ /* 标签页面板 >> 内容元素纵向布局 */
+.tabhostpanel .contents-outer.vertical .content{
+	display:block;
+	clear:both;
+	position:relative;
+	word-break:break-all;
+}

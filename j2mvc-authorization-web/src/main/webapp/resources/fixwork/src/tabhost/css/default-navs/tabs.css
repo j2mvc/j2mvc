@@ -1,0 +1,72 @@
+
+.tabhostpanel  .tabs-footer.default-navs{
+	border-top:1px solid #ccc;
+	text-align:center;
+	font:.8em normal Verdana;
+	background:#f7f7f7;
+	color:#999
+}
+.tabhostpanel  .tabs-footer.default-navs div{
+	padding:2px;
+}
+/* 标签页面板 >> 标签栏外层，可能标签总宽度会超过父层宽度，所以设置一个外层嵌套 */
+.tabhostpanel.default-navs .tabs-outer.default-navs
+{
+	height:36px;
+	padding:0;
+	margin:0;
+	background:;
+	border-bottom:2px solid #0d7cb4;
+    -moz-box-shadow: 4px 4px 5px #ddd;
+    -webkit-box-shadow: 4px 4px 5px #ddd;
+    box-shadow: 4px 4px 5px #ddd;
+}
+
+/* 标签页面板 >> 标签栏 >> 标签元素 */
+.tabhostpanel.default-navs .tabs-outer.default-navs .tabs{
+	margin-left:50px
+}
+.tabhostpanel.default-navs .tabs-outer.default-navs .tabs .tab{
+	line-height:38px;
+	height:34px;
+	padding:0 10px 0 10px;
+	margin:2px 0 0 0;
+	background-image:url(images/themebg.jpg);
+	background-repeat: repeat-x;
+	background-position: 0 -50px;
+	background-color:#fff;
+	border-left:1px solid #ccc;
+	border-right:1px solid #ccc;
+	border-top:1px solid #ccc;
+	border-top-left-radius:5px;
+	border-top-right-radius:5px;
+	-moz-border-top-left-radius:5px;
+	-moz-border-top-right-radius:5px;
+	-webkit-border-top-left-radius:5px;
+	-webkit-border-top-right-radius:5px;
+}
+.tabhostpanel.default-navs .tabs-outer.default-navs .tabs .tab.last{
+}
+.tabhostpanel.default-navs .tabs-outer.default-navs .tabs .tab.select,.tabhostpanel.default-navs .tabs-outer.default-navs .tabs .tab.select:hover{
+	border-left:1px solid #21a0e0;
+	border-right:1px solid #21a0e0;
+	border-top:1px solid #21a0e0;
+	background-repeat: repeat-x;
+	background-position: 0 -10px;
+	background-image:url(images/navbar.gif);
+}
+.tabhostpanel.default-navs .tabs-outer.default-navs .tabs .tab.hover{
+	border-left:1px solid #999;
+	border-right:1px solid #999;
+	border-top:1px solid #999;
+	background-position: 0 -70px;
+	color:#000
+}
+.tabhostpanel.default-navs .tabs-outer.default-navs .tabs .tab a{
+	color:#484848;
+	padding:7px 15px 3px 15px;
+	font:normal 16px Verdana,Arial,宋体;
+}
+.tabhostpanel.default-navs .tabs-outer.default-navs .tabs .tab.select a{
+	color:#fff
+}

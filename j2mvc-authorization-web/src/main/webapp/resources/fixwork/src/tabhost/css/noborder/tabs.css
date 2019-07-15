@@ -1,0 +1,26 @@
+
+/* 标签页面板 */
+/* 标签页面板 >> 标签栏外层，可能标签总宽度会超过父层宽度，所以设置一个外层嵌套 */
+.tabhostpanel.noborder .tabs-outer.noborder
+{
+	background:#fafafa;
+	border-bottom:1px solid #999;
+}
+
+/* 标签页面板 >> 标签栏 >> 标签元素 */
+.tabhostpanel.noborder .tabs-outer.noborder .tabs .tab{
+	line-height:32px;
+	padding:0;
+	color:#333;
+	margin:0;
+	font:normal 14px 微软雅黑,Arail,宋体;
+}
+.tabhostpanel.noborder .tabs-outer.noborder .tabs .tab.select{
+	color:#ff6600
+}
+.tabhostpanel.noborder .tabs-outer.noborder .tabs .tab.select:hover{
+	color:#ff6600
+}
+.tabhostpanel.noborder .tabs-outer.noborder .tabs .tab.hover{
+	color:#ff6600
+}

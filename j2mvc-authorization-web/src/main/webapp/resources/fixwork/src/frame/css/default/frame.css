@@ -1,0 +1,56 @@
+
+#frame-top {
+	background: url(images/background.png) repeat-x  0 30px;
+	border-bottom:1px solid #ccc;
+    -moz-box-shadow: 3px 3px 4px #eee;
+    -webkit-box-shadow: 3px 3px 4px #eee;
+    box-shadow: 3px 3px 4px #eee;
+}
+#frame-top.nonavbar{
+	line-height:60px;
+	height:60px;
+	background-position:0 8px;
+}
+
+#frame-top-navbar a.nav{
+	border-left:1px solid #ccc;
+	border-top:1px solid #ccc;
+	background: url(images/background.png) repeat-x  0 -10px;
+	color:#484848;
+	border-top-left-radius:3px;
+	border-top-right-radius:20px;
+	-moz-border-top-left-radius:3px;
+	-moz-border-top-right-radius:20px;
+	-webkit-border-top-left-radius:3px;
+	-webkit-border-top-right-radius:20px;
+}
+
+#frame-top-navbar a.nav.last{
+	border-right:1px solid #ccc;
+}
+#frame-top-navbar a.nav:hover{
+	background:#f7f7f7;
+	color:#000
+}
+#frame-top-navbar a.nav.select{
+	background: url(images/background.png) repeat-x  0 -63px;
+}
+.frame-main-left{
+	border-right:1px dotted #ccc;
+	scrollbar-arrow-color: #f4ae21;   /*三角箭头的颜色*/
+	scrollbar-face-color: #333;       /*立体滚动条的颜色*/
+	scrollbar-3dlight-color: #666;    /*立体滚动条亮边的颜色*/
+	scrollbar-highlight-color: #666;  /*滚动条空白部分的颜色*/
+	scrollbar-shadow-color: #999;     /*立体滚动条阴影的颜色*/
+	scrollbar-darkshadow-color: #666; /*滚动条强阴影颜色*/
+	scrollbar-track-color: #666;      /*立体滚动条背景颜色*/
+	scrollbar-base-color: #f8f8f8;    /*滚动条的基本颜色*/
+}
+.frame-main-center{
+	border:0;
+}
+#frame-footer {
+	border-top:1px dotted #ccc;
+	color:#666;
+	padding:5px 0 5px 0;
+}

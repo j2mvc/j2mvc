@@ -1,0 +1,175 @@
+
+/* 标签页面板 */
+.tabhostpanel{
+}
+iframe{frameborder:no;border:none;padding:0;margin:0;}
+
+/* 标签页面板 >> 头部 */
+.tabhostpanel .tabs-header{	
+	clear: both;
+	overflow:hidden;
+	padding:0;
+	margin:0;
+	background:#000;
+	position:static
+}
+/* 标签页面板 >> 底部 */
+.tabhostpanel .tabs-footer {
+	clear: both;
+	overflow:hidden;
+	padding:0;
+	margin:0;
+	border:0;
+	position:static
+}
+
+/* 标签页面板 >> 标签栏外层，可能标签总宽度会超过父层宽度，所以设置一个外层嵌套 */
+.tabhostpanel .tabs-outer
+{
+	float:left;
+	overflow:hidden;
+	position:relative;
+	padding:0;
+	margin:0;
+}
+/* 标签页面板 >> 标签栏 */
+.tabhostpanel .tabs-outer .tabs{
+	padding:0;
+	margin:0;
+	position:relative;
+	*display:inline;
+	_display:inline;
+	display:inline-block;
+	white-space:nowrap;
+	word-break:keep-all;
+}
+
+/* 标签页面板 >> 滚动按钮 */
+.tabhostpanel a.navbar-scroll{
+	width:16px;
+	height: 16px;
+	overflow:hidden;
+	position:absolute;
+	margin-top:8px;
+	background:url(icons/ui-icons_888888_256x240.png) no-repeat;
+	z-index:999;
+	cursor:pointer;
+}
+/* 标签页面板 >> 滚动按钮 >> 左侧按钮，点击标签栏会向右滚动 */
+.tabhostpanel a.navbar-scroll.left-to{
+	background-position: -80px -193px;
+	left:0
+}
+.tabhostpanel a.navbar-scroll.left-to:hover{
+	background:url(icons/ui-icons_cd0a0a_256x240.png) no-repeat;
+	background-position: -80px -193px;
+}
+/* 标签页面板 >> 滚动按钮 >> 右侧按钮，点击标签栏会向左滚动 */
+.tabhostpanel a.navbar-scroll.right-to{
+	background-position: -49px -193px;
+	right:0
+}
+.tabhostpanel a.navbar-scroll.right-to:hover{
+	background:url(icons/ui-icons_cd0a0a_256x240.png) no-repeat;
+	background-position: -49px -193px;
+}
+
+/* 标签页面板 >> 标签栏 >> 标签元素 */
+.tabhostpanel .tabs-outer .tabs .tab{
+	*display:inline;
+	_display:inline;
+	display:inline-block;
+	white-space:nowrap;
+	word-break:keep-all;
+	cursor:pointer;
+}
+.tabhostpanel .tabs-outer .tabs .tab.last{
+}
+.tabhostpanel .tabs-outer .tabs .tab a{
+	float:left;
+}
+
+/* 标签页面板 >> 标签栏 >> 标签元素 */
+.tabhostpanel .tabs-outer .tabs .tab.offset-left{
+	display:block;
+	clear:both;
+	word-break:break-all;	
+}
+.tabhostpanel .tabs-outer .tabs .tab.offset-right{
+	display:block;
+	clear:both;
+	word-break:break-all;		
+}
+
+/* 标签页面板 >> 标签栏 >> 扩展的可删除标签元素 */
+.tabhostpanel .tabs-outer .tabs .tab.extra .delete{
+	width:13px;
+	height:13px;
+	float:left;
+	display:block;
+	border:1px solid transparent;
+	border-radius:2px;
+	-moz-border-radius:2px;
+	-webkit-border-radius:2px;
+	margin:1px 2px 0 0;
+}
+.tabhostpanel .tabs-outer .tabs .tab.extra.hover .delete{
+	background: url(icons/ui-icons_888888_256x240.png) no-repeat -83px -130px;
+}
+.tabhostpanel .tabs-outer .tabs .tab.extra.select .delete{
+	background: url(icons/ui-icons_888888_256x240.png) no-repeat -83px -130px;
+}
+.tabhostpanel .tabs-outer .tabs .tab.extra .delete:hover{
+	background: url(icons/ui-icons_cd0a0a_256x240.png) no-repeat -83px -130px;
+}
+/* 标签页面板 >> 内容区域外层，可能会有滑动效果，所以添加一个外层嵌套 */
+.tabhostpanel .contents-outer{
+	position:relative;
+	margin:0;
+	padding:0;
+	overflow:hidden;
+}
+/* 标签页面板 >> 内容区域 */
+.tabhostpanel .contents-outer .contents{
+	padding:0;
+	margin:0;
+	position:relative;
+	white-space:nowrap;
+}
+/* 标签页面板 >> 内容区域纵向布局 */
+.tabhostpanel .contents-outer.vertical .contents{
+	overflow:hidden;
+	white-space:normal;
+}
+/* 标签页面板 >> 内容元素 */
+.tabhostpanel .contents-outer .content{
+	display:-moz-inline-stack;
+	display:inline-block;
+	overflow:hidden;
+	overflow-y:auto;
+	vertical-align:top;
+	white-space:normal;
+	padding:0;
+	margin:0;
+	z-index:99;
+}
+.tabhostpanel .contents-outer .content.loading{
+	background-image:url(icons/loading.gif);
+	background-repeat:no-repeat;
+	background-position:5px 5px;
+}
+/* 滚动条样式 */
+/* 
+.tabhostpanel .contents-outer .content::-webkit-scrollbar { visibility: hidden; }width: 8px; Track & scroll thickness
+.tabhostpanel .contents-outer .content::-webkit-scrollbar-track { background-color:#ddd; }Track color
+.tabhostpanel .contents-outer .content::-webkit-scrollbar-thumb { background-color: #333;}Scroll color
+.tabhostpanel .contents-outer .content::-webkit-scrollbar-thumb:hover { background-color: #000 }Scroll hover color
+.tabhostpanel .contents-outer .content::-webkit-scrollbar-thumb:active { background-color: #000 }Scroll click & drag color
+ */
+ /* 标签页面板 >> 内容元素纵向布局 */
+.tabhostpanel .contents-outer.vertical .content{
+	display:block;
+	clear:both;
+	position:relative;
+	word-break:break-all;
+}

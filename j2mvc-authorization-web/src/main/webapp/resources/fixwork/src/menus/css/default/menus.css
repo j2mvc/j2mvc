@@ -1,0 +1,92 @@
+.menuspanel .menus-outer{
+	background:#e2e7ed;
+	padding-top:10px;
+	/* filter:progid:DXImageTransform.Microsoft.Shadow(color=#ddd,direction=90,strength=4); *//*ie*/
+	border-right:1px solid #bdbdbd;
+    -moz-box-shadow: 4px 4px 5px #ddd;
+    -webkit-box-shadow: 4px 4px 5px #ddd;
+    box-shadow: 4px 4px 5px #ddd;
+}
+.showhide{
+	position:absolute;
+	width:15px;
+	overflow:hidden;
+	top:0;
+	right:0;
+	cursor:pointer;
+}
+.showhide.hide{
+	background-image:url(images/hide-panel.gif);
+	background-repeat:no-repeat;
+	background-position:center left;
+}
+.showhide.show{
+	background-image:url(images/show-panel.gif);
+	background-repeat:no-repeat;
+	background-position:center right;
+}
+
+.menuspanel .menus .menu-group-title{
+	color:#888
+}
+.menuspanel .menus .menu.hover{
+	background-color:#ebebeb;
+}
+.menuspanel .menus .menu.select.hover{
+	background-color:transparent;
+}
+.menuspanel .menus .menu .icon{
+	margin-right:10px;
+	margin-left:10px;
+}
+
+.menuspanel .menus .menu a:hover{
+	color:#1b9cd5;
+}
+.menuspanel .menus .menu a{
+	font-size:12px;
+	color:#484848;
+	font-family:Verdana;
+}
+.menuspanel .menus .menu.select a{
+	color:#0e8dc3;
+	font-weight:bold;
+}
+.menuspanel .menus .menu.mbutton{
+	height:36px;
+	margin-bottom:10px;
+	margin-left:5px;
+	background-image:url(../../../../../../../icons/default/buttons_fix.png);
+	background-repeat: no-repeat;
+	background-position: -80px -90px;
+}
+.menuspanel .menus .menu.mbutton .icon{
+	margin-top:10px;
+	margin-left:5px;
+}
+.menuspanel .menus .menu.mbutton a{
+	letter-spacing:5px;
+	margin-top:6px;
+	font:bold 16px Verdana;
+	color: #666;
+}
+.menuspanel .menus .menu.mbutton.hover,.menuspanel .menus .menu.mbutton.select{
+	background-position:-80px -40px;
+	background-color:transparent;
+}
+.menuspanel .menus .menu.mbutton a:hover{
+	color: #666;
+}
+.menuspanel .menus .menu.mbutton.select a{
+	color:#FFF;
+}
+
+/* 菜单面板 >> 内容区域 */
+.menuspanel .menus-content{
+	padding:0;
+	margin:5px;
+	border:1px solid #dedede;
+	border-radius:3px;
+	-moz-border-radius:3px;
+	-webkit-border-radius:3px;
+}

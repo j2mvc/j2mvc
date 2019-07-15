@@ -1,6 +1,7 @@
-<project
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
-	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.j2mvc</groupId>
@@ -61,6 +62,7 @@
 		<module>j2mvc-framework-app</module>
 		<module>j2mvc-authorization</module>
 		<module>j2mvc-searcher</module>
+		<module>j2mvc-authorization-web</module>
 	</modules>
 
 	<build>
@@ -130,7 +132,7 @@
 						</goals>
 					</execution>
 				</executions>
-			</plugin> 
+			</plugin>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.5.1</version>

@@ -1,0 +1,10 @@
+#frame-top {
+	background: url(images/background.png) repeat-x 0 30px;
+	border-bottom:1px solid #ccc;
+}
+
+#frame-footer {
+	border-top:1px solid #dedede;
+	color:#666;
+	padding:5px 0 5px 0;
+}
