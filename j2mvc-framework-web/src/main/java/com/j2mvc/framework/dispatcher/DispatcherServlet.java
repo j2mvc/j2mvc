@@ -43,40 +43,39 @@ public class DispatcherServlet extends HttpServlet {
 		}
 		uri = !contextPath.equals("") && uri.startsWith(contextPath) ? uri.substring(contextPath.length(), uri.length())
 				: uri;
-		/** 执行拦截器 */
-		Interceptor dispatcherInterceptor = new Interceptor(req, resp);
-		boolean success = dispatcherInterceptor.isSuccess();
-		ActionBean bean = null;
-		if (success) {
-			if (uri.endsWith("/")) {
-				uri = uri.substring(0, uri.lastIndexOf("/"));
-			} else {
-				uri = uri.substring(0, uri.lastIndexOf("."));
-			}
-			bean = new ActionMatch(uri).getBean();
+		if (uri.endsWith("/")) {
+			uri = uri.substring(0, uri.lastIndexOf("/"));
+		} else {
+			uri = uri.substring(0, uri.lastIndexOf("."));
 		}
-		if (bean != null) {
-			String requestMethod = bean.getRequestMethod();
-			requestMethod = requestMethod!=null?requestMethod:"";
-			if (method.equals(METHOD_GET) && 
-					(requestMethod.equalsIgnoreCase(RequestMethod.GET)||
-							requestMethod.equals(""))) {
-				doAction(req, resp,bean);
-			} else if (method.equals(METHOD_POST) && 
-					(requestMethod.equalsIgnoreCase(RequestMethod.POST)||
-							requestMethod.equals(""))) {
-				doAction(req, resp,bean);
-			}  else {
-				log.warn("服务器限制了请求模式，客户端请求方式是GET或POST,与服务器requestMothod不一致.");
+		ActionBean bean = new ActionMatch(uri).getBean();
+		/** 执行拦截器 */
+		Interceptor dispatcherInterceptor = new Interceptor(req, resp,bean);
+		boolean success = dispatcherInterceptor.isSuccess();
+		if (success) {
+			if (bean != null) {
+				String requestMethod = bean.getRequestMethod();
+				requestMethod = requestMethod!=null?requestMethod:"";
+				if (method.equals(METHOD_GET) && 
+						(requestMethod.equalsIgnoreCase(RequestMethod.GET)||
+								requestMethod.equals(""))) {
+					doAction(req, resp,bean);
+				} else if (method.equals(METHOD_POST) && 
+						(requestMethod.equalsIgnoreCase(RequestMethod.POST)||
+								requestMethod.equals(""))) {
+					doAction(req, resp,bean);
+				}  else {
+					log.warn("服务器限制了请求模式，客户端请求方式是GET或POST,与服务器requestMothod不一致.");
+					super.service(req, resp);
+				}
+			}else{
+				String queryString = req.getQueryString();
+				if(Session.uriLog)
+					log.warn("正在访问>>" + uri +(queryString!=null&&!queryString.equals("")?"?"+queryString:"")+ ",未找到映射."
+							+ "如果配置uri为正则表达式,请检是否正确,"
+							+ "如果配置正确,请检查uri是否正确,例如是否漏了工程路径.");
 				super.service(req, resp);
 			}
-		}else{
-			String queryString = req.getQueryString();
-			if(Session.uriLog)
-				log.warn("正在访问>>" + uri +(queryString!=null&&!queryString.equals("")?"?"+queryString:"")+ ",未找到映射."
-						+ "如果配置uri为正则表达式,请检是否正确,"
-						+ "如果配置正确,请检查uri是否正确,例如是否漏了工程路径.");
-			super.service(req, resp);
 		}
 	}
 	/**

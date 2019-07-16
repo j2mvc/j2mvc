@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.j2mvc.framework.Session;
+import com.j2mvc.framework.action.ActionBean;
 import com.j2mvc.framework.util.InvokeUtils;
 
 /**
@@ -16,8 +17,9 @@ import com.j2mvc.framework.util.InvokeUtils;
  */
 public class Interceptor {
 	static final Logger log = Logger.getLogger(Interceptor.class);
-	HttpServletRequest request;
-	HttpServletResponse response;
+	private HttpServletRequest request;
+	private HttpServletResponse response;
+	private ActionBean actionBean;
 	private boolean success = true;
 	/**
 	 * 构造器
@@ -26,9 +28,11 @@ public class Interceptor {
 	 */
 	public Interceptor(
 			HttpServletRequest request,
-			HttpServletResponse response){
+			HttpServletResponse response,
+			ActionBean actionBean){
 		this.request = request;
 		this.response = response;
+		this.actionBean = actionBean;
 		init();
 	}
 	/**
@@ -55,7 +59,7 @@ public class Interceptor {
 			try {
 				Object obj = clazz.newInstance();
 				// 执行拦截过程
-				Object object = InvokeUtils.invoke(clazz, "execute", obj,  new Object[]{request,response}, HttpServletRequest.class,HttpServletResponse.class);
+				Object object = InvokeUtils.invoke(clazz, "execute", obj,  new Object[]{request,response,actionBean}, HttpServletRequest.class,HttpServletResponse.class,ActionBean.class);
 				success = success?object !=null && object instanceof Boolean?(Boolean) object:success:false;
 				if(success)
 					InvokeUtils.invoke(clazz,"success", obj,new Object[]{request,response},HttpServletRequest.class,HttpServletResponse.class);

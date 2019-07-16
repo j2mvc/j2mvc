@@ -86,15 +86,15 @@ public class DispatcherFilter implements Filter {
 	 * @param chain
 	 */
 	public void doAction(HttpServletRequest request,HttpServletResponse response, FilterChain chain) throws IOException, ServletException  {
-
+		// 获取Action元数据
 		String uri = request.getServletPath();
+		String queryString = request.getQueryString();
+		ActionMatch match = new ActionMatch(uri,queryString);
+		ActionBean bean = match.getBean();
 		/** 执行拦截器 */
-		Interceptor dispatcherInterceptor = new Interceptor(request, response);
+		Interceptor dispatcherInterceptor = new Interceptor(request, response,bean);
 		boolean success = dispatcherInterceptor.isSuccess();
 		if(success){
-			String queryString = request.getQueryString();
-			ActionMatch match = new ActionMatch(uri,queryString);
-			ActionBean bean = match.getBean();
 			if(bean!=null){
 				/** 执行Action */
 				new DispatcherForward(request, response, bean);
