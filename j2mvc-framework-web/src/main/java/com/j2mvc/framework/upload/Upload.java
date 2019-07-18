@@ -340,6 +340,7 @@ public class Upload {
 						File uploadedFile = new File(savePath, newFilename);
 						item.write(uploadedFile);
 						fileList.set(i, info);// 或许不需要
+						chmod(savePath+newFilename);
 				    } catch (Exception e) {
 				    	fileList.set(i, null);
 				    	setError(Error.ERROR_IO,"["+filename+"]上传失败。");
@@ -351,6 +352,12 @@ public class Upload {
 				if(filename!=null)
 					textData.put(filename,item.getString());
 			}		
+		}
+	}
+	private void chmod(String fullpath) {
+		try {
+			Runtime.getRuntime().exec("chmod a+r "+fullpath);
+		} catch (IOException e) {
 		}
 	}
 	/**
