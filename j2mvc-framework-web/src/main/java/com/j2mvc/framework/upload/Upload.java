@@ -300,7 +300,6 @@ public class Upload {
 			}else {
 				// 将fileInfo重置为空对象
 				fileList.set(i, null);
-				log.info("正在接收文本数据："+filename);
 			}
 			// 是表单才进行处理
 			if(!item.isFormField()){
@@ -349,8 +348,10 @@ public class Upload {
 				}
 			}else {
 				// 文本数据
-				if(filename!=null)
-					textData.put(filename,item.getString());
+				if(item.getFieldName()!=null) {
+					log.info("正在接收文本数据textData："+item.getFieldName());
+					textData.put(item.getFieldName(),item.getString());
+				}
 			}		
 		}
 	}

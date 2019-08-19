@@ -12,6 +12,8 @@ import java.lang.annotation.RetentionPolicy;
  */
 @Retention(RetentionPolicy.RUNTIME)
 public @interface  UploadMeta {
+	/** 多媒体目录 */
+	public static final String DIR_MEDIA = "media";
 	/** 视频目录 */
 	public static final String DIR_VIDEO = "video";
 	/** 音频目录 */

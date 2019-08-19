@@ -97,6 +97,7 @@ public class FileReader extends BaseReader {
 			uploadBean = new UploadBean();
 			uploadBean.setErrors(upload.getErrors());
 			uploadBean.setFileList(upload.getFileList());
+			uploadBean.setTextData(upload.getTextData());
 		} catch (Exception e) { 
 			e.printStackTrace();  
 		}  
