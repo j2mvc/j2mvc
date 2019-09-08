@@ -10,7 +10,7 @@
 	</parent>
 
 	<artifactId>j2mvc-framework-web</artifactId>
-	<version>2.1.22</version>
+	<version>2.1.23</version>
 
 	<name>J2mvc Webframework</name>
 	<!-- FIXME change it to the project's website --> 
@@ -175,5 +175,7 @@ version 2.1.20
 version 2.1.21
 支持同时接收文件和文本数据
 version 2.1.22
-增加文件接收类型media</description>
+增加文件接收类型media
+version 2.1.23
+删除upload类printJson方法</description>
 </project>

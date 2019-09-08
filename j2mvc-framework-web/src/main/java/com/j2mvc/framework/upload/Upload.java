@@ -277,7 +277,7 @@ public class Upload {
 			if(errors.size()>0){
 				m.put("errors", errors);
 			}
-			printJson(m);
+//			printJson(m);
 		}
 	}
 	/**
@@ -343,7 +343,7 @@ public class Upload {
 				    } catch (Exception e) {
 				    	fileList.set(i, null);
 				    	setError(Error.ERROR_IO,"["+filename+"]上传失败。");
-				    	printJson(new Error(Error.ERROR_IO,"["+filename+"]上传失败。"));
+//				    	printJson(new Error(Error.ERROR_IO,"["+filename+"]上传失败。"));
 				    }
 				}
 			}else {
@@ -385,13 +385,13 @@ public class Upload {
 		Error error = new Error(code,message);
     	errors.add(error);
 	}
-	private void printJson(Object object){
-		try {
-			response.getWriter().print( (new JSONFactory().toJsonObject(object,true)).toString());
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		}
-	}
+//	private void printJson(Object object){
+//		try {
+//			response.getWriter().print( (new JSONFactory().toJsonObject(object,true)).toString());
+//		} catch (IOException e1) {
+//			e1.printStackTrace();
+//		}
+//	}
 	/**
 	 * 返回指定页面参数值
 	 * @param request
