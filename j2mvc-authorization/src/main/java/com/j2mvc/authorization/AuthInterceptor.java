@@ -41,7 +41,7 @@ public abstract class AuthInterceptor extends MeasureInterceptor{
 	protected boolean isAuth = true;
 	
 	@Override
-	public boolean execute(HttpServletRequest request, HttpServletResponse response) {
+	public boolean execute(HttpServletRequest request, HttpServletResponse response,ActionBean actionBean) {
 		this.request = request;
 		this.response = response;
 		if(!AuthConfig.enable)		
