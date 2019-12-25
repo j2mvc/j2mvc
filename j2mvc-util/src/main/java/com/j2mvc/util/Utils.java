@@ -517,10 +517,10 @@ public class Utils {
 	}
 	
 	public static void main(String...args){
-		String s = " 输入流";
-		byte [] bytes = stringToBytes(s);
-		System.out.println("string to bytes "+stringToBytes(s));
-		System.out.println("bytes to string "+byteToString(bytes));
+//		String s = " 输入流";
+//		byte [] bytes = stringToBytes(s);
+//		System.out.println("string to bytes "+stringToBytes(s));
+//		System.out.println("bytes to string "+byteToString(bytes));
 //		System.out.println(formatTime((1000*60*60)*24+(1000*60*60)*2+(1000*60*40)+(1000*30)));
 //		String domain = "aojia.org";
 //		String username = "sessionid";
@@ -537,7 +537,12 @@ public class Utils {
 //		String DATETIME_REGEXT = "(20)([1-9])([0-9])([-])([0-1])?([0-9])([-])([0-3])?([0-9])([\\s]+)(([0-1][0-9])|([2][0-3]))([:][0-5][0-9])([:][0-5][0-9])?";
 //		String dtime = "2011-5-2 09:08:45";
 //		System.out.println(dtime.matches(DATETIME_REGEXT));
-		System.out.println(Utils.createId().length());
+//		System.out.println(Utils.createId().length());
 
+		String arg = "agdSDDwwr";
+		String reg = "[a-zA-Z0-9.]+";
+		System.out.println(arg.matches(reg));
+//		System.out.println(new Date().getTime());
+			
 	}
 }

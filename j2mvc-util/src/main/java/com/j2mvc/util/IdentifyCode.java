@@ -20,9 +20,9 @@ import javax.servlet.http.HttpServletResponse;
 public class IdentifyCode{
 	int length = 4;
 
-	int fontSize = 18;
+	int fontSize = 48;
  
-	int padding = 2;
+	int padding = 20;
 
 	boolean chaos = true;
 
@@ -36,7 +36,14 @@ public class IdentifyCode{
 
 	public IdentifyCode() {
 	}
+	public IdentifyCode(String codeSerial) {
+		this.codeSerial = codeSerial;
+	}
 	public IdentifyCode(int length) {
+		this.length = length;
+	}
+	public IdentifyCode(String codeSerial,int length) {
+		this.codeSerial = codeSerial;
 		this.length = length;
 	}
 	public IdentifyCode(int length,Color chaosColor,Color backgroundColor) {
@@ -166,11 +173,11 @@ public class IdentifyCode{
 	 * @param code
 	 */
 	private BufferedImage CreateImageCode(String code) {
-		int fWidth = this.fontSize + this.padding;
+		int fWidth = this.fontSize + 4;
 
-		int imageWidth = code.length() * fWidth + fontSize + this.padding * 0;
+		int imageWidth = code.length() * fWidth;
 
-		int imageHeight = this.fontSize * 2;
+		int imageHeight = this.fontSize + this.padding;
 
 		BufferedImage bi = new BufferedImage(imageWidth, imageHeight, 1);
 
@@ -197,7 +204,7 @@ public class IdentifyCode{
 			Font font = new Font(this.fonts[findex], 1, this.fontSize);
 			graphics.setFont(font);
 
-			int top = (imageHeight + code.length() * 2) / 2;
+			int top = (imageHeight + code.length() * 2) / 2 +this.padding/2;
 			if (i % 2 != 1) {
 				top -= code.length();
 			}

@@ -10,7 +10,7 @@
 	</parent>
 
 	<artifactId>j2mvc-util</artifactId>
-	<version>2.1.05</version>
+	<version>2.1.07</version>
 
 	<name>J2mvc Utilities</name>
 	<!-- FIXME change it to the project's website -->
@@ -66,5 +66,9 @@
 	<description>version 2.1.02
 1.增加错误代码code
 version 2.1.03
-1.增加UUID生成和驗證</description>
+1.增加UUID生成和驗證
+
+version 2.1.06
+修改IndentifyCode
+</description>
 </project>
