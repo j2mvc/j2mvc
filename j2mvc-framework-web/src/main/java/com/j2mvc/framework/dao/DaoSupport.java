@@ -20,6 +20,7 @@ import com.j2mvc.framework.mapping.PrimaryKey;
 import com.j2mvc.framework.mapping.Table;
 import com.j2mvc.framework.mapping.Transient;
 import com.j2mvc.framework.util.FieldUtil;
+
 /**
  * 数据层访问
  * 
@@ -131,7 +132,7 @@ public class DaoSupport extends JdbcDaoSupport implements Serializable{
 	 */
 	private boolean check(){
 		if(clazz == null){
-			log.error("class为空，需要设置class，如,dao.setClazz(User.class).");
+			log.error("class为空，需要设置class，如,DaoSupport dao = new DaoSupport(User.class).");
 			return false;
 		}
 		if(table == null){

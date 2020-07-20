@@ -1,10 +1,12 @@
 package com.j2mvc.searcher;
 
+import java.util.List;
+
 /**
  * 搜索信息<BR>
  * 贵州沃尔达科技有限公司
  * @author 杨朔
- * 2015年1月21日
+ * 2015年1月21日 
  */
 public class SearchItem {
 
@@ -12,6 +14,14 @@ public class SearchItem {
 	private String id;
 	/** 标题 */ 
 	private String title;
+	/** 主图 */ 
+	private String image;
+	/** 视频 */ 
+	private String video;
+	/** 说明 */ 
+	private String descri;
+	/** 任意格式的值 */ 
+	private String extra;
 	/** 外部链接 */ 
 	private String href;
 	/** 副标题 */
@@ -31,9 +41,13 @@ public class SearchItem {
 	/** 索引时间 */
 	private String indexedTime;
 	/** 图片组 */
-	private String[] images;
+	private List<String> images;
 	/** 文件组 */
-	private String[] files;
+	private List<String> files;
+	
+	private Integer browser;
+	private String catNames;
+	private String catAddress;
 	
 	public String getId() {
 		return id;
@@ -66,6 +80,24 @@ public class SearchItem {
 		this.catId = catId!=null?catId:"";
 	}
 
+	public String getImage() {
+		return image;
+	}
+	public void setImage(String image) {
+		this.image = image!=null?image:"";
+	}
+	public String getDescri() {
+		return descri;
+	}
+	public void setDescri(String descri) {
+		this.descri = descri!=null?descri:"";
+	}
+	public String getExtra() {
+		return extra;
+	}
+	public void setExtra(String extra) {
+		this.extra = extra!=null?extra:"";
+	}
 	public Long getCreateTime() {
 		return createTime;
 	}
@@ -73,7 +105,7 @@ public class SearchItem {
 		this.createTime = createTime;
 	}
 	public Long getUpdateTime() {
-		return updateTime;
+		return updateTime; 
 	}
 	public void setUpdateTime(Long updateTime) {
 		this.updateTime = updateTime;
@@ -84,16 +116,16 @@ public class SearchItem {
 	public void setIndexedTime(String indexedTime) {
 		this.indexedTime = indexedTime!=null?indexedTime:"";
 	}
-	public String[] getImages() {
+	public List<String> getImages() {
 		return images;
 	}
-	public void setImages(String[] images) {
+	public void setImages(List<String> images) {
 		this.images = images;
 	}
-	public String[] getFiles() {
+	public List<String> getFiles() {
 		return files;
 	}
-	public void setFiles(String[] files) {
+	public void setFiles(List<String> files) {
 		this.files = files;
 	}
 	public String getKeywords() {
@@ -113,6 +145,30 @@ public class SearchItem {
 	}
 	public void setHref(String href) {
 		this.href = href!=null?href:"";
+	}
+	public String getVideo() {
+		return video;
+	}
+	public void setVideo(String video) {
+		this.video = video!=null?video:"";
+	}
+	public Integer getBrowser() {
+		return browser;
+	}
+	public void setBrowser(Integer browser) {
+		this.browser = browser;
+	}
+	public String getCatNames() {
+		return catNames;
+	}
+	public void setCatNames(String catNames) {
+		this.catNames = catNames;
+	}
+	public String getCatAddress() {
+		return catAddress;
+	}
+	public void setCatAddress(String catAddress) {
+		this.catAddress = catAddress;
 	}
 	
 }

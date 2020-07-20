@@ -32,6 +32,7 @@ import org.apache.lucene.util.BytesRef;
 import com.j2mvc.util.Error;
 import com.j2mvc.util.Pagination;
 import com.j2mvc.util.StringUtils;
+import com.j2mvc.util.SubStringHTML;
 import com.j2mvc.util.Utils;
 
 /**
@@ -201,7 +202,7 @@ public class Searcher {
 					item.setIndexedTime(indexedTime);
 					item.setKeywords(keywords);
 					item.setSource(source);
-					item.setSubtitle(subtitle);
+					item.setSubtitle(!StringUtils.isEmpty(subtitle)?subtitle:content);
 					item.setTitle(title);
 					item.setUpdateTime(updateTime!=null&&updateTime.matches("\\d+")?Long.parseLong(updateTime):0L);
 					item.setHref(href);
@@ -210,13 +211,13 @@ public class Searcher {
 					BytesRef fBytes = doc.getBinaryValue("files");
 					if(iBytes!=null ){
 						Object iObject = Utils.bytesToObject(iBytes.bytes);
-						if(iObject!=null && iObject instanceof String[])
-							item.setImages((String[])iObject);
+						if(iObject!=null && iObject instanceof List)
+							item.setImages((List<String>)iObject);
 					}
 					if(fBytes!=null){
 						Object fObject = Utils.bytesToObject(fBytes.bytes);
-						if(fObject!=null && fObject instanceof String[])
-							item.setFiles((String[])fObject);
+						if(fObject!=null && fObject instanceof List)
+							item.setFiles((List<String>)fObject);
 					}
 					items.add(item);
 				} catch (InvalidTokenOffsetsException e) {

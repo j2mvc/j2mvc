@@ -7,7 +7,6 @@
     <artifactId>j2mvc</artifactId>
     <version>2.1</version>
   </parent>
-  <groupId>com.j2mvc</groupId>
   <artifactId>j2mvc-authorization-web</artifactId>
   <version>2.1.1</version>
   <packaging>war</packaging>

@@ -78,7 +78,7 @@ public class JSONParse{
 					JSONUtils.setValue(field, object, value);
 				}
 			} catch (JSONException e) {
-				//log.warning(e.getMessage());
+				log.warning(e.getMessage());
 			}
 		}
 		return object;

@@ -135,7 +135,11 @@ public class JSONUtils {
 			Type[] genericTypes = paramType.getActualTypeArguments();	
 			if (genericTypes != null) {
 				for(int i=0;i<genericTypes.length;i++){
-					types.add((Class<?>) genericTypes[i]);
+					try{
+						types.add((Class<?>)genericTypes[i]);
+					}catch(Exception e) {
+						types.add((Class<?>)genericTypes[i].getClass());
+					}
 				}
 			}
 		}
