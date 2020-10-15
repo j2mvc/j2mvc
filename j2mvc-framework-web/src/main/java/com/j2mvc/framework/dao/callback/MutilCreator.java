@@ -6,8 +6,8 @@ import java.sql.Statement;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+
 import com.j2mvc.framework.Session;
-import com.j2mvc.framework.dao.DataSourceJndi;
 import com.j2mvc.framework.dao.DataSourceJndi;
 
 /**

@@ -45,4 +45,7 @@ public @interface  UploadMeta {
 
 	/** 保持原文件名称 */
 	public boolean keepOriginName() default true;
+
+	/** 仅接收输入流 */
+	public boolean inputStreamOnly() default false;
 }

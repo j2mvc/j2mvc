@@ -2,6 +2,7 @@ package com.j2mvc.framework.dao.callback;
 
 import java.beans.IntrospectionException;
 import java.beans.PropertyDescriptor;
+import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -105,7 +106,9 @@ public class InvokeObject {
 						e.printStackTrace();
 					}
 				}
-			}		
+			}else if(InputStream.class.isAssignableFrom(type)){
+				value = rs.getBinaryStream(column.name());
+			}			
 			if(foreign!=null){
 				// 外键,字段为对象,获取类主键,并实例
 				try {

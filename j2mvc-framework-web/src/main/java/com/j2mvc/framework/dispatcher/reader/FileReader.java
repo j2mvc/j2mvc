@@ -92,12 +92,15 @@ public class FileReader extends BaseReader {
 			upload.setMaxSize(actionUpload.getMaxSize());
 		
 		upload.setKeepOriginName(actionUpload.isKeepOriginName());
+		upload.setInputStreamOnly(actionUpload.isInputStreamOnly());
+		
 		try { 
 			upload.execute();
 			uploadBean = new UploadBean();
 			uploadBean.setErrors(upload.getErrors());
 			uploadBean.setFileList(upload.getFileList());
 			uploadBean.setTextData(upload.getTextData());
+			uploadBean.setInputStreamList(upload.getInputStreamList());
 		} catch (Exception e) { 
 			e.printStackTrace();  
 		}  

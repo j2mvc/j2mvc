@@ -8,6 +8,7 @@ public class ActionUpload {
 	private long maxSize;
 	private String filename;
 	private boolean keepOriginName;
+	private boolean inputStreamOnly = false;// 只接收字节，不创建文件
 
 	public String getSaveUrl() {
 		return saveUrl;
@@ -51,4 +52,12 @@ public class ActionUpload {
 	public void setKeepOriginName(boolean keepOriginName) {
 		this.keepOriginName = keepOriginName;
 	}
+	public boolean isInputStreamOnly() {
+		return inputStreamOnly;
+	}
+	public void setInputStreamOnly(boolean inputStreamOnly) {
+		this.inputStreamOnly = inputStreamOnly;
+	}
+
+	
 }

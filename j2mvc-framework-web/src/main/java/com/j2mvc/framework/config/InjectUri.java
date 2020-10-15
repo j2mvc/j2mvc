@@ -139,6 +139,7 @@ public class InjectUri {
 					actionUpload.setMaxSize(uploadMeta.maxSize());
 					actionUpload.setFilename(uploadMeta.filename());
 					actionUpload.setKeepOriginName(uploadMeta.keepOriginName());
+					actionUpload.setInputStreamOnly(uploadMeta.inputStreamOnly());
 					bean.setActionUpload(actionUpload);
 				}
 				// 封装到MAP

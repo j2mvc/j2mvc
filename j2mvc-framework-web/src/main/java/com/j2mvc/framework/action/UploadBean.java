@@ -1,5 +1,6 @@
 package com.j2mvc.framework.action;
 
+import java.io.InputStream;
 import java.util.List;
 import java.util.Map;
 
@@ -9,6 +10,7 @@ import com.j2mvc.framework.upload.entity.FileInfo;
 public class UploadBean {
 
 	private List<FileInfo> fileList;
+	private List<InputStream> inputStreamList;
 	private Map<String,String> textData;
 	private List<Error> errors;
 	
@@ -29,5 +31,11 @@ public class UploadBean {
 	}
 	public void setTextData(Map<String, String> textData) {
 		this.textData = textData;
+	}
+	public List<InputStream> getInputStreamList() {
+		return inputStreamList;
+	}
+	public void setInputStreamList(List<InputStream> inputStreamList) {
+		this.inputStreamList = inputStreamList;
 	}
 }

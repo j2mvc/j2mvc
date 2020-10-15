@@ -92,11 +92,15 @@ public class Config {
 	
 	static final String NODENAME_I18N = "i18n-default";
 		
-	static String configPath = "/conf/works.xml";
+	static String configPath = "/config/works.xml";
 	static Element root;
 	static Document doc;
 
-	public static Map<String, String> props = new HashMap<String, String>();
+    /**  properties 配置文件键值集合 */
+	public static Map<String, Map<String, String>> props = new HashMap<String, Map<String, String>>();
+    /**  properties 配置文件键值集合 */
+	public static Map<String, String> attributes = new HashMap<String, String>();
+
 
 	public static void init(String dir){
 		if(StringUtils.isEmpty(dir)){
@@ -109,33 +113,26 @@ public class Config {
 	    */
 	public static void init(){
 		InputStream is = null;
-		String dir = "";
-		if(OSType.OSinfo.isWindows())
-			dir = System.getProperty("user.dir");
-		else {
+		File file = new File(System.getProperty("user.dir")+configPath);
+		if(!file.exists()) {
 			URL url =  Config.class.getResource("/");
 			if(url!=null){
-				dir = url.getPath();
+				file = new File(url.getPath()+"/.."+configPath);
 			}
 		}
-		String source = dir+"/.."+configPath;
-		File file = new File(source);
 		if(!file.exists()){
 			// 获取Jar包路径
 			URL url = Config.class.getProtectionDomain().getCodeSource().getLocation();
 			if(url!=null){
 				String jarPath  = url.getPath();
 				File jarFile = new File(jarPath);
-				source = jarFile.getParent()+"/.."+configPath;
-				file = new File(source);
+				file = new File(jarFile.getParent()+"/.."+configPath);
 				if(!file.exists()){
-					source = jarFile.getParent()+configPath;
-					file = new File(source);
+					file = new File(jarFile.getParent()+configPath);
 				}
 			}
 		}
 		if(file.exists()){
-			log.info(" init config >> "+source);
 			try {
 				is = new FileInputStream(file);
 			} catch (FileNotFoundException e) {
@@ -265,7 +262,7 @@ public class Config {
 		}else{
 			String value = getNodeValue(node);
 	        if(!value.equals(""))
-	        	I18n.init("/conf/i18n/"+value+".properties");
+	        	I18n.init("/i18n/"+value+".properties");
 	        else{
 	        	log.error("i18n配置内容为空");
 	        }

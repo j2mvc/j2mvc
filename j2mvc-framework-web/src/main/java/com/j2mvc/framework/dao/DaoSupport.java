@@ -1,11 +1,13 @@
 package com.j2mvc.framework.dao;
 
+import java.io.InputStream;
 import java.io.Serializable;
 import java.lang.reflect.Field;
 import java.util.List;
 
 import org.apache.log4j.Logger;
 import com.j2mvc.framework.dao.callback.CallbackArrayList;
+import com.j2mvc.framework.dao.callback.CallbackInputStream;
 import com.j2mvc.framework.dao.callback.CallbackInteger;
 import com.j2mvc.framework.dao.callback.CallbackList;
 import com.j2mvc.framework.dao.callback.CallbackObject;
@@ -297,6 +299,17 @@ public class DaoSupport extends JdbcDaoSupport implements Serializable{
 		return execute(creator,callback);
 	}
 
+	/**
+	 * 预编译语句查询输入流
+	 * @param sql 预编译语句
+	 * @param params 相对应的值
+	 * @return InputStream
+	 */
+	public InputStream inputStream(String sql,Object[] params){
+		Creator creator = new Creator(sql,params);
+		CallbackInputStream callback = new CallbackInputStream(PreparedStatementCallBack.EXECUTE_QUERY);
+		return execute(creator,callback);
+	}
 	/**
 	 * 根据SQL查询，返回LIST集合
 	 * @param sql

@@ -1,5 +1,7 @@
 package com.j2mvc.framework.dao.callback;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -7,6 +9,7 @@ import java.sql.Statement;
 import java.util.Date;
 
 import org.apache.log4j.Logger;
+
 import com.j2mvc.framework.Session;
 
 /**
@@ -54,6 +57,13 @@ public class Creator extends PreparedStatementCreator {
 				pstmt.setDouble(index, (Double) value);
 			else if(Boolean.class.isAssignableFrom(clazz))
 				pstmt.setBoolean(index, (Boolean) value);
+			else if(InputStream.class.isAssignableFrom(clazz))
+				try {
+					pstmt.setBinaryStream(index, (InputStream)value,
+					        ((InputStream)value).available());
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			else{
 				pstmt.setBytes(index, StreamUtil.objectToBytes(value));		
 			}

@@ -119,7 +119,7 @@ public class Config {
             	value = value.replaceAll(" ","").replaceAll("\r","").replaceAll("\n","").replaceAll("\t","");
             	value = getCharset(value);
             	if(!value.equals(""))
-            		new I18n(context,"/conf/i18n/"+value+".properties");
+            		new I18n(context,"/i18n/"+value+".properties");
             }
         }
     }
