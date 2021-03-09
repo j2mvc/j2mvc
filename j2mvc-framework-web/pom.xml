@@ -10,7 +10,7 @@
 	</parent> 
 
 	<artifactId>j2mvc-framework-web</artifactId>
-	<version>2.1.26</version>
+	<version>2.1.27</version>
 
 	<name>J2mvc Webframework</name>
 	<!-- FIXME change it to the project's website --> 
@@ -179,5 +179,7 @@ version 2.1.22
 version 2.1.23
 删除upload类printJson方法
 version 2.1.25
-添加输入流方式上传及数据库存储(BLOB)</description>
+添加输入流方式上传及数据库存储(BLOB)
+version 2.1.27
+添加输入流方式至fileList</description>
 </project>

@@ -58,7 +58,10 @@ public class PropsConfig {
 	 */
 	public static void init(ServletContext context,String fileName) {
 		String name = fileName.substring(fileName.lastIndexOf("/") + 1,fileName.lastIndexOf("."));
-		if("log4j".contentEquals(name)) {
+		if("log4j".equals(name)) {
+			return;
+		}
+		if("logging".equals(name)) {
 			return;
 		}
 		PropertiesConfiguration configuration = new PropertiesConfiguration(fileName);

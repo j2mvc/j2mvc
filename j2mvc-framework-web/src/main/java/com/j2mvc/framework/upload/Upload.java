@@ -2,7 +2,6 @@ package com.j2mvc.framework.upload;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.text.SimpleDateFormat;
@@ -26,10 +25,10 @@ import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
-import com.j2mvc.util.Error;
-import com.j2mvc.util.OSType;
 import com.j2mvc.framework.config.Config;
 import com.j2mvc.framework.upload.entity.FileInfo;
+import com.j2mvc.util.Error;
+import com.j2mvc.util.OSType;
 import com.j2mvc.util.json.JSONFactory;
 import com.j2mvc.util.json.JSONParse;
 
@@ -71,8 +70,6 @@ public class Upload {
 	private List<Error> errors = new ArrayList<Error>();
 	// 上传成功的文件列表
 	List<FileInfo> fileList = new ArrayList<FileInfo>();
-	// 上传成功的输入流列表
-	List<InputStream> inputStreamList = new ArrayList<InputStream>();
 	 
 	public Upload(HttpServletRequest request, HttpServletResponse response) {
 		super();
@@ -120,9 +117,6 @@ public class Upload {
 		return fileList;
 	}
 	
-	public List<InputStream> getInputStreamList() {
-		return inputStreamList;
-	}
 	public Map<String, String> getTextData() {
 		return textData;
 	}
@@ -337,38 +331,32 @@ public class Upload {
 					fileList.set(i, null);
 					setError(Error.ERROR_AUTH,"["+filename+"]不允许的扩展名!只允许" + suffixMap.get(dirName) + "格式。");
 				}else{
-					if(inputStreamOnly) {
-						// 仅接收输入流，不创建文件
-						try {
-							inputStreamList.add(item.getInputStream());
-						} catch (IOException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-					    	setError(Error.ERROR_IO,"["+filename+"]上传失败。");
-						}
-					}else {
-						String newFilename = filename;
-						if(!keepOriginName) {
-							// 不保持原文件名
-							newFilename = Util.getRandomUUID(String.valueOf(new Date().getTime())) + "." + fileSuffix;
-						}
-						// 设置文件名:时间戳+"_"+4位随机数
-						// 保存路径和访问路径
-						info.setSavePath(savePath+newFilename);
-						info.setUrl(saveUrl+newFilename);
-						info.setFilename(newFilename);
-						try {
+					String newFilename = filename;
+					if(!keepOriginName) {
+						// 不保持原文件名
+						newFilename = Util.getRandomUUID(String.valueOf(new Date().getTime())) + "." + fileSuffix;
+					}
+					// 设置文件名:时间戳+"_"+4位随机数
+					// 保存路径和访问路径
+					info.setSavePath(savePath+newFilename);
+					info.setUrl(saveUrl+newFilename);
+					info.setFilename(newFilename);
+					try {
+						if(inputStreamOnly) {
+							// 仅接收输入流，不创建文件
+							info.setInputStream(item.getInputStream());
+						}else {
 					    	// 写文件
 							File uploadedFile = new File(savePath, newFilename);
 							item.write(uploadedFile);
-							fileList.set(i, info);// 或许不需要
 							chmod(savePath+newFilename);
-					    } catch (Exception e) {
-					    	fileList.set(i, null);
-					    	setError(Error.ERROR_IO,"["+filename+"]上传失败。");
-//					    	printJson(new Error(Error.ERROR_IO,"["+filename+"]上传失败。"));
-					    }
-					}
+						}
+						fileList.set(i, info);// 或许不需要
+				    } catch (Exception e) {
+				    	fileList.set(i, null);
+				    	setError(Error.ERROR_IO,"["+filename+"]上传失败。");
+//				    	printJson(new Error(Error.ERROR_IO,"["+filename+"]上传失败。"));
+				    }
 				}
 			}else {
 				// 文本数据

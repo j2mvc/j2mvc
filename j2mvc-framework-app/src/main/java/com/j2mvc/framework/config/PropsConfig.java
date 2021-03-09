@@ -9,7 +9,6 @@ import java.util.Map.Entry;
 
 import org.apache.log4j.Logger;
 
-import com.j2mvc.util.OSType;
 import com.j2mvc.util.PropertiesConfiguration;
 
 public class PropsConfig {
@@ -62,7 +61,10 @@ public class PropsConfig {
 	 */
 	public static void init(String fileName) {
 		String name = fileName.substring(fileName.lastIndexOf("/") + 1,fileName.lastIndexOf("."));
-		if("log4j".contentEquals(name)) {
+		if("log4j".equals(name)) {
+			return;
+		}
+		if("logging".equals(name)) {
 			return;
 		}
 		PropertiesConfiguration configuration = new PropertiesConfiguration(fileName);

@@ -1,5 +1,6 @@
 package com.j2mvc.framework.upload.entity;
 
+import java.io.InputStream;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -33,7 +34,8 @@ public class FileInfo implements Serializable{
     private int status = Lister.STATUS_WAIT;
 	/** 上传序号，通常在多文件上传使用，单文件为0 */
     private int index = 0;
-	
+	// 文件流
+    private InputStream inputStream;
 	/** 
 	 * 以下参数计算获取 
 	 * 完成的百分比 
@@ -132,4 +134,11 @@ public class FileInfo implements Serializable{
 	public void setIcon(String icon) {
 		this.icon = icon;
 	}
+	public InputStream getInputStream() {
+		return inputStream;
+	}
+	public void setInputStream(InputStream inputStream) {
+		this.inputStream = inputStream;
+	}
+	
 }
