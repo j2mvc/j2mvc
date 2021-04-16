@@ -61,6 +61,7 @@
 		<module>j2mvc-framework-web</module>
 		<module>j2mvc-framework-app</module>
 		<module>j2mvc-authorization</module>
+		<module>j2mvc-authorization-distribute</module>
 		<module>j2mvc-searcher</module>
 		<module>j2mvc-authorization-web</module>
 	</modules>

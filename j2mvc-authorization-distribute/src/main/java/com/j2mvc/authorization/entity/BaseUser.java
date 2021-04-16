@@ -5,31 +5,17 @@ import java.util.List;
 import com.j2mvc.framework.entity.BaseEntity;
 import com.j2mvc.authorization.global.EntityConstants;
 import com.j2mvc.authorization.service.RoleService;
-import com.j2mvc.framework.mapping.Column;
 import com.j2mvc.framework.mapping.DataSourceName;
-import com.j2mvc.util.json.JSONField;
-import com.j2mvc.util.json.JSONObjectStr;
-import com.j2mvc.framework.mapping.PrimaryKey;
-import com.j2mvc.framework.mapping.Table;
 
 /**
  * 用户基类
  * 
- * 2014-3-27 创建@杨朔
+ * 2021-4-16 创建@杨朔
  */
-@JSONObjectStr(EntityConstants.JSON_USER)
-@Table(EntityConstants.TABLE_USER)
-@PrimaryKey(autoIncrement = false)
-public class BaseUser extends BaseEntity{
+public abstract class BaseUser extends BaseEntity{
 	private static final long serialVersionUID = 1521232234756871802L;
 
-	/** 主键 */ 
-	@JSONField("id")
-	@Column(name = "id",length = 64,notnull = true)
-	protected String id;			
-
 	/** 角色 */
-	@JSONField("roles")
 	protected List<Role> roles;
 
 	public BaseUser() {
@@ -39,18 +25,11 @@ public class BaseUser extends BaseEntity{
 
 	public BaseUser(String id) {
 		super();
-		this.id = id;
 		initServices();
 	}
 
-	public String getId() {
-		return id;
-	}
+	public abstract String getId();
 
-
-	public void setId(String id) {
-		this.id = id;
-	}
 
 	String dataSourceName = null;
 	private void initServices(){
@@ -70,7 +49,7 @@ public class BaseUser extends BaseEntity{
 		if(roles == null){
 			String sql = "SELECT * FROM "+EntityConstants.TABLE_ROLE+" WHERE id in  "
 			+ "(SELECT role_id FROM "+EntityConstants.TABLE_USER_ROLE+" WHERE user_id=?)";				
-			roles =  roleService.query(sql, new String[]{id});
+			roles =  roleService.query(sql, new String[]{getId()});
 		}
 		return roles;
 	}
