@@ -1,4 +1,4 @@
-package com.j2mvc.authorization;
+package com.j2mvc.authorization.distribute;
 
 import java.io.IOException;
 import java.util.Iterator;
@@ -10,13 +10,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
+
+import com.j2mvc.authorization.distribute.config.AuthConfig;
+import com.j2mvc.authorization.distribute.entity.Auth;
+import com.j2mvc.authorization.distribute.global.AuthConstants;
+import com.j2mvc.authorization.distribute.service.AuthService;
 import com.j2mvc.framework.Session;
 import com.j2mvc.framework.action.ActionBean;
 import com.j2mvc.framework.action.ActionMatch;
-import com.j2mvc.authorization.config.AuthConfig;
-import com.j2mvc.authorization.entity.Auth;
-import com.j2mvc.authorization.global.AuthConstants;
-import com.j2mvc.authorization.service.AuthService;
 import com.j2mvc.framework.interceptor.MeasureInterceptor;
 import com.j2mvc.util.MD5;
 import com.j2mvc.util.StringUtils;

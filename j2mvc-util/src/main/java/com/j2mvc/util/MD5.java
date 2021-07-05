@@ -44,7 +44,7 @@ public class MD5 {
 	 * @param args
 	 */
 	public static void main(String[]args){
-		String s = "111111";
+		String s = "123456";
 		String mString = MD5.md5(s);
 		System.out.println("原文:"+s);
 		System.out.println("加密:"+mString);

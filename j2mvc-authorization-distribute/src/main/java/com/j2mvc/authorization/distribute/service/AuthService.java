@@ -1,13 +1,14 @@
-package com.j2mvc.authorization.service;
+package com.j2mvc.authorization.distribute.service;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
-import com.j2mvc.authorization.config.AuthConfig;
-import com.j2mvc.authorization.entity.Auth;
-import com.j2mvc.authorization.global.AuthConstants;
-import com.j2mvc.authorization.global.EntityConstants;
+
+import com.j2mvc.authorization.distribute.config.AuthConfig;
+import com.j2mvc.authorization.distribute.entity.Auth;
+import com.j2mvc.authorization.distribute.global.AuthConstants;
+import com.j2mvc.authorization.distribute.global.EntityConstants;
 import com.j2mvc.framework.dao.DaoSupport;
 
 /**

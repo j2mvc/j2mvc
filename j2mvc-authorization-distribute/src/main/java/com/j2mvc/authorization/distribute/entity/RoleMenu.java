@@ -1,7 +1,7 @@
-package com.j2mvc.authorization.entity;
+package com.j2mvc.authorization.distribute.entity;
 
+import com.j2mvc.authorization.distribute.global.EntityConstants;
 import com.j2mvc.framework.entity.BaseEntity;
-import com.j2mvc.authorization.global.EntityConstants;
 import com.j2mvc.framework.mapping.Column;
 import com.j2mvc.util.json.JSONField;
 import com.j2mvc.framework.mapping.PrimaryKey;
@@ -35,6 +35,19 @@ public class RoleMenu extends BaseEntity{
 	 */
 	@Column(name = "role_id",length = 32,notnull = true)
 	private String roleId;
+
+
+	public RoleMenu() {
+		super();
+	}
+
+
+	public RoleMenu(String id, String menuId, String roleId) {
+		super();
+		this.id = id;
+		this.menuId = menuId;
+		this.roleId = roleId;
+	}
 
 
 	public String getId() {

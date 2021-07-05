@@ -1,4 +1,4 @@
-package com.j2mvc.authorization.config;
+package com.j2mvc.authorization.distribute.config;
 
 import java.util.Date;
 import java.util.Iterator;
@@ -8,10 +8,11 @@ import java.util.Random;
 import java.util.Set;
 
 import org.apache.log4j.Logger;
+
+import com.j2mvc.authorization.distribute.entity.Auth;
+import com.j2mvc.authorization.distribute.global.AuthConstants;
 import com.j2mvc.framework.Session;
 import com.j2mvc.framework.action.ActionBean;
-import com.j2mvc.authorization.entity.Auth;
-import com.j2mvc.authorization.global.AuthConstants;
 import com.j2mvc.util.StringUtils;
 
 

@@ -1,10 +1,10 @@
-package com.j2mvc.authorization.entity;
+package com.j2mvc.authorization.distribute.entity;
 
 import java.util.List;
 
+import com.j2mvc.authorization.distribute.global.EntityConstants;
+import com.j2mvc.authorization.distribute.service.RoleService;
 import com.j2mvc.framework.entity.BaseEntity;
-import com.j2mvc.authorization.global.EntityConstants;
-import com.j2mvc.authorization.service.RoleService;
 import com.j2mvc.framework.mapping.DataSourceName;
 
 /**
@@ -53,4 +53,9 @@ public abstract class BaseUser extends BaseEntity{
 		}
 		return roles;
 	}
+
+	public void setRoles(List<Role> roles) {
+		this.roles = roles;
+	}
+	
 }

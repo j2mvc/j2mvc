@@ -1,11 +1,10 @@
 package com.j2mvc.framework.action;
 
-import java.io.InputStream;
 import java.util.List;
 import java.util.Map;
 
-import com.j2mvc.util.Error;
 import com.j2mvc.framework.upload.entity.FileInfo;
+import com.j2mvc.util.Error;
 
 public class UploadBean {
 

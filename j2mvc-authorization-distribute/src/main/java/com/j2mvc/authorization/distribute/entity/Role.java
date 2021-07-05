@@ -1,10 +1,9 @@
-package com.j2mvc.authorization.entity;
+package com.j2mvc.authorization.distribute.entity;
 
 import java.util.List;
 
-import com.j2mvc.authorization.global.EntityConstants;
-import com.j2mvc.authorization.service.AuthService;
-import com.j2mvc.authorization.service.MenuService;
+import com.j2mvc.authorization.distribute.global.EntityConstants;
+import com.j2mvc.authorization.distribute.service.AuthService;
 import com.j2mvc.framework.entity.BaseEntity;
 import com.j2mvc.framework.mapping.Column;
 import com.j2mvc.framework.mapping.PrimaryKey;
@@ -45,9 +44,6 @@ public class Role extends BaseEntity{
 	@JSONField("auths")
 	private List<Auth> auths;
 
-	/** 菜单列表*/
-	@JSONField("menus")
-	private List<Menu> menus;
 
 	public Role() {
 		super();
@@ -89,18 +85,6 @@ public class Role extends BaseEntity{
 		this.sorter = sorter;
 	}
 
-	private MenuService menuService = new MenuService();
-	
-	/**
-	 * 菜单列表
-	 * 
-	 */
-	public List<Menu> getMenus(){
-		String sql = "SELECT m.* FROM "
-			+ EntityConstants.TABLE_MENU+" as m,"+EntityConstants.TABLE_ROLE_MENU+" as rm "
-					+ "WHERE m.id=rm.menu_id and rm.role_id=? order by rm.id";		
-		return menus!=null?menus:menuService.query(sql, new String[]{id});
-	}
 	
 	/**
 	 * 以下为角色权限
@@ -117,11 +101,6 @@ public class Role extends BaseEntity{
 
 	public void setAuths(List<Auth> auths) {
 		this.auths = auths;
-	}
-
-
-	public void setMenus(List<Menu> menus) {
-		this.menus = menus;
 	}
 
 

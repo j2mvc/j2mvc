@@ -354,7 +354,7 @@ public class Upload {
 						fileList.set(i, info);// 或许不需要
 				    } catch (Exception e) {
 				    	fileList.set(i, null);
-				    	setError(Error.ERROR_IO,"["+filename+"]上传失败。");
+				    	setError(Error.ERROR_IO,"["+filename+"]上传失败，文件或已经存在。");
 //				    	printJson(new Error(Error.ERROR_IO,"["+filename+"]上传失败。"));
 				    }
 				}

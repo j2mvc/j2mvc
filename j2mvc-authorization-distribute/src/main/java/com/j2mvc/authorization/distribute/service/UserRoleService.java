@@ -1,14 +1,15 @@
-package com.j2mvc.authorization.service;
+package com.j2mvc.authorization.distribute.service;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.j2mvc.authorization.config.AuthConfig;
-import com.j2mvc.authorization.entity.BaseUser;
-import com.j2mvc.authorization.entity.Role;
-import com.j2mvc.authorization.entity.UserRole;
-import com.j2mvc.authorization.global.EntityConstants;
+import com.j2mvc.authorization.distribute.config.AuthConfig;
+import com.j2mvc.authorization.distribute.entity.BaseUser;
+import com.j2mvc.authorization.distribute.entity.Role;
+import com.j2mvc.authorization.distribute.entity.UserRole;
+import com.j2mvc.authorization.distribute.global.EntityConstants;
 import com.j2mvc.framework.dao.DaoSupport;
+import com.j2mvc.util.MD5;
 import com.j2mvc.util.Utils;
 
 /**
@@ -102,7 +103,7 @@ public class UserRoleService{
 	 * 
 	 */
 	public boolean save(BaseUser user,List<Role> roles) {
-		deleteByUser(user.getId());
+		deleteByUser(new String[] {user.getId()});
 		if(!(user != null && roles!=null && roles.size() > 0))
 			return false;
 		boolean bool = true;
@@ -123,7 +124,7 @@ public class UserRoleService{
 	 * @param userIds
 	 * 
 	 */
-	public int[] deleteByUser(String...userIds) {
+	public int[] deleteByUser(String[] userIds) {
 		List<String> sqls = new ArrayList<String>();
 		for(int i=0;i<userIds.length;i++){
 			String userId = userIds[i];
@@ -138,14 +139,14 @@ public class UserRoleService{
 	 * 
 	 */
 	public boolean save(String userId,String[] rids) {
-		deleteByUser(userId);
+		deleteByUser(new String[] {userId});
 		if(userId == null || "".equals(userId) || rids == null )
 			return false;
 		boolean bool = true;
 		for(int i=0;i<rids.length;i++){
 			UserRole userRole = get(userId, rids[i]);
 			if(userRole==null){
-				userRole = new UserRole(Utils.createId(),userId, rids[i]);
+				userRole = new UserRole(MD5.md5(userId+rids[i]),userId, rids[i]);
 				if(insert(userRole)==null)
 					bool = false;
 			}

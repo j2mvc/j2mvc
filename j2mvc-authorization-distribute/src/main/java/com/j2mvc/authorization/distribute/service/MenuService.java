@@ -1,10 +1,11 @@
-package com.j2mvc.authorization.service;
+package com.j2mvc.authorization.distribute.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import com.j2mvc.authorization.config.AuthConfig;
-import com.j2mvc.authorization.entity.Menu;
-import com.j2mvc.authorization.global.EntityConstants;
+import com.j2mvc.authorization.distribute.config.AuthConfig;
+import com.j2mvc.authorization.distribute.entity.Menu;
+import com.j2mvc.authorization.distribute.global.EntityConstants;
 import com.j2mvc.framework.dao.DaoSupport;
 
 /**
@@ -17,6 +18,8 @@ public class MenuService{
 
 	DaoSupport dao;
 	String tableName = EntityConstants.TABLE_MENU;
+	String roleMenuTable = EntityConstants.TABLE_ROLE_MENU;
+	String userRoleTable = EntityConstants.TABLE_USER_ROLE;
 	
 	public MenuService(){
 		 if(!AuthConfig.dataSourceName.equals(""))
@@ -56,8 +59,17 @@ public class MenuService{
 	}
 
 	/**
+	 * 删除
+	 * @param id
+	 * 
+	 */
+	public Integer clear(String projectId) {
+		String sql = "DELETE FROM "+tableName + " WHERE project_id=?";
+		return dao.execute(sql,new String[] {projectId});
+	}
+	/**
 	 * 删除一组
-	 * @param ids
+	 * @param ids 
 	 * 
 	 */
 	public Integer delete(String...ids) {
@@ -221,7 +233,16 @@ public class MenuService{
 		List<?> list =  dao.query(preSql, params);
 		return list!=null?(List<Menu>) list:null;
 	}
-
+	/**
+	 * 获取
+	 * @param preSql 预编译查询语句
+	 * @param params 参数数组
+	 * 
+	 */
+	public List<String> queryArray(String preSql,Object [] params) {
+		return  dao.queryArray(preSql, params);
+	}
+	
 	/**
 	 * 查看菜单是否有下级菜单
 	 * @param id
@@ -263,16 +284,84 @@ public class MenuService{
 		return items;
 	}
 
+	/**
+	 * 查询指定的菜单列表
+	 * @param projectId
+	 * 
+	 */
+	public List<Menu> queryTopByProject(String projectId){
+		String sql = "SELECT * FROM " + tableName + " WHERE project_id=? and (parent_id='' or parent_id is null) order by sorter";
+		List<?> list =  dao.query(sql, new String[]{projectId});
+		return list!=null?(List<Menu>) list:null;
+	}
+	/**
+	 * 查找项目ID
+	 * @param roleId
+	 * @return
+	 */
+	public List<String> queryProjectsByRole(String roleId){
+		String sql = "SELECT distinct project_id FROM " + tableName + " WHERE id in("
+				+ "SELECT menu_id FROM "+roleMenuTable+" WHERE role_id=?)";
+		return dao.queryArray(sql, new String[] {roleId});
+	}
+
+	/**
+	 * 查找项目ID
+	 * @param userId
+	 * @return
+	 */
+	public List<String> queryProjectsByUser(String userId){
+		String sql = "SELECT distinct project_id FROM " + tableName + " WHERE id in("
+				+ "SELECT menu_id FROM "+roleMenuTable+" WHERE role_id in("
+						+ "SELECT　role_id from "+userRoleTable+" WHERE user_id=?))";
+		return dao.queryArray(sql, new String[] {userId});
+	}
+	/**
+	 * 删除包括子
+	 * @param ...fydm
+	 * @return
+	 */
+	public Integer deleteAll(String...id){
+		List<String> list = new ArrayList<String>();
+		for(int i=0;i<id.length;i++){
+			list.add(id[i]);
+			getChildrenId(id[i],list);
+		}
+		Object[] array = new Object[list.size()];
+		list.toArray(array);
+		return dao.delete(array);
+	}
+	/**
+	 * 获取所有子Id
+	 * @param id
+	 * @param list
+	 * @return
+	 */
+	public List<String> getChildrenId(String id,List<String> list){
+		String sql = "SELECT id FROM "+tableName + " WHERE parent_id=?";
+		List<String> array = dao.queryArray(sql, new String[]{id});
+		list = list!=null?list:new ArrayList<String>();
+		if(array!=null){
+			int size = array.size();
+			for(int i=0;i<size;i++ ){
+				String s = array.get(i);
+				list.add(s);
+				getChildrenId(s, list);
+			}
+		}
+		return list;
+	}
+
 	
 	/**
 	 * 获取子菜单
 	 */
-	public List<Menu> getChildren(String gid,String parentId,String userId){
+	public List<Menu> getChildren(String projectId,String parentId,String userId){
 		List<Menu> items = null;
 		if(parentId!=null && !parentId.equals(""))
 			items = queryChildren(parentId,userId);
 		else
-			items = queryTops(gid, userId);
+			items = queryTops(projectId, userId);
 		if(items!=null){
 			for(Menu menu:items){
 				menu.setChildren(getChildren(null, menu.getId(), userId));

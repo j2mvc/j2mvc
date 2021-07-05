@@ -1,4 +1,4 @@
-package com.j2mvc.authorization.config;
+package com.j2mvc.authorization.distribute.config;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -13,12 +13,13 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.apache.log4j.Logger;
-import com.j2mvc.authorization.entity.Auth;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXParseException;
+
+import com.j2mvc.authorization.distribute.entity.Auth;
 /**
  * 配置变量
  * 2014-4-12创建@杨朔

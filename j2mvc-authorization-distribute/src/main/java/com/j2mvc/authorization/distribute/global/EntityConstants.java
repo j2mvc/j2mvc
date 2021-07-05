@@ -1,4 +1,4 @@
-package com.j2mvc.authorization.global;
+package com.j2mvc.authorization.distribute.global;
 
 
 /**

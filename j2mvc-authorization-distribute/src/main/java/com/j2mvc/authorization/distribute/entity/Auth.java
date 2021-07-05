@@ -1,8 +1,8 @@
-package com.j2mvc.authorization.entity;
+package com.j2mvc.authorization.distribute.entity;
 
+import com.j2mvc.authorization.distribute.global.AuthConstants;
+import com.j2mvc.authorization.distribute.global.EntityConstants;
 import com.j2mvc.framework.entity.BaseEntity;
-import com.j2mvc.authorization.global.AuthConstants;
-import com.j2mvc.authorization.global.EntityConstants;
 import com.j2mvc.framework.mapping.Column;
 import com.j2mvc.framework.mapping.PrimaryKey;
 import com.j2mvc.framework.mapping.Table;

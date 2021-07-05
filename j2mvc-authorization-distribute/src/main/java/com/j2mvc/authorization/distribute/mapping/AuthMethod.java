@@ -1,9 +1,9 @@
-package com.j2mvc.authorization.mapping;
+package com.j2mvc.authorization.distribute.mapping;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
-import com.j2mvc.authorization.global.AuthConstants;
+import com.j2mvc.authorization.distribute.global.AuthConstants;
 
 /**
  * 

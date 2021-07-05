@@ -1,8 +1,9 @@
-package com.j2mvc.authorization.entity;
+package com.j2mvc.authorization.distribute.entity;
 
 import java.util.List;
 
-import com.j2mvc.authorization.global.EntityConstants;
+import com.j2mvc.authorization.distribute.global.EntityConstants;
+import com.j2mvc.authorization.distribute.service.MenuService;
 import com.j2mvc.framework.entity.BaseEntity;
 import com.j2mvc.framework.mapping.Column;
 import com.j2mvc.framework.mapping.PrimaryKey;
@@ -17,9 +18,9 @@ import com.j2mvc.framework.mapping.Table;
 @PrimaryKey(autoIncrement = false)
 public class Menu extends BaseEntity{
 	private static final long serialVersionUID = 1521232234756813172L;
+	
 	@Column(name = "id")
 	private String id;
-
 
 	@Column(name = "project_id",length = 64,notnull = true)
 	private String projectId;		
@@ -28,22 +29,26 @@ public class Menu extends BaseEntity{
 	private String title;
 	
 	@Column(name = "icon")
-	private String icon;
+	private String icon = "";
 	
 	@Column(name = "path")
-	private String path;
+	private String path = "";
 
 	@Column(name = "extra")
-	private String extra;
+	private Boolean extra;
+
+	@Column(name = "hide")
+	private Boolean hide;
+	
 	/**
 	 * 自定义字段 
 	 */
 	@Column(name = "custom")
-	private Boolean custom;
+	private String custom  = "";
 
     /** 样式*/
 	@Column(name = "style_class",length = 255,notnull = true)
-	private String styleClass;
+	private String styleClass  = "";
 	
     /** 上级菜单*/
 	@Column(name = "parent_id",length = 32,notnull = true)
@@ -85,11 +90,11 @@ public class Menu extends BaseEntity{
 		this.path = path;
 	}
 
-	public Boolean getCustom() {
+	public String getCustom() {
 		return custom;
 	}
 
-	public void setCustom(Boolean custom) {
+	public void setCustom(String custom) {
 		this.custom = custom;
 	}
 
@@ -109,6 +114,14 @@ public class Menu extends BaseEntity{
 		this.parentId = parentId;
 	}
 
+	public Boolean getExtra() {
+		return extra;
+	}
+
+	public void setExtra(Boolean extra) {
+		this.extra = extra;
+	}
+
 	public Integer getSorter() {
 		return sorter;
 	}
@@ -125,10 +138,23 @@ public class Menu extends BaseEntity{
 		this.projectId = projectId;
 	}
 
+	public Boolean getHide() {
+		return hide;
+	}
+
+	public void setHide(Boolean hide) {
+		this.hide = hide;
+	}
+
+
 	/**下级菜单*/
 	private List<Menu> children;
 
 	public List<Menu> getChildren() {
+		if(children == null) {
+			MenuService service = new MenuService();
+			children = service.queryChildren(id);
+		}
 		return children;
 	}
 

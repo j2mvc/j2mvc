@@ -1,4 +1,4 @@
-package com.j2mvc.authorization;
+package com.j2mvc.authorization.distribute;
 
 /**
  * 
@@ -8,3 +8,4 @@ package com.j2mvc.authorization;
  */
 public class AuthCallback {
 }
+  

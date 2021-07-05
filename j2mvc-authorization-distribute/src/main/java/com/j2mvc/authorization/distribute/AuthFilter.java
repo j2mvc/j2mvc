@@ -1,4 +1,4 @@
-package com.j2mvc.authorization;
+package com.j2mvc.authorization.distribute;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -12,11 +12,11 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 
-import com.j2mvc.authorization.config.AuthConfig;
-import com.j2mvc.authorization.config.InjectAuth;
-import com.j2mvc.authorization.entity.Auth;
-import com.j2mvc.authorization.global.AuthConstants;
-import com.j2mvc.authorization.service.AuthService;
+import com.j2mvc.authorization.distribute.config.AuthConfig;
+import com.j2mvc.authorization.distribute.config.InjectAuth;
+import com.j2mvc.authorization.distribute.entity.Auth;
+import com.j2mvc.authorization.distribute.global.AuthConstants;
+import com.j2mvc.authorization.distribute.service.AuthService;
 
 /**
  * 
@@ -26,7 +26,7 @@ import com.j2mvc.authorization.service.AuthService;
  */
 public class AuthFilter implements Filter {
 
-	/** 配置参数名*/
+	/** 配置参数名*/ 
     private final static String CONFIG_NAME = "config";
 	/** 开启状态参数名*/
     private final static String ENABLE_NAME = "enable";

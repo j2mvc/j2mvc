@@ -1,14 +1,14 @@
-package com.j2mvc.authorization.service;
+package com.j2mvc.authorization.distribute.service;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.j2mvc.authorization.config.AuthConfig;
-import com.j2mvc.authorization.entity.Auth;
-import com.j2mvc.authorization.entity.Menu;
-import com.j2mvc.authorization.entity.Role;
-import com.j2mvc.authorization.global.EntityConstants;
+import com.j2mvc.authorization.distribute.config.AuthConfig;
+import com.j2mvc.authorization.distribute.entity.Auth;
+import com.j2mvc.authorization.distribute.entity.Menu;
+import com.j2mvc.authorization.distribute.entity.Role;
+import com.j2mvc.authorization.distribute.global.EntityConstants;
 import com.j2mvc.framework.dao.DaoSupport;
 
 /**
@@ -21,6 +21,7 @@ public class RoleService implements Serializable{
 	private static final long serialVersionUID = -969868251460398049L;
 	DaoSupport dao ;
 	String tableName = EntityConstants.TABLE_ROLE;
+	String userRoleTable = EntityConstants.TABLE_USER_ROLE;
 	
 	public RoleService(){
 		 if(!AuthConfig.dataSourceName.equals(""))
@@ -214,6 +215,18 @@ public class RoleService implements Serializable{
 	public List<Role> query() {
 		String sql = "SELECT * FROM " + tableName + " order by sorter";
 		List<?> list =  dao.query(sql);
+		return list!=null?(List<Role>) list:null;
+	}
+	/**
+	 * 获取角色
+	 * @param userId 用户ID
+	 * 
+	 */
+	public List<Role> query(String userId) {
+		String sql = "SELECT * FROM " + tableName + " WHERE　id in("
+				+ "SELECT role_id FROM "+userRoleTable+" WHERE user_id=?)"
+				+ " order by sorter";
+		List<?> list =  dao.query(sql, new String[] {userId});
 		return list!=null?(List<Role>) list:null;
 	}
 	/**
