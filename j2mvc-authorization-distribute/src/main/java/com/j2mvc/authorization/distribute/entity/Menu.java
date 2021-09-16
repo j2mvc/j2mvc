@@ -36,10 +36,12 @@ public class Menu extends BaseEntity{
 
 	@Column(name = "extra")
 	private Boolean extra;
-
+	
 	@Column(name = "hide")
 	private Boolean hide;
-	
+
+	@Column(name = "not_always_live")
+	private Boolean notAlwaysLive;
 	/**
 	 * 自定义字段 
 	 */
@@ -144,6 +146,15 @@ public class Menu extends BaseEntity{
 
 	public void setHide(Boolean hide) {
 		this.hide = hide;
+	}
+
+
+	public Boolean getNotAlwaysLive() {
+		return notAlwaysLive;
+	}
+
+	public void setNotAlwaysLive(Boolean notAlwaysLive) {
+		this.notAlwaysLive = notAlwaysLive;
 	}
 
 
