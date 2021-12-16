@@ -58,39 +58,37 @@ public class JSONReader extends BaseReader {
 			values = new Object[types.length];
 			if (names != null) {
 				// 将json字符串转换为json对象
+				requestBody();
 				try {
-					requestBody();
 					jsonData = JSONObject.parseObject(requestBody);
-					// 解析JSON数据
-					for (int i = 0; i < types.length; i++) {
-						Class<?> type = types[i];
-						values[i] = getParameterValue(type, names[i]);
-					}
-					InvokeUtils.invoke(clazz, "setJsonData", object, new Object[] { jsonData }, JSONObject.class);
-					InvokeUtils.invoke(clazz, "setRequestBody", object, new Object[] { requestBody }, String.class);
-					try {
-						log.info(method.getName()+values);
-						return method.invoke(object, values);
-					} catch (IllegalAccessException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					} catch (IllegalArgumentException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					} catch (InvocationTargetException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
 				} catch (JSONException e) {
-					log.error("JSON格式解析错误！");
+					log.error("JSON格式解析错误JSONException：" + e.getMessage());
+					e.printStackTrace();
+				} catch (Exception e) {
+					log.error("JSON格式解析错误，请求内容：" + requestBody);
+					e.printStackTrace();
+				}
+				// 解析JSON数据
+				for (int i = 0; i < types.length; i++) {
+					Class<?> type = types[i];
+					values[i] = getParameterValue(type, names[i]);
+				}
+				InvokeUtils.invoke(clazz, "setJsonData", object, new Object[] { jsonData }, JSONObject.class);
+				InvokeUtils.invoke(clazz, "setRequestBody", object, new Object[] { requestBody }, String.class);
+				log.info(method.getName() + values);
+				try {
+					return method.invoke(object, values);
+				} catch (IllegalAccessException e) {
+					e.printStackTrace();
+				} catch (IllegalArgumentException e) {
+					e.printStackTrace();
+				} catch (InvocationTargetException e) {
 					e.printStackTrace();
 				}
 			}
-		} else {
-			// 没有参数，执行当前Action方法
-			return InvokeUtils.invoke(clazz, method.getName(), object, null);
 		}
-		return null;
+		// 没有参数，执行当前Action方法
+		return InvokeUtils.invoke(clazz, method.getName(), object, null);
 	}
 
 	/**
@@ -120,6 +118,11 @@ public class JSONReader extends BaseReader {
 			requestBody = sb.toString();
 		} catch (IOException e1) {
 			log.error("读取数据失败！");
+		}
+		try {
+			br.close();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 
@@ -172,7 +175,7 @@ public class JSONReader extends BaseReader {
 			}
 		} else {
 			String value = jsonData.getString(name);
-			if(value == null) {
+			if (value == null) {
 				return null;
 			}
 			if (type.isArray()) {
@@ -185,13 +188,11 @@ public class JSONReader extends BaseReader {
 					return null;
 				}
 			} else if (Map.class.isAssignableFrom(type) || HashMap.class.isAssignableFrom(type)) {
-				log.error("无法解析Map类型，请使用对象模式接收："+name);
+				log.error("无法解析Map类型，请使用对象模式接收：" + name);
 				return null;
-			} else if (Set.class.isAssignableFrom(type) || 
-					HashSet.class.isAssignableFrom(type) || 
-					List.class.isAssignableFrom(type) || 
-					ArrayList.class.isAssignableFrom(type)) {
-				log.error("不支集合类型，请使用数组类型接收："+name);
+			} else if (Set.class.isAssignableFrom(type) || HashSet.class.isAssignableFrom(type)
+					|| List.class.isAssignableFrom(type) || ArrayList.class.isAssignableFrom(type)) {
+				log.error("不支集合类型，请使用数组类型接收：" + name);
 				return null;
 			} else {
 				// 尝试对象模式接收

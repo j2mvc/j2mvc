@@ -71,11 +71,9 @@ public class XMLReader extends BaseReader {
 					e.printStackTrace();
 				}
 			}
-		}else {
-			// 没有参数，执行当前Action方法
-			return InvokeUtils.invoke(clazz, method.getName(), object, null);
 		}
-		return null;
+		// 没有参数，执行当前Action方法
+		return InvokeUtils.invoke(clazz, method.getName(), object, null);
 	}
 
 	/**
