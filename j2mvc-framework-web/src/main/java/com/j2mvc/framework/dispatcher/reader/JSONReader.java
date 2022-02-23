@@ -145,21 +145,21 @@ public class JSONReader extends BaseReader {
 			String[] values = requestUri.split("/");
 			return new RequestUri(values);
 		} else if (String.class.isAssignableFrom(type)) {
-			return jsonData.getString(name);
+			return jsonData!=null?jsonData.getString(name):null;
 		} else if (Integer.class.isAssignableFrom(type) || Short.class.isAssignableFrom(type)
 				|| short.class.isAssignableFrom(type) || int.class.isAssignableFrom(type)) {
-			return jsonData.getInteger(name);
+			return jsonData!=null?jsonData.getInteger(name):null;
 		} else if (Long.class.isAssignableFrom(type) || long.class.isAssignableFrom(type)) {
-			return jsonData.getLong(name);
+			return jsonData!=null?jsonData.getLong(name):null;
 		} else if (Float.class.isAssignableFrom(type) || float.class.isAssignableFrom(type)) {
-			return jsonData.getFloat(name);
+			return jsonData!=null?jsonData.getFloat(name):null;
 		} else if (Double.class.isAssignableFrom(type) || double.class.isAssignableFrom(type)) {
-			return jsonData.getDouble(name);
+			return jsonData!=null?jsonData.getDouble(name):null;
 		} else if (Boolean.class.isAssignableFrom(type) || boolean.class.isAssignableFrom(type)) {
-			return jsonData.getBoolean(name);
+			return jsonData!=null?jsonData.getBoolean(name):null;
 		} else if (Time.class.isAssignableFrom(type))
 			try {
-				String str = jsonData.getString(name);
+				String str = jsonData!=null?jsonData.getString(name):null;
 				return Constants.DEFAULT_TIME_FORMAT.parse(str);
 			} catch (ParseException e) {
 				log.error(e.getMessage());
@@ -167,14 +167,14 @@ public class JSONReader extends BaseReader {
 			}
 		else if (Date.class.isAssignableFrom(type)) {
 			try {
-				String str = jsonData.getString(name);
+				String str = jsonData!=null?jsonData.getString(name):null;
 				return Constants.DEFAULT_DATE_TIME_FORMAT.parse(str);
 			} catch (ParseException e) {
 				log.error(e.getMessage());
 				return null;
 			}
 		} else {
-			String value = jsonData.getString(name);
+			String value = jsonData!=null?jsonData.getString(name):null;
 			if (value == null) {
 				return null;
 			}

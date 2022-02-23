@@ -1,6 +1,5 @@
 package com.j2mvc.framework.dispatcher.reader;
 
-import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.sql.Time;
@@ -22,7 +21,6 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.log4j.Logger;
 
 import com.j2mvc.framework.Constants;
-import com.j2mvc.framework.util.FieldUtil;
 import com.j2mvc.framework.util.InvokeUtils;
 import com.j2mvc.util.json.JSONParse;
 

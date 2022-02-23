@@ -384,11 +384,13 @@ public class Upload {
 		suffixMap = suffixMap == null?new HashMap<String,String>():suffixMap;
 		// 自定义扩展名
 		String exts = getParam("exts");
+		System.out.println(exts);
 	  	if(exts!=null && !exts.equals("") && dirName!=null){
 	  		exts = exts.replaceAll("*.", "");
 	  		exts = exts.replaceAll(";", ",");
 	  		suffixMap.put(dirName, exts.toLowerCase());
 	  	}
+		System.out.println(suffixMap.get(dirName));
 	}
 
 	/**
